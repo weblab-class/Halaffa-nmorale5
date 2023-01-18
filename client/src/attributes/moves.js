@@ -18,5 +18,5 @@ export default function resolveMove(playerStats, enemyStats, moveId) {
   let player = {...playerStats};
   let enemy = {...enemyStats};
   moves[moveId](player, enemy);
-  return player, enemy;
+  return [player, enemy];
 }
