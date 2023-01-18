@@ -8,7 +8,8 @@
     "blue": 5,
     "attack": 3,
     "health": 12,
-    "speed": 4
+    "speed": 4,
+    "cost": 0
   },
   {
     "id": 1,
@@ -19,6 +20,19 @@
     "blue": 2,
     "attack": 5,
     "health": 5,
-    "speed": 6
+    "speed": 6,
+    "cost": 0
+  },
+  {
+    "id": 2,
+    "name": "Crank",
+    "sprite": "GrassStarter.png",
+    "red": 2,
+    "green": 7,
+    "blue": 2,
+    "attack": 2,
+    "health": 20,
+    "speed": 2,
+    "cost": 1
   }
 ]
