@@ -27,31 +27,49 @@ export default class Battle extends React.Component {
       turn: 1,
       playersTurn: true,
       move: null,
+      animating: false,
     };
   }
 
-  onClickMove(moveId) {
+  onFinishedMove(moveId) {
     let [player, enemy] = resolveMove(this.state.player, this.state.enemy, moveId);
-    this.setState({ player, enemy })
+    this.setState({ 
+      player: player, 
+      enemy: enemy,
+      move: moveId,
+      animating: true,
+    });
+  }
+
+  onFinishedText() {
+    this.setState({
+      playersTurn: !this.state.playersTurn,
+      animating: false,
+    })
   }
 
   render() {
     return (
-      <div>
+      <>
         <BattleUpper
           attributes={this.props.attributes}
           gameData={this.props.gameData}
           player={this.state.player}
           enemy={this.state.enemy}
+          animating={this.state.animating}
         />
         <BattleLower
           attributes={this.props.attributes}
           gameData={this.props.gameData}
           player={this.state.player}
           enemy={this.state.enemy}
-          onClickMove={(moveId) => this.onClickMove(moveId)}
+          onClickMove={(moveId) => this.onFinishedMove(moveId)}
+          onFinishedText={() => this.onFinishedText()}
+          playersTurn={this.state.playersTurn}
+          move={this.state.move}
+          animating={this.state.animating}
         />
-      </div>
+      </>
     )
   }
 }
