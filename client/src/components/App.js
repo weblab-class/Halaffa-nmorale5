@@ -1,51 +1,67 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
-import Skeleton from "./pages/Skeleton.js";
+import Game from "./pages/Game.js";
 
 import "../utilities.css";
-
 import { socket } from "../client-socket.js";
-
 import { get, post } from "../utilities";
+
+import equipment from '../attributes/equipment.json' assert { type: 'JSON' };
+import moves from '../attributes/moves.json' assert { type: 'JSON' };
+import starters from '../attributes/starters.json' assert { type: 'JSON' };
 
 /**
  * Define the "App" component
  */
-const App = () => {
-  const [userId, setUserId] = useState(undefined);
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { 
+      userId: undefined,
+      attributes: { equipment, moves, starters },
+    }
+  }
 
-  useEffect(() => {
+  componentDidMount() {
+    this.componentDidUpdate();
+  }
+
+  componentDidUpdate() {
     get("/api/whoami").then((user) => {
       if (user._id) {
         // they are registed in the database, and currently logged in.
-        setUserId(user._id);
+        this.setState({ userId: user._id });
       }
     });
-  }, []);
+  }
 
-  const handleLogin = (res) => {
+  handleLogin(res) {
     console.log(`Logged in as ${res.profileObj.name}`);
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
-      setUserId(user._id);
+      this.setState({ userId: user._id });
       post("/api/initsocket", { socketid: socket.id });
     });
-  };
+  }
 
-  const handleLogout = () => {
-    setUserId(undefined);
+  handleLogout() {
+    this.setState({ userId: undefined });
     post("/api/logout");
-  };
+  }
 
-  return (
-    <>
-      <Router>
-        <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
-        <NotFound default />
-      </Router>
-    </>
-  );
-};
-
-export default App;
+  render() {
+    return (
+      <>
+        <Router>
+          <Game 
+            path="/"
+            attributes={this.state.attributes}
+            starter={1} 
+          />
+          <NotFound default />
+        </Router>
+      </>
+    );
+  }
+}

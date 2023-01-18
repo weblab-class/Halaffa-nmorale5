@@ -1,0 +1,24 @@
+[
+  {
+    "id": 0,
+    "name": "Alice",
+    "sprite": "WaterStarter.png",
+    "red": 2,
+    "green": 3,
+    "blue": 5,
+    "attack": 3,
+    "health": 12,
+    "speed": 4
+  },
+  {
+    "id": 1,
+    "name": "Bob",
+    "sprite": "FireDude.png",
+    "red": 7,
+    "green": 1,
+    "blue": 2,
+    "attack": 5,
+    "health": 5,
+    "speed": 6
+  }
+]

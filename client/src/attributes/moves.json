@@ -1,0 +1,20 @@
+[
+  {
+    "id": 0,
+    "name": "Fireball",
+    "description": "Chance to inflict burn.",
+    "power": 100
+  },
+  {
+    "id": 1,
+    "name": "Thorn spike",
+    "description": "A basic attack.",
+    "power": 50
+  },
+  {
+    "id": 2,
+    "name": "Ice beam",
+    "description": "Freezes the enemy.",
+    "power": 40
+  }
+]
