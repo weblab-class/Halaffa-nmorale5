@@ -3,9 +3,11 @@ import { Link } from "@reach/router";
 
 export default function SelectButton(props) {
   return (
-    <button>
+    <button 
+      onMouseOver={() => props.onHover(props.buttonName)}
+      onMouseOut={() => props.onUnhover(props.buttonName)}>
       <Link to={props.link}>
-          {props.text}
+          {props.buttonName}
       </Link>
     </button>
   )

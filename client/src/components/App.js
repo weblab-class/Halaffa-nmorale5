@@ -26,9 +26,9 @@ export default class App extends React.Component {
     this.state = { 
       userId: 237589,
       attributes: { equipment, moves, starters },
-      currency: 100,
+      currency: 10,
       equippedStarter: 1,
-      unlockedStarters: [true, true, false],
+      unlockedStarters: [false, false, false],
     }
   }
 
@@ -89,6 +89,9 @@ export default class App extends React.Component {
             currency={this.state.currency}
             userId={this.state.userId}
             onClickChoose={(starterId) => this.changeStarter(starterId)}
+            onClickBuy={(starterId) => this.unlockStarter(starterId)}
+            starters={this.state.attributes.starters}
+            unlockedStarters={this.state.unlockedStarters}
           />
           <Leaderboard
             path="/leaderboard"

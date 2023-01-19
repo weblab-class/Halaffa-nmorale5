@@ -4,7 +4,7 @@ export default class SelectText extends React.Component {
   render() {
     return (
       <div>
-        <p>Some sample text to get things going.</p>
+        <p>{this.props.text}</p>
       </div>
     )
   }
