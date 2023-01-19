@@ -4,9 +4,6 @@ import CurrencyUI from "./CurrencyUI";
 import Character from "../modules/Character";
 
 export default class Shop extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     const starterList = this.props.starters
     return (
@@ -20,9 +17,9 @@ export default class Shop extends React.Component {
         {starterList.map((starter) => (
           <Character
             onClickChoose = {this.props.onClickChoose}
-            name={starter.name}
-            starterId={starter.id}
-            sprite={starter.sprite}
+            onClickBuy = {this.props.onClickBuy}
+            starter = {starter}
+            isUnlocked = {this.props.unlockedStarters[starter.id]}
             key={starter.id}
           />
         ))}

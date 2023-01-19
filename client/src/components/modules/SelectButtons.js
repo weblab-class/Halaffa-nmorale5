@@ -2,18 +2,13 @@ import React from 'react';
 import SelectButton from './SelectButton';
 
 export default class SelectButtons extends React.Component {
-  constructor(props) {
-    super(props);
-    // TODO display description based on hover in SelectText
-  }
-
   render() {
     return (
       <div>
-        <SelectButton link="/game" text="Single Player"/>
-        <SelectButton link="/game" text="Multiplayer"/>
-        <SelectButton link="/leaderboard" text="Leaderboard"/>
-        <SelectButton link="/shop" text="Shop"/>
+        <SelectButton link="/game" buttonName="Single Player" onHover={this.props.onHover} onUnhover={this.props.onUnhover}/>
+        <SelectButton link="/game" buttonName="Multiplayer" onHover={this.props.onHover} onUnhover={this.props.onUnhover}/>
+        <SelectButton link="/leaderboard" buttonName="Leaderboard" onHover={this.props.onHover} onUnhover={this.props.onUnhover}/>
+        <SelectButton link="/shop" buttonName="Shop" onHover={this.props.onHover} onUnhover={this.props.onUnhover}/>
       </div>
     )
   }

@@ -2,20 +2,22 @@ import React from 'react';
 import SelectCharacter from "./SelectCharacter.js";
 
 export default class Character extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
-    console.log
+    let onClickFunc = this.props.onClickBuy;
+    let buttonName = "Unlock for: " + this.props.starter.cost;
+    if (this.props.isUnlocked) {
+      onClickFunc = this.props.onClickChoose;
+      buttonName = this.props.starter.name;
+    }
     return (
       <div>
         <img
-          src={console.log(('../../images/' + this.props.sprite).default)}
+          src={require('../../images/' + this.props.starter.sprite).default}
         />
         <SelectCharacter 
-          onClickChoose = {this.props.onClickChoose} 
-          starterId ={this.props.starterId} 
-          name = {this.props.name}
+          onClickChoose = {onClickFunc}
+          starter ={this.props.starter} 
+          name = {buttonName}
         />
       </div>
     )
