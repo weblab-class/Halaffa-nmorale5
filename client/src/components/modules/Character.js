@@ -6,13 +6,17 @@ export default class Character extends React.Component {
     super(props);
   }
   render() {
+    console.log
     return (
       <div>
         <img
-          className='sprite'
-          src={require('../../images/' + "WaterStarter.png").default}
+          src={console.log(('../../images/' + this.props.sprite).default)}
         />
-        <SelectCharacter onClickChoose = {this.props.onClickChoose} starterId = {0} name = "Alice"/>
+        <SelectCharacter 
+          onClickChoose = {this.props.onClickChoose} 
+          starterId ={this.props.starterId} 
+          name = {this.props.name}
+        />
       </div>
     )
   }

@@ -89,6 +89,7 @@ export default class App extends React.Component {
             currency={this.state.currency}
             userId={this.state.userId}
             onClickChoose={(starterId) => this.changeStarter(starterId)}
+            starters={this.state.attributes.starters}
           />
           <Leaderboard
             path="/leaderboard"
