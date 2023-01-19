@@ -28,11 +28,13 @@ export default class Battle extends React.Component {
       playersTurn: true,
       move: null,
       animating: false,
+      playerDied: false,
+      enemyDied: false,
     };
   }
 
-  onFinishedMove(moveId) {
-    let [player, enemy] = resolveMove(this.state.player, this.state.enemy, moveId);
+  makeMove(moveId, playerAttacksEnemy) {
+    let [player, enemy] = resolveMove(this.state.player, this.state.enemy, moveId, playerAttacksEnemy);
     this.setState({ 
       player: player, 
       enemy: enemy,
@@ -41,11 +43,39 @@ export default class Battle extends React.Component {
     });
   }
 
+  onFinishedMove(moveId) {
+    this.makeMove(moveId, true);
+  }
+
   onFinishedText() {
-    this.setState({
-      playersTurn: !this.state.playersTurn,
-      animating: false,
-    })
+    if (this.state.playerDied) return this.props.onPlayerDied();
+    else if (this.state.enemyDied) return this.props.onEnemyDied(this.state.player.health);
+
+    if (this.state.animating) {
+      const playerDied = this.state.player.health <= 0;
+      const enemyDied = this.state.enemy.health <= 0;
+      this.setState({
+        playersTurn: !this.state.playersTurn,
+        animating: false,
+        playerDied: playerDied,
+        enemyDied: enemyDied,
+      })
+    } else {
+      this.chooseEnemyMove();
+    }
+  }
+
+  onEnemyMadeMove(moveId) {
+    this.makeMove(moveId, false);
+  }
+
+  chooseEnemyMove() {
+    const move = 0; // hard-coded move for now
+    setTimeout(() => this.onEnemyMadeMove(move), 1000); // simulates waiting for opponent over network
+  }
+
+  componentDidUpdate() {
+    console.log(this.state);
   }
 
   render() {
@@ -65,9 +95,12 @@ export default class Battle extends React.Component {
           enemy={this.state.enemy}
           onClickMove={(moveId) => this.onFinishedMove(moveId)}
           onFinishedText={() => this.onFinishedText()}
+          onEnemyTurn={() => this.chooseEnemyMove()}
           playersTurn={this.state.playersTurn}
           move={this.state.move}
           animating={this.state.animating}
+          playerDied={this.state.playerDied}
+          enemyDied={this.state.enemyDied}
         />
       </>
     )

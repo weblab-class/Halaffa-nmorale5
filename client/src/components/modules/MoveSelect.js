@@ -23,12 +23,11 @@ export default class MoveSelect extends React.Component {
       return (
         <li key={moveId}>
           <MoveButton
-            moveId={moveId}
             name={move.name}
             power={move.power}
-            onClick={this.props.onClickMove}
-            onHover={(moveId) => this.onHover(moveId)}
-            onUnhover={(moveId) => this.onUnhover(moveId)}
+            onClick={() => this.props.onClickMove(moveId)}
+            onHover={() => this.onHover(moveId)}
+            onUnhover={() => this.onUnhover(moveId)}
           />
         </li>
       )

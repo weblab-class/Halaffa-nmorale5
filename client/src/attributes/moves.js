@@ -14,9 +14,10 @@ const moves = {
   }
 }
 
-export default function resolveMove(playerStats, enemyStats, moveId) {
+export default function resolveMove(playerStats, enemyStats, moveId, playerAttacksEnemy=true) {
   let player = {...playerStats};
   let enemy = {...enemyStats};
-  moves[moveId](player, enemy);
+  if (playerAttacksEnemy) moves[moveId](player, enemy);
+  else                    moves[moveId](enemy, player);
   return [player, enemy];
 }

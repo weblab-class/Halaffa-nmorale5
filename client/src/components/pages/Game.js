@@ -21,9 +21,6 @@ export default class Game extends React.Component {
         moves: [0, 1, 2],
         equipment: [],
       },
-      // battleData: null,
-      // enemySelectOptions: null,
-      // lootSummary: null,
       currentScreen: "battle",
 
       // hard-coded enemyData for now
@@ -38,39 +35,43 @@ export default class Game extends React.Component {
     };
   }
 
-  // setupBattleData() {
-  //   let player = this.state.gameData;
-  //   let enemy = this.props.attributes.starters[1];
-  //   this.setState({
-  //     currentScreen: "battleData",
-  //     battleData: {
-  //       turn: 1,
-  //       player: {
-  //         speed: player.speed,
-  //         attack: player.attack,
-  //         health: player.health,
-  //         maxHealth: player.maxHealth,
-  //       },
-  //       enemy: {
-  //         speed: enemy.speed,
-  //         attack: enemy.attack,
-  //         health: enemy.health,
-  //         maxHealth: enemy.health,
-  //         name: enemy.name,
-  //         sprite: enemy.sprite,
-  //       },
-  //     }
-  //   });
-  // }
+  onPlayerDied() {
+    this.setState({
+      currentScreen: "select"
+    });
+  }
+
+  onEnemyDied(newHealth) {
+    this.setState({
+      currentScreen: "results",
+      gameData: {
+        health: newHealth,
+        ...this.state.gameData,
+      }
+    });
+  }
 
   render() {
-    if (!this.state.currentScreen) return <p>Loading...</p>
-    return (
-      <Battle 
-        attributes={this.props.attributes} 
-        gameData={this.state.gameData} 
-        enemyData={this.state.enemyData}
-      />
-    )
+    switch (this.state.currentScreen) {
+      case "battle":
+        return (
+          <Battle 
+            attributes={this.props.attributes} 
+            gameData={this.state.gameData} 
+            enemyData={this.state.enemyData}
+            onPlayerDied={() => this.onPlayerDied()}
+            onEnemyDied={(newHealth) => this.onEnemyDied(newHealth)}
+          />
+        )
+      case "results":
+        return (
+          <p>results screen</p>
+        )
+      case "select":
+        return (
+          <p>enemy select screen</p>
+        )
+    }
+
   }
 }
