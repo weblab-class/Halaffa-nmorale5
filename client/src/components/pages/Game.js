@@ -1,11 +1,13 @@
 import React from 'react';
 import Battle from '../modules/Battle.js';
+import EnemySelect from '../modules/EnemySelect.js';
+import LootResults from '../modules/LootResults.js';
+import Stats from '../modules/Stats.js';
 
 export default class Game extends React.Component {
   constructor(props) {
     super(props);
     let starter = this.props.attributes.starters[this.props.starter];
-    let enemy = this.props.attributes.starters[0] // hard-coded enemy for now
     this.state = {
       gameData: {
         name: starter.name,
@@ -21,57 +23,84 @@ export default class Game extends React.Component {
         moves: [0, 1, 2],
         equipment: [],
       },
-      currentScreen: "battle",
-
-      // hard-coded enemyData for now
-      enemyData: {
-        speed: enemy.speed,
-        attack: enemy.attack,
-        health: enemy.health,
-        maxHealth: enemy.health,
-        name: enemy.name,
-        sprite: enemy.sprite,
-      }
+      currentScreen: "select",
     };
   }
 
   onPlayerDied() {
     this.setState({
-      currentScreen: "select"
+      currentScreen: "select",
     });
   }
 
-  onEnemyDied(newHealth) {
+  onEnemyDied() {
     this.setState({
       currentScreen: "results",
-      gameData: {
-        health: newHealth,
-        ...this.state.gameData,
+    });
+  }
+
+  onEnemyChosen(option) {
+    this.setState({
+      currentScreen: "battle",
+      enemyData: option.enemyData,
+      lootData: {
+        enemyData: undefined,
+        ...option,
       }
     });
   }
 
+  onLootCollected() {
+    this.setState({
+      currentScreen: "select",
+      gameData: {
+        ...this.state.gameData,
+        xp: this.state.lootData.xp + this.state.gameData.xp,
+        red: this.state.lootData.red + this.state.gameData.red,
+        green: this.state.lootData.green + this.state.gameData.green,
+        blue: this.state.lootData.blue + this.state.gameData.blue,
+      }
+    })
+  }
+
   render() {
+    let screen;
     switch (this.state.currentScreen) {
       case "battle":
-        return (
+        screen = (
           <Battle 
             attributes={this.props.attributes} 
             gameData={this.state.gameData} 
             enemyData={this.state.enemyData}
             onPlayerDied={() => this.onPlayerDied()}
-            onEnemyDied={(newHealth) => this.onEnemyDied(newHealth)}
+            onEnemyDied={() => this.onEnemyDied()}
           />
-        )
+        );
+        break;
       case "results":
-        return (
-          <p>results screen</p>
-        )
+        screen = (
+          <LootResults
+            loot={this.state.lootData}
+            onClick={() => this.onLootCollected()}
+          />
+        );
+        break;
       case "select":
-        return (
-          <p>enemy select screen</p>
-        )
+        screen = (
+          <EnemySelect
+            attributes={this.props.attributes}
+            onEnemyChosen={(enemy) => this.onEnemyChosen(enemy)}
+          />
+        );
     }
+    return (
+      <>
+        <Stats
+          stats={this.state.gameData}
+        />
+        {screen}
+      </>
+    )
 
   }
 }

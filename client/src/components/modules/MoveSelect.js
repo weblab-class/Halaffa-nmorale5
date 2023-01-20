@@ -25,7 +25,7 @@ export default class MoveSelect extends React.Component {
           <MoveButton
             name={move.name}
             power={move.power}
-            onClick={() => this.props.onClickMove(moveId)}
+            onClick={() => this.props.onFinished(moveId)}
             onHover={() => this.onHover(moveId)}
             onUnhover={() => this.onUnhover(moveId)}
           />

@@ -14,7 +14,7 @@ import { get, post } from "../utilities";
 import equipment from '../attributes/equipment.json' assert { type: 'JSON' };
 import moves from '../attributes/moves.json' assert { type: 'JSON' };
 import starters from '../attributes/starters.json' assert { type: 'JSON' };
-//import enemies from '../attributes/enemies.json' assert { type: 'JSON' };
+import enemies from '../attributes/enemies.json' assert { type: 'JSON' };
 
 
 /**
@@ -25,7 +25,7 @@ export default class App extends React.Component {
     super(props);
     this.state = { 
       userId: 237589,
-      attributes: { equipment, moves, starters },
+      attributes: { equipment, moves, starters, enemies },
       currency: 10,
       equippedStarter: 1,
       unlockedStarters: [false, false, false],

@@ -1,108 +1,117 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import resolveMove from '../../attributes/moves';
 import BattleLower from './BattleLower';
 import BattleUpper from './BattleUpper';
 
-export default class Battle extends React.Component {
-  constructor(props) {
-    super(props);
-    const player = this.props.gameData;
-    const enemy = this.props.enemyData;
-    this.state = {
-      player: {
-        speed: player.speed,
-        attack: player.attack,
-        health: player.health,
-        maxHealth: player.maxHealth,
-      },
-      enemy: {
-        speed: enemy.speed,
-        attack: enemy.attack,
-        health: enemy.health,
-        maxHealth: enemy.health,
-        name: enemy.name,
-        sprite: enemy.sprite,
-      },
+export default function Battle(props) {
+  const p = props.gameData;
+  const e = props.enemyData;
+  const [player, setPlayer] = useState({
+    speed: p.speed,
+    attack: p.attack,
+    health: p.health,
+    maxHealth: p.maxHealth,
+  });
+  const [enemy, setEnemy] = useState({
+    speed: e.speed,
+    attack: e.attack,
+    health: e.health,
+    maxHealth: e.health,
+  });
+  const enemyInfo = {
+    name: e.name,
+    sprite: e.sprite,
+  };
+  const [turnData, setTurnData] = useState({
+    playersTurn: true,
+    animating: false,
+  });
+  const [move, setMove] = useState(null);
+  const [playerDied, setPlayerDied] = useState(false);
+  const [enemyDied, setEnemyDied] = useState(false);
 
-      turn: 1,
-      playersTurn: true,
-      move: null,
-      animating: false,
-      playerDied: false,
-      enemyDied: false,
-    };
-  }
-
-  makeMove(moveId, playerAttacksEnemy) {
-    let [player, enemy] = resolveMove(this.state.player, this.state.enemy, moveId, playerAttacksEnemy);
-    this.setState({ 
-      player: player, 
-      enemy: enemy,
-      move: moveId,
-      animating: true,
-    });
-  }
-
-  onFinishedMove(moveId) {
-    this.makeMove(moveId, true);
-  }
-
-  onFinishedText() {
-    if (this.state.playerDied) return this.props.onPlayerDied();
-    else if (this.state.enemyDied) return this.props.onEnemyDied(this.state.player.health);
-
-    if (this.state.animating) {
-      const playerDied = this.state.player.health <= 0;
-      const enemyDied = this.state.enemy.health <= 0;
-      this.setState({
-        playersTurn: !this.state.playersTurn,
-        animating: false,
-        playerDied: playerDied,
-        enemyDied: enemyDied,
-      })
-    } else {
-      this.chooseEnemyMove();
+  const checkForDeaths = (newPlayer, newEnemy) => {
+    if (newPlayer.health <= 0) {
+      setPlayerDied(true);
+    } if (newEnemy.health <= 0) {
+      setEnemyDied(true);
     }
   }
 
-  onEnemyMadeMove(moveId) {
-    this.makeMove(moveId, false);
+  const makeMove = (moveId, playerAttacksEnemy) => {
+    const [newPlayer, newEnemy] = resolveMove(player, enemy, moveId, playerAttacksEnemy);
+
+    checkForDeaths(newPlayer, newEnemy);
+
+    setPlayer(newPlayer);
+    setEnemy(newEnemy);
+
+    setMove(moveId);
+    setTurnData({
+      playersTurn: turnData.playersTurn,
+      animating: true,
+    })
   }
 
-  chooseEnemyMove() {
-    const move = 0; // hard-coded move for now
-    setTimeout(() => this.onEnemyMadeMove(move), 1000); // simulates waiting for opponent over network
+  const onSubmittedMove = (moveId) => {
+    makeMove(moveId, true);
   }
 
-  componentDidUpdate() {
-    console.log(this.state);
+  const onEnemyMadeMove = (moveId) => {
+    makeMove(moveId, false);
   }
 
-  render() {
-    return (
-      <>
-        <BattleUpper
-          attributes={this.props.attributes}
-          gameData={this.props.gameData}
-          player={this.state.player}
-          enemy={this.state.enemy}
-          animating={this.state.animating}
-        />
-        <BattleLower
-          attributes={this.props.attributes}
-          gameData={this.props.gameData}
-          player={this.state.player}
-          enemy={this.state.enemy}
-          onClickMove={(moveId) => this.onFinishedMove(moveId)}
-          onFinishedText={() => this.onFinishedText()}
-          onEnemyTurn={() => this.chooseEnemyMove()}
-          playersTurn={this.state.playersTurn}
-          move={this.state.move}
-          animating={this.state.animating}
-          playerDied={this.state.playerDied}
-          enemyDied={this.state.enemyDied}
-        />
-      </>
-    )
+  const onMoveAnimationCompleted = () => {
+    setTurnData({
+      playersTurn: !turnData.playersTurn,
+      animating: false,
+    });
   }
+
+  const onDeathTextCompleted = () => {
+    if (playerDied) props.onPlayerDied();
+    else if (enemyDied) props.onEnemyDied();
+  }
+
+  const awaitEnemyMove = () => {
+    const moveId = 2 // hard-coded for now
+    setTimeout(() => onEnemyMadeMove(moveId), 1000);
+  }
+
+  useEffect(() => {
+    // simulates waiting for opponent input over network
+    if (!turnData.playersTurn && !turnData.animating && !playerDied && !enemyDied) {
+      awaitEnemyMove();
+    }
+  }, [turnData])
+
+  const events = {
+    onClickMove: (moveId) => onSubmittedMove(moveId),
+    onFinishedText: () => onMoveAnimationCompleted(),
+    onDeathTextCompleted: () => onDeathTextCompleted(),
+  };
+  const battleData = {
+    playerDied: playerDied,
+    enemyDied: enemyDied,
+  };
+  return (
+    <>
+      <BattleUpper
+        attributes={props.attributes}
+        gameData={props.gameData}
+        player={player}
+        enemy={enemy}
+        enemyInfo={enemyInfo}
+        turnData={turnData}
+      />
+      <BattleLower
+        attributes={props.attributes}
+        gameData={props.gameData}
+        turnData={turnData}
+        move={move}
+        battleData={battleData}
+        events={events}
+      />
+    </>
+  )
 }

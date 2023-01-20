@@ -1,24 +1,29 @@
 import React from 'react';
 import MoveSelect from './MoveSelect';
-import BattleText from './BattleText';
+import { MoveSummary, AwaitingOpponent, BattleResult } from './BattleTexts';
 
 export default function BattleLower(props) {
-  return (!props.animating && props.playersTurn) ? (
-    <MoveSelect 
+  if (props.turnData.animating) {
+    return <MoveSummary
+      playersTurn={props.turnData.playersTurn}
+      moveName={props.attributes.moves.find(({id}) => id == props.move).name}
+      onFinished={props.events.onFinishedText}
+    />
+  } else if (props.battleData.playerDied || props.battleData.enemyDied) {
+    return <BattleResult
+      playerDied={props.battleData.playerDied}
+      enemyDied={props.battleData.enemyDied}
+      onFinished={props.events.onDeathTextCompleted}
+    />
+  } else if (props.turnData.playersTurn) {
+    return <MoveSelect 
       attributes={props.attributes}
       gameData={props.gameData}
-      player={props.player}
-      enemy={props.enemy}
-      onClickMove={props.onClickMove}
+      onFinished={props.events.onClickMove}
     />
-  ) : (
-    <BattleText
-      playersTurn={props.playersTurn}
-      moveName={props.attributes.moves.find(({id}) => id == props.move).name}
-      onFinishedText={props.onFinishedText}
-      playerDied={props.playerDied}
-      enemyDied={props.enemyDied}
-      animating={props.animating}
+  } else {
+    return <AwaitingOpponent
+      onFinished={props.events.onEnemyMadeMove}
     />
-  )
+  }
 }

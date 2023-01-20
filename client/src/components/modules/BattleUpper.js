@@ -11,7 +11,7 @@ export default class BattleUpper extends React.Component {
         />
         <img
           className='sprite'
-          src={require('../../images/' + this.props.enemy.sprite).default}
+          src={require('../../images/' + this.props.enemyInfo.sprite).default}
         />
         <p>Your health: {this.props.player.health}</p>
         <p>Enemy health: {this.props.enemy.health}</p>
