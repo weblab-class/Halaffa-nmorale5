@@ -24,7 +24,7 @@ function getOrCreateUser(user) {
 
     const newUser = new User({
       name: user.name,
-      userID: user.sub,
+      googleid: user.sub,
       currency: 0,
       starter: 0,
       unlocked: [true, false, false],
@@ -73,3 +73,4 @@ module.exports = {
   populateCurrentUser,
   ensureLoggedIn,
 };
+

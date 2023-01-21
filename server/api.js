@@ -1,21 +1,7 @@
-/*
-|--------------------------------------------------------------------------
-| api.js -- server routes
-|--------------------------------------------------------------------------
-|
-| This file defines the routes for your server.
-|
-*/
-
 const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
-const Starter = require("./models/starter");
-const PlayerStats = require("./models/playerStats");
-const Passive = require("./models/passive");
-const Move = require("./models/move");
-const Current = require("./models/current");
 
 // import authentication library
 const auth = require("./auth");
@@ -37,10 +23,10 @@ router.get("/whoami", (req, res) => {
   res.send(req.user);
 });
 
-
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in
-  if (req.user) socketManager.addUser(req.user, socketManager.getSocketFromSocketID(req.body.socketid));
+  if (req.user)
+    socketManager.addUser(req.user, socketManager.getSocketFromSocketID(req.body.socketid));
   res.send({});
 });
 
@@ -49,14 +35,22 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 
 router.get("/starter", (req, res) => {
-  Starter.findOne({ id: req.query.id }).then((starter) => {
+  Starter.findOne({ id: req.user.starter }).then((starter) => {
     res.send(starter);
   });
 });
 
+router.post("/buy", (req, res) => {
+  Starter.findOne({ id: req.user.starter }).then((starter) => {
+    res.send(starter);
+  });
+});
+
+// Not logged in? What do
+
 router.post("/startgame", auth.ensureLoggedIn, (req, res) => {
   const newPlayer = new PlayerStats({
-    googleid: req.user.userID,
+    _id: req.user._id,
     maxHealth: req.starter.maxHealth,
     attack: req.starter.attack,
     speed: req.starter.speed,
