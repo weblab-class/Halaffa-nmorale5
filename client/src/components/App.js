@@ -6,6 +6,8 @@ import Game from "./pages/Game.js";
 import Home from "./pages/Home.js";
 import Leaderboard from "./pages/Leaderboard.js";
 import Shop from "./pages/Shop.js";
+import GoogleLogin, { GoogleLogout } from "react-google-login";
+
 
 import "../utilities.css";
 import { socket } from "../client-socket.js";
@@ -24,7 +26,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      userId: 237589,
+      userId: undefined,
       attributes: { equipment, moves, starters, enemies },
       currency: 10,
       equippedStarter: 1,
@@ -78,6 +80,9 @@ export default class App extends React.Component {
         <Router>
           <Home 
             path="/"
+            handleLogin={(res) => this.handleLogin(res)}
+            handleLogout={this.handleLogout}
+            userId={this.state.userId}
           />
           <Select 
             path="/select"
