@@ -1,7 +1,22 @@
 [
   {
     "id": 0,
-    "name": "Zen",
+    "name": "Longsword",
+    "description": "Attacks are 50% more powerful"
+  },
+  {
+    "id": 1,
+    "name": "Magic mail",
+    "description": "Has 50% more max health."
+  },
+  {
+    "id": 2,
+    "name": "Running Shoes",
+    "description": "Has 50% more speed."
+  },
+  {
+    "id": 3,
+    "name": "Holy Aura",
     "description": "Heals for a small amount after each attack."
   }
 ]

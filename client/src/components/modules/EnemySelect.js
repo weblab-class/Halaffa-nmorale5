@@ -11,6 +11,8 @@ export default class EnemySelect extends React.Component {
         red: 0,
         green: 3,
         blue: 2,
+        moves: [],
+        equipment: [0],
         enemyData: {
           speed: enemy.speed - 2,
           attack: enemy.attack - 2,
@@ -26,6 +28,8 @@ export default class EnemySelect extends React.Component {
         red: 6,
         green: 1,
         blue: 2,
+        moves: [],
+        equipment: [1],
         enemyData: {
           speed: enemy.speed,
           attack: enemy.attack,
@@ -41,6 +45,8 @@ export default class EnemySelect extends React.Component {
         red: 4,
         green: 5,
         blue: 5,
+        moves: [],
+        equipment: [2],
         enemyData: {
           speed: enemy.speed + 2,
           attack: enemy.attack + 2,

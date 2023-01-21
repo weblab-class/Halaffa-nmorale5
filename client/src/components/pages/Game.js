@@ -19,9 +19,9 @@ export default class Game extends React.Component {
         attack: starter.attack,
         health: starter.health,
         maxHealth: starter.health,
-        xp: 0,
-        moves: [0, 1, 2],
-        equipment: [],
+        xp: starter.XP,
+        moves: starter.moves,
+        equipment: starter.equipment,
       },
       currentScreen: "select",
     };
@@ -59,6 +59,8 @@ export default class Game extends React.Component {
         red: this.state.lootData.red + this.state.gameData.red,
         green: this.state.lootData.green + this.state.gameData.green,
         blue: this.state.lootData.blue + this.state.gameData.blue,
+        moves: this.state.gameData.moves.concat(this.state.lootData.moves),
+        equipment: this.state.gameData.equipment.concat(this.state.lootData.equipment),
       }
     })
   }
@@ -96,6 +98,7 @@ export default class Game extends React.Component {
     return (
       <>
         <Stats
+          attributes={this.props.attributes}
           stats={this.state.gameData}
         />
         {screen}

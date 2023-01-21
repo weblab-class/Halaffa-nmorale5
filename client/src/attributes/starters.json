@@ -10,7 +10,8 @@
     "health": 12,
     "speed": 4,
     "cost": 0,
-    "moves": ["ice beam"],
+    "moves": [0, 1],
+    "equipment": [3],
     "XP": 30
   },
   {
@@ -24,7 +25,8 @@
     "health": 5,
     "speed": 6,
     "cost": 1,
-    "moves": ["ice beam"],
+    "moves": [0, 1],
+    "equipment": [3],
     "XP": 30
   },
   {
@@ -37,8 +39,9 @@
     "attack": 2,
     "health": 20,
     "speed": 2,
-    "cost": 111,
-    "moves": ["ice beam"],
+    "cost": 9,
+    "moves": [1, 2],
+    "equipment": [3],
     "XP": 30
   }
 ]
