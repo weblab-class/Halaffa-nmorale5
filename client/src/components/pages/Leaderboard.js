@@ -14,6 +14,9 @@ export default class Leaderboard extends React.Component {
               Back
           </Link>
         </button>
+        <button onClick={this.props.debug}>
+          Debug
+        </button>
       </div>
     )
   }

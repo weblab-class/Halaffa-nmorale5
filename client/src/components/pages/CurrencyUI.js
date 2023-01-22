@@ -7,7 +7,7 @@ export default class CurrencyUI extends React.Component {
   render() {
     return (
       <p>
-        $: {this.props.currency} user: {this.props.userId}
+        $: {this.props.currency} User: {this.props.userName}
       </p>
     )
   }
