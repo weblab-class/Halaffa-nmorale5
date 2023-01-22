@@ -40,17 +40,26 @@ router.get("/starter", (req, res) => {
   });
 });
 
-router.post("/buy", (req, res) => {
-  Starter.findOne({ id: req.user.starter }).then((starter) => {
-    res.send(starter);
+router.post("/debug", (req, res) => {
+  console.log("can print in api");
+  User.findOne({_id: req.user._id}).then((user) =>{
+    user.unlocked = [true, false, false];
+    user.currency = 10;
+    user.save().then((user) => res.send(user));
   });
 });
 
-// Not logged in? What do
+router.post("/buy", (req, res) => {
+  User.findOne({_id: req.user._id}).then((user) =>{
+    user.currency = req.body.currency;
+    user.unlocked = req.body.unlocked;
+    user.save().then((user) => res.send(user));
+  });
+});
 
 router.post("/startgame", auth.ensureLoggedIn, (req, res) => {
   const newPlayer = new PlayerStats({
-    _id: req.user._id,
+    userid: req.user._id,
     maxHealth: req.starter.maxHealth,
     attack: req.starter.attack,
     speed: req.starter.speed,

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const CurrentSchema = new mongoose.Schema({
-	googleid: String,
+	userid: String,
 	yourHP: Number,
 	opponentHP: Number,
 	yourMove: String,

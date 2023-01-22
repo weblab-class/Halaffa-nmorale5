@@ -23,7 +23,7 @@
     "attack": 5,
     "health": 5,
     "speed": 6,
-    "cost": 0,
+    "cost": 1,
     "moves": ["ice beam"],
     "XP": 30
   },
@@ -37,7 +37,7 @@
     "attack": 2,
     "health": 20,
     "speed": 2,
-    "cost": 111,
+    "cost": 2,
     "moves": ["ice beam"],
     "XP": 30
   }

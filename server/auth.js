@@ -25,7 +25,7 @@ function getOrCreateUser(user) {
     const newUser = new User({
       name: user.name,
       googleid: user.sub,
-      currency: 0,
+      currency: 10,
       starter: 0,
       unlocked: [true, false, false],
     });

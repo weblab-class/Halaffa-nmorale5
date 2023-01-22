@@ -42,9 +42,10 @@ export default class App extends React.Component {
 
   componentDidUpdate() {
     get("/api/whoami").then((user) => {
-      if (user._id) {
+      if (user._id !== this.state.userId) {
         // they are registed in the database, and currently logged in.
-        this.setState({ userId: user._id });
+        this.setState({ userId: user._id, userName: user.name, currency: user.currency,
+          equippedStarter: user.starter, unlockedStarters: [...user.unlocked]});
       }
     });
   }
@@ -60,7 +61,7 @@ export default class App extends React.Component {
     console.log(`Logged in as ${decodedCredential.name}`);
     post("/api/login", { token: userToken }).then((user) => {
       this.setState({ userId: user._id,  userName: user.name, currency: user.currency,
-         equippedStarter: user.starter, unlockStarters: user.unlocked});
+         equippedStarter: user.starter, unlockedStarters: [...user.unlocked]});
       post("/api/initsocket", { socketid: socket.id });
     });
   };
@@ -72,11 +73,23 @@ export default class App extends React.Component {
 
   unlockStarter(starterId) {
     if (this.state.currency >= starters[starterId].cost) {
-      let newArray = this.state.unlockedStarters;
+      let newArray = [...this.state.unlockedStarters];
       newArray[starterId] = true;
-      this.setState({unlockedStarters : newArray, currency : this.state.currency - starters[starterId].cost});
+      const body = {unlocked : newArray, currency : this.state.currency - starters[starterId].cost}
+      post("/api/buy", body).then((user) => {
+        this.setState({ userId: user._id,  userName: user.name, currency: user.currency,
+          equippedStarter: user.starter, unlockedStarters: [...user.unlocked]});
+      });
     }
   };
+
+  debug() {
+    post("/api/debug", {}).then((user) => {
+      console.log("put prints here");
+      this.setState({ userId: user._id,  userName: user.name, currency: user.currency,
+        equippedStarter: user.starter, unlockedStarters: [...user.unlocked]});
+    });
+  }
 
   render() {
     return (
@@ -106,6 +119,7 @@ export default class App extends React.Component {
           />
           <Leaderboard
             path="/leaderboard"
+            debug={() => this.debug()}
           />
           <Game 
             path="/game"
