@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 const MoveSchema = new mongoose.Schema({
 	name: String,
-	func: String,
-	desc: String,
+	description: String,
 	power: Number,
 	id: Number,
+	color: String,
 });
 
 // compile model from schema

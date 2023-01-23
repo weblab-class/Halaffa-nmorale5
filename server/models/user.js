@@ -7,6 +7,7 @@ const UserSchema = new mongoose.Schema({
   starter: Number,
   unlocked: [Boolean],
   googleid: String,
+  numWins: Number,
 });
 
 // compile model from schema

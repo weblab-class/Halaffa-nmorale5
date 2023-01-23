@@ -2,6 +2,11 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
+const Starter = require("./models/starter");
+const PlayerStats = require("./models/playerStats");
+const Enemy = require("./models/enemy");
+const Passive = require("./models/passive");
+const Move = require("./models/move");
 
 // import authentication library
 const auth = require("./auth");
@@ -35,19 +40,89 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 
 router.get("/starter", (req, res) => {
-  Starter.findOne({ id: req.user.starter }).then((starter) => {
+  Starter.findOne({ id: req.query.starter }).then((starter) => {
     res.send(starter);
   });
 });
 
+router.post("/deletedata", (req, res)=> {
+  Starter.deleteMany({}).then((starter) => console.log("deleted starters"));
+  Enemy.deleteMany({}).then((enemy) => console.log("deleted enemies"));
+  Move.deleteMany({}).then((move) => console.log("deleted moves"));
+  Passive.deleteMany({}).then((passive) => console.log("deleted equipment"));
+});
+
+router.post("/addstarter", (req, res) => {
+  const newStarter = new Starter({
+    name: req.body.name,
+    sprite: req.body.sprite,
+    back_sprite: req.body.back_sprite,
+    red: req.body.red,
+    blue: req.body.blue,
+    green: req.body.green,
+    attack: req.body.attack,
+    health: req.body.health,
+    speed: req.body.speed,
+    id: req.body.id,
+    cost: req.body.cost,
+    moves: req.body.moves,
+    equipment: req.body.equipment,
+    XP: req.body.XP,
+  });
+  newStarter.save().then(() => res.send(newStarter));
+});
+
+router.post("/addenemy", (req, res) => {
+  const newEnemy = new Enemy({
+    name: req.body.name,
+    sprite: req.body.sprite,
+    red: req.body.red,
+    blue: req.body.blue,
+    green: req.body.green,
+    attack: req.body.attack,
+    health: req.body.health,
+    speed: req.body.speed,
+    id: req.body.id,
+    moves: req.body.moves,
+    XP: req.body.XP,
+  });
+  newEnemy.save().then(() => res.send(newEnemy));
+});
+
+router.post("/addmove", (req, res) => {
+  const newMove = new Move({
+    name: req.body.name,
+    id: req.body.id,
+	  description: req.body.description,
+	  power: req.body.power,
+    color: req.body.color,
+  });
+  newMove.save().then(() => res.send(newMove));
+});
+
+router.post("/addequipment", (req, res) => {
+  const newEquipment = new Passive({
+    name: req.body.name,
+    id: req.body.id,
+	  description: req.body.description,
+    sprite: req.body.sprite,
+    red: req.body.red,
+    blue: req.body.blue,
+    green: req.body.green,
+  });
+  newEquipment.save().then(() => res.send(newEquipment));
+});
+
+
 router.post("/debug", (req, res) => {
-  console.log("can print in api");
   User.findOne({_id: req.user._id}).then((user) =>{
     user.unlocked = [true, false, false];
     user.currency = 10;
     user.save().then((user) => res.send(user));
   });
 });
+
+
 
 router.post("/buy", (req, res) => {
   User.findOne({_id: req.user._id}).then((user) =>{

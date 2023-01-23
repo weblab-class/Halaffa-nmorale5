@@ -33,6 +33,7 @@ export default class App extends React.Component {
       currency: 10,
       equippedStarter: 1,
       unlockedStarters: [false, false, false],
+      numWins: 0,
     }
   }
 
@@ -45,13 +46,14 @@ export default class App extends React.Component {
       if (user._id !== this.state.userId) {
         // they are registed in the database, and currently logged in.
         this.setState({ userId: user._id, userName: user.name, currency: user.currency,
-          equippedStarter: user.starter, unlockedStarters: [...user.unlocked]});
+          equippedStarter: user.starter, unlockedStarters: [...user.unlocked], numWins: user.numWins});
       }
     });
   }
 
   handleLogout() {
-    this.setState({userId: null, userName: "Guest", currency: 0, equippedStarter: 0, unlockedStarters: [false, false, false]});
+    this.setState({userId: null, userName: "Guest", currency: 0, equippedStarter: 0,
+     unlockedStarters: [false, false, false], numWins: 0});
     post("/api/logout");
   };
 
@@ -61,7 +63,7 @@ export default class App extends React.Component {
     console.log(`Logged in as ${decodedCredential.name}`);
     post("/api/login", { token: userToken }).then((user) => {
       this.setState({ userId: user._id,  userName: user.name, currency: user.currency,
-         equippedStarter: user.starter, unlockedStarters: [...user.unlocked]});
+         equippedStarter: user.starter, unlockedStarters: [...user.unlocked], numWins: user.numWins});
       post("/api/initsocket", { socketid: socket.id });
     });
   };
@@ -78,7 +80,7 @@ export default class App extends React.Component {
       const body = {unlocked : newArray, currency : this.state.currency - starters[starterId].cost}
       post("/api/buy", body).then((user) => {
         this.setState({ userId: user._id,  userName: user.name, currency: user.currency,
-          equippedStarter: user.starter, unlockedStarters: [...user.unlocked]});
+          equippedStarter: user.starter, unlockedStarters: [...user.unlocked], numWins: user.numWins});
       });
     }
   };
@@ -87,8 +89,34 @@ export default class App extends React.Component {
     post("/api/debug", {}).then((user) => {
       console.log("put prints here");
       this.setState({ userId: user._id,  userName: user.name, currency: user.currency,
-        equippedStarter: user.starter, unlockedStarters: [...user.unlocked]});
+        equippedStarter: user.starter, unlockedStarters: [...user.unlocked], numWins: user.numWins});
     });
+  }
+
+  addAll() {
+    post("/api/deletedata").then((res)=>{
+    });
+    //Why does it not add when inside the .then?? Shouldn't it be in the .then??
+    let i = 0;
+    while (i < starters.length){
+      post("/api/addstarter", starters[i])
+      i++;
+    }
+    i = 0;
+    while (i < enemies.length){
+      post("/api/addenemy", enemies[i])
+      i++;
+    }
+    i = 0;
+    while (i < moves.length){
+      post("/api/addmove", moves[i])
+      i++;
+    }
+    i = 0;
+    while (i < equipment.length){
+      post("/api/addequipment", equipment[i])
+      i++;
+    }
   }
 
   render() {
@@ -119,7 +147,8 @@ export default class App extends React.Component {
           />
           <Leaderboard
             path="/leaderboard"
-            debug={() => this.debug()}
+            debug={() => this.addAll()}
+            numWins={this.state.numWins}
           />
           <Game 
             path="/game"

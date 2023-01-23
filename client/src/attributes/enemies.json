@@ -8,6 +8,60 @@
     "blue": 1,
     "attack": 4,
     "health": 3,
-    "speed": 1
+    "speed": 1,
+    "moves": [1],
+    "XP": 20
+  },
+  {
+    "id": 1,
+    "name": "Flameo",
+    "sprite": "FireDude.png",
+    "red": 7,
+    "green": 0,
+    "blue": 0,
+    "attack": 8,
+    "health": 1,
+    "speed": 7,
+    "moves": [1],
+    "XP": 30
+  },
+  {
+    "id": 2,
+    "name": "Chick",
+    "sprite": "BabBirb.png",
+    "red": 1,
+    "green": 1,
+    "blue": 1,
+    "attack": 1,
+    "health": 3,
+    "speed": 2,
+    "moves": [1],
+    "XP": 5
+  },
+  {
+    "id": 3,
+    "name": "Bitey",
+    "sprite": "Bitey.png",
+    "red": 4,
+    "green": 4,
+    "blue": 4,
+    "attack": 10,
+    "health": 7,
+    "speed": 2,
+    "moves": [1],
+    "XP": 60
+  },
+  {
+    "id": 4,
+    "name": "Pumpkinder",
+    "sprite": "Pumpking.png",
+    "red": 2,
+    "green": 5,
+    "blue": 3,
+    "attack": 2,
+    "health": 13,
+    "speed": 3,
+    "moves": [1],
+    "XP": 40
   }
 ]
