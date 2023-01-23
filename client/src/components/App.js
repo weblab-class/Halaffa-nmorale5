@@ -6,8 +6,9 @@ import Game from "./pages/Game.js";
 import Home from "./pages/Home.js";
 import Leaderboard from "./pages/Leaderboard.js";
 import Shop from "./pages/Shop.js";
-import GoogleLogin, { GoogleLogout } from "react-google-login";
+import Skeleton from "./pages/Skeleton.js";
 
+import jwt_decode from "jwt-decode";
 
 import "../utilities.css";
 import { socket } from "../client-socket.js";
@@ -27,8 +28,9 @@ import Battle from "./modules/Battle.js"; // temporary
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      userId: undefined,
+    this.state = {
+      userName: "Guest",
+      userId: null,
       attributes: { equipment, moves, starters, enemies },
       currency: 10,
       equippedStarter: 1,
@@ -42,26 +44,30 @@ export default class App extends React.Component {
 
   componentDidUpdate() {
     get("/api/whoami").then((user) => {
-      if (user._id) {
+      if (user._id !== this.state.userId) {
         // they are registed in the database, and currently logged in.
-        this.setState({ userId: user._id });
+        this.setState({ userId: user._id, userName: user.name, currency: user.currency,
+          equippedStarter: user.starter, unlockedStarters: [...user.unlocked]});
       }
     });
   }
 
-  handleLogin(res) {
-    console.log(`Logged in as ${res.profileObj.name}`);
-    const userToken = res.tokenObj.id_token;
+  handleLogout() {
+    this.setState({userId: null, userName: "Guest", currency: 0, equippedStarter: 0, unlockedStarters: [false, false, false]});
+    post("/api/logout");
+  };
+
+  handleLogin(credentialResponse) {
+    const userToken = credentialResponse.credential;
+    const decodedCredential = jwt_decode(userToken);
+    console.log(`Logged in as ${decodedCredential.name}`);
     post("/api/login", { token: userToken }).then((user) => {
-      this.setState({ userId: user._id });
+      this.setState({ userId: user._id,  userName: user.name, currency: user.currency,
+         equippedStarter: user.starter, unlockedStarters: [...user.unlocked]});
       post("/api/initsocket", { socketid: socket.id });
     });
   };
 
-  handleLogout() {
-    this.setState({ userId: undefined });
-    post("/api/logout");
-  };
 
   changeStarter(starterId) {
     this.setState({equippedStarter : starterId});
@@ -69,12 +75,23 @@ export default class App extends React.Component {
 
   unlockStarter(starterId) {
     if (this.state.currency >= starters[starterId].cost) {
-      let newArray = this.state.unlockedStarters;
+      let newArray = [...this.state.unlockedStarters];
       newArray[starterId] = true;
-      this.setState({unlockedStarters : newArray});
-      this.setState({currency : this.state.currency - starters[starterId].cost});
+      const body = {unlocked : newArray, currency : this.state.currency - starters[starterId].cost}
+      post("/api/buy", body).then((user) => {
+        this.setState({ userId: user._id,  userName: user.name, currency: user.currency,
+          equippedStarter: user.starter, unlockedStarters: [...user.unlocked]});
+      });
     }
   };
+
+  debug() {
+    post("/api/debug", {}).then((user) => {
+      console.log("put prints here");
+      this.setState({ userId: user._id,  userName: user.name, currency: user.currency,
+        equippedStarter: user.starter, unlockedStarters: [...user.unlocked]});
+    });
+  }
 
   render() {
     return (
@@ -82,19 +99,21 @@ export default class App extends React.Component {
         <Router>
           <Home 
             path="/"
-            handleLogin={(res) => this.handleLogin(res)}
-            handleLogout={this.handleLogout}
+            handleLogin={(credentialResponse) => this.handleLogin(credentialResponse)}
+            handleLogout={() => this.handleLogout()}
             userId={this.state.userId}
           />
           <Select 
             path="/select"
             currency={this.state.currency}
             userId={this.state.userId}
+            userName={this.state.userName}
           />
           <Shop
             path="/shop"
             currency={this.state.currency}
             userId={this.state.userId}
+            userName={this.state.userName}
             onClickChoose={(starterId) => this.changeStarter(starterId)}
             onClickBuy={(starterId) => this.unlockStarter(starterId)}
             starters={this.state.attributes.starters}
@@ -102,6 +121,7 @@ export default class App extends React.Component {
           />
           <Leaderboard
             path="/leaderboard"
+            debug={() => this.debug()}
           />
           <Game 
             path="/game"

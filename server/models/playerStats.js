@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const PlayerStatsSchema = new mongoose.Schema({
-	googleid: String,
+	userid: String,
 	maxHealth: Number,
 	attack: Number,
 	speed: Number,
