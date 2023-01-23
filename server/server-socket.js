@@ -1,3 +1,5 @@
+const gameLogic = require("./game-logic");
+
 let io;
 
 const userToSocketMap = {}; // maps user ID to socket object
@@ -25,6 +27,15 @@ const removeUser = (user, socket) => {
   delete socketToUserMap[socket.id];
 };
 
+const sendNewGameState = () => {
+  io.emit("update", gameLogic.gameState);
+}
+
+const startBattle = () => {
+  gameLogic.startBattle();
+  sendNewGameState();
+}
+
 module.exports = {
   init: (http) => {
     io = require("socket.io")(http);
@@ -35,11 +46,19 @@ module.exports = {
         const user = getUserFromSocketID(socket.id);
         removeUser(user, socket);
       });
+
+      socket.on("move", (moveId) => {
+        const user = getUserFromSocketID(socket.id);
+        gameLogic.makeMove(user._id, moveId);
+        sendNewGameState();
+      });
     });
   },
 
   addUser: addUser,
   removeUser: removeUser,
+
+  startBattle: startBattle,
 
   getSocketFromUserID: getSocketFromUserID,
   getUserFromSocketID: getUserFromSocketID,

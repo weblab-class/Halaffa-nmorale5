@@ -18,6 +18,8 @@ import moves from '../attributes/moves.json' assert { type: 'JSON' };
 import starters from '../attributes/starters.json' assert { type: 'JSON' };
 import enemies from '../attributes/enemies.json' assert { type: 'JSON' };
 
+import Battle from "./modules/Battle.js"; // temporary
+
 
 /**
  * Define the "App" component
@@ -105,6 +107,11 @@ export default class App extends React.Component {
             path="/game"
             attributes={this.state.attributes}
             starter={this.state.equippedStarter} 
+          />
+          <Battle
+            path="/battle"
+            attributes={this.state.attributes}
+            playerId={this.state.userId}
           />
           <NotFound default />
         </Router>

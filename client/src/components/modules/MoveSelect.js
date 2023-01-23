@@ -18,7 +18,8 @@ export default class MoveSelect extends React.Component {
   }
 
   render() {
-    const moveList = this.props.gameData.moves.map((moveId) => {
+    const game = this.props.gameState;
+    const moveList = game.players[game.turn].moves.map((moveId) => {
       const move = this.props.attributes.moves.find(({id}) => id === moveId);
       return (
         <li key={moveId}>

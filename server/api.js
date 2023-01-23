@@ -73,6 +73,13 @@ router.post("/startgame", auth.ensureLoggedIn, (req, res) => {
   newPlayer.save().then((PlayerStats) => res.send(PlayerStats));
 });
 
+router.post("/startbattle", auth.ensureLoggedIn, (req, res) => {
+  if (req.user) {
+    socketManager.startBattle()
+  }
+  res.send({})
+})
+
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);
