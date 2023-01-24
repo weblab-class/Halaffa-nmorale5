@@ -6,6 +6,7 @@ import Game from "./pages/Game.js";
 import Home from "./pages/Home.js";
 import Leaderboard from "./pages/Leaderboard.js";
 import Shop from "./pages/Shop.js";
+import Gallery from "./pages/Gallery.js";
 import Skeleton from "./pages/Skeleton.js";
 
 import jwt_decode from "jwt-decode";
@@ -14,10 +15,10 @@ import "../utilities.css";
 import { socket } from "../client-socket.js";
 import { get, post } from "../utilities";
 
-import equipment from '../attributes/equipment.json' assert { type: 'JSON' };
-import moves from '../attributes/moves.json' assert { type: 'JSON' };
-import starters from '../attributes/starters.json' assert { type: 'JSON' };
-import enemies from '../attributes/enemies.json' assert { type: 'JSON' };
+// import equipment from '../attributes/equipment.json' assert { type: 'JSON' };
+// import moves from '../attributes/moves.json' assert { type: 'JSON' };
+// import starters from '../attributes/starters.json' assert { type: 'JSON' };
+// import enemies from '../attributes/enemies.json' assert { type: 'JSON' };
 
 
 /**
@@ -25,12 +26,13 @@ import enemies from '../attributes/enemies.json' assert { type: 'JSON' };
  */
 export default class App extends React.Component {
   constructor(props) {
+
     super(props);
     this.state = {
       userName: "Guest",
       userId: null,
-      attributes: { equipment, moves, starters, enemies },
       currency: 10,
+      attributes: {starters: [], enemies: [], moves: [], equipment: []},
       equippedStarter: 1,
       unlockedStarters: [false, false, false],
       numWins: 0,
@@ -38,6 +40,16 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+    const grabVals = async () => {
+      let equipment = await get("/api/equipments", {});
+      let moves = await get("/api/moves", {});
+      let starters = await get("/api/starters", {});
+      let enemies = await get("/api/enemies", {});
+      return { equipment, moves, starters, enemies };
+      }
+    grabVals().then((attr) => {
+      this.setState({attributes: attr});
+    });
     this.componentDidUpdate();
   }
 
@@ -86,11 +98,12 @@ export default class App extends React.Component {
   };
 
   debug() {
-    post("/api/debug", {}).then((user) => {
-      console.log("put prints here");
-      this.setState({ userId: user._id,  userName: user.name, currency: user.currency,
-        equippedStarter: user.starter, unlockedStarters: [...user.unlocked], numWins: user.numWins});
-    });
+    // post("/api/debug", {}).then((user) => {
+    //   console.log("put prints here");
+    //   this.setState({ userId: user._id,  userName: user.name, currency: user.currency,
+    //     equippedStarter: user.starter, unlockedStarters: [...user.unlocked], numWins: user.numWins});
+    // });
+    console.log(this.state.attributes);
   }
 
   addAll() {
@@ -147,13 +160,21 @@ export default class App extends React.Component {
           />
           <Leaderboard
             path="/leaderboard"
-            debug={() => this.addAll()}
+            debug={() => this.debug()}
             numWins={this.state.numWins}
           />
           <Game 
             path="/game"
             attributes={this.state.attributes}
             starter={this.state.equippedStarter} 
+          />
+          <Gallery
+            path="/gallery"
+            currency={this.state.currency}
+            userName={this.state.userName}
+            starters={this.state.attributes.starters}
+            enemies={this.state.attributes.enemies}
+            equipment={this.state.attributes.equipment}
           />
           <NotFound default />
         </Router>

@@ -14,7 +14,8 @@ export default class Select extends React.Component {
       "Single Player": "Play a game by yourself, fighting a powerful boss after collecting as many power-ups as possible in 5 minutes!",
       "Multiplayer": "Play a game with another person online, fighting the other person after you each get 5 minutes of preparation.",
       "Shop": "Choose what starter to play as and unlock new ones with currency you earn from play.",
-      "Leaderboard": "See who the top players are!"
+      "Leaderboard": "See who the top players are!",
+      "Gallery": "See sprites and stats of starters and enemies."
     }
   } 
   onHover(buttonName) {

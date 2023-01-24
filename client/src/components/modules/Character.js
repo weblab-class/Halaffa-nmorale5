@@ -1,5 +1,6 @@
 import React from 'react';
 import SelectCharacter from "./SelectCharacter.js";
+import "../../utilities.css";
 
 export default class Character extends React.Component {
   render() {
@@ -12,6 +13,7 @@ export default class Character extends React.Component {
     return (
       <div>
         <img
+          className="sprite"
           src={require('../../images/' + this.props.starter.sprite).default}
         />
         <SelectCharacter 

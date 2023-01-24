@@ -40,8 +40,50 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 
 router.get("/starter", (req, res) => {
-  Starter.findOne({ id: req.query.starter }).then((starter) => {
+  Starter.findOne({ id: req.query.id }).then((starter) => {
     res.send(starter);
+  });
+});
+
+router.get("/enemy", (req, res) => {
+  Enemy.findOne({ id: req.query.id }).then((enemy) => {
+    res.send(enemy);
+  });
+});
+
+router.get("/move", (req, res) => {
+  Move.findOne({ id: req.query.id }).then((move) => {
+    res.send(move);
+  });
+});
+
+router.get("/equipment", (req, res) => {
+  Passive.findOne({ id: req.query.id }).then((equipment) => {
+    res.send(equipment);
+  });
+});
+
+router.get("/starters", (req, res) => {
+  Starter.find({}).then((starters) => {
+    res.send(starters);
+  });
+});
+
+router.get("/enemies", (req, res) => {
+  Enemy.find({}).then((enemies) => {
+    res.send(enemies);
+  });
+});
+
+router.get("/moves", (req, res) => {
+  Move.find({}).then((moves) => {
+    res.send(moves);
+  });
+});
+
+router.get("/equipments", (req, res) => {
+  Passive.find({}).then((equipments) => {
+    res.send(equipments);
   });
 });
 
