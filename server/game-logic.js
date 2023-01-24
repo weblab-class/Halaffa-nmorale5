@@ -26,7 +26,7 @@ const addPlayer = (id) => {
 }
 
 const startBattle = () => {
-  gameState.turnData.turn = (gameState.players[0].speed > gameState.players[1].speed ? 0 : 1);
+  gameState.turn = (gameState.players[0].speed > gameState.players[1].speed ? 0 : 1);
   console.log("Game started");
 }
 

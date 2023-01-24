@@ -8,12 +8,12 @@ socket.on("connect", () => {
 
 export const makeMove = (moveId) => {
   socket.emit("move", moveId);
-}
+};
 
 export const configureUpdates = (updateFunc) => {
   socket.on("update", updateFunc);
-}
+};
 
 export const startBattle = () => {
-  post("/startbattle");
-}
+  socket.emit("start", {});
+};

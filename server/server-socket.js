@@ -17,9 +17,10 @@ const addUser = (user, socket) => {
     oldSocket.disconnect();
     delete socketToUserMap[oldSocket.id];
   }
-
   userToSocketMap[user._id] = socket;
   socketToUserMap[socket.id] = user;
+  gameLogic.addPlayer(user._id);
+  console.log(socketToUserMap);
 };
 
 const removeUser = (user, socket) => {
@@ -28,6 +29,8 @@ const removeUser = (user, socket) => {
 };
 
 const sendNewGameState = () => {
+  console.log("sending an update...")
+  console.log(gameLogic.gameState.players.length)
   io.emit("update", gameLogic.gameState);
 }
 
@@ -52,6 +55,10 @@ module.exports = {
         gameLogic.makeMove(user._id, moveId);
         sendNewGameState();
       });
+
+      socket.on("start", (x) => {
+        startBattle();
+      })
     });
   },
 
