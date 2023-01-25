@@ -3,18 +3,21 @@
     "id": 0,
     "name": "Fireball",
     "description": "Chance to inflict burn.",
-    "power": 100
+    "power": 100,
+    "color": "red"
   },
   {
     "id": 1,
     "name": "Thorn spike",
     "description": "A basic attack.",
-    "power": 50
+    "power": 50,
+    "color": "green"
   },
   {
     "id": 2,
     "name": "Ice beam",
     "description": "Freezes the enemy.",
-    "power": 40
+    "power": 40,
+    "color": "blue"
   }
 ]

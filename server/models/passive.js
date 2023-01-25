@@ -2,9 +2,12 @@ const mongoose = require("mongoose");
 
 const PassiveSchema = new mongoose.Schema({
 	name: String,
-	func: String,
-	desc: String,
+	sprite: String,
+	description: String,
 	id: Number,
+	red: Number,
+	green: Number,
+	blue: Number,
 });
 
 // compile model from schema

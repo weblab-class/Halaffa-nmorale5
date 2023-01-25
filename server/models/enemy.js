@@ -1,9 +1,8 @@
 const mongoose = require("mongoose");
 
-const StarterSchema = new mongoose.Schema({
+const EnemySchema = new mongoose.Schema({
   	name: String,
 	sprite: String,
-	back_sprite: String,
 	red: Number,
 	blue: Number,
 	green: Number,
@@ -11,11 +10,9 @@ const StarterSchema = new mongoose.Schema({
 	health: Number,
 	speed: Number,
 	id: Number,
-	cost: Number,
 	moves: [Number],
-	equipment: [Number],
 	XP: Number
 });
 
 // compile model from schema
-module.exports = mongoose.model("starter", StarterSchema);
+module.exports = mongoose.model("enemy", EnemySchema);

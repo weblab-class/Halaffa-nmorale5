@@ -17,6 +17,9 @@ export default class Leaderboard extends React.Component {
         <button onClick={this.props.debug}>
           Debug
         </button>
+        <h1>
+          Wins: {this.props.numWins}
+        </h1>
       </div>
     )
   }

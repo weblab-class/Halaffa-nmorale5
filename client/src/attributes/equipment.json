@@ -2,21 +2,118 @@
   {
     "id": 0,
     "name": "Longsword",
-    "description": "Attacks are 50% more powerful"
+    "description": "Attacks are 50% more powerful",
+    "sprite": "Longsword.png",
+    "red": 2,
+    "blue": 1,
+    "green": 0
   },
   {
     "id": 1,
     "name": "Magic mail",
-    "description": "Has 50% more max health."
+    "red": 1,
+    "blue": 1,
+    "green": 1,
+    "description": "Has 50% more max health.",
+    "sprite": "MagicMail.png"
   },
   {
     "id": 2,
     "name": "Running Shoes",
-    "description": "Has 50% more speed."
+    "red": 3,
+    "blue": 0,
+    "green": 0,
+    "description": "Has 50% more speed.",
+    "sprite": "RunningShoes.png"
   },
   {
     "id": 3,
     "name": "Holy Aura",
-    "description": "Heals for a small amount after each attack."
+    "red": 0,
+    "blue": 2,
+    "green": 1,
+    "description": "Heals for a small amount after each attack.",
+    "sprite": "HolyAura.png"
+  },
+  {
+    "id": 4,
+    "name": "Cloak",
+    "red": 0,
+    "blue": 0,
+    "green": 0,
+    "description": "10% chance to dodge attack.",
+    "sprite": "Cloak.png"
+  },
+  {
+    "id": 5,
+    "name": "Green Ring",
+    "red": 0,
+    "blue": 0,
+    "green": 5,
+    "description": "Green moves do 20% more damage.",
+    "sprite": "GreenRing.png"
+  },
+  {
+    "id": 6,
+    "name": "Blue Ring",
+    "red": 0,
+    "blue": 5,
+    "green": 0,
+    "description": "Blue moves do 20% more damage.",
+    "sprite": "BlueRing.png"
+  },
+  {
+    "id": 7,
+    "name": "Red Ring",
+    "red": 5,
+    "blue": 0,
+    "green": 0,
+    "description": "Red moves do 20% more damage.",
+    "sprite": "RedRing.png"
+  },
+  {
+    "id": 8,
+    "name": "Violet Ring",
+    "red": 2,
+    "blue": 2,
+    "green": 2,
+    "description": "All moves do 10% more damage.",
+    "sprite": "RedRing.png"
+  },
+  {
+    "id": 9,
+    "name": "Green Necklace",
+    "red": 0,
+    "blue": 0,
+    "green": 5,
+    "description": "Take 30% less damage from Green moves.",
+    "sprite": "GreenNecklace.png"
+  },
+  {
+    "id": 10,
+    "name": "Blue Necklace",
+    "red": 0,
+    "blue": 5,
+    "green": 0,
+    "description": "Take 30% less damage from Blue moves.",
+    "sprite": "BlueNecklace.png"
+  },
+  {
+    "id": 11,
+    "name": "Red Necklace",
+    "red": 5,
+    "blue": 0,
+    "green": 0,
+    "description": "Take 30% less damage from Red moves.",
+    "sprite": "RedNecklace.png"
+  },
+  {
+    "id": 12,
+    "name": "Violet Necklace",
+    "red": 2,
+    "blue": 2,
+    "green": 2,
+    "description": "Take 20% less damage from moves.",
+    "sprite": "VioletNecklace.png"
   }
 ]
