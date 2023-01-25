@@ -97,7 +97,7 @@ const checkForDeaths = (id) => {
   return allGames[id].battleData[id].health <= 0 || allGames[id].battleData[opponent].health <= 0;
 }
 
-const makeMove = (id, moveId) => {
+const move = (id, moveId) => {
   const data = allGames[id].battleData;
   if (data.turn !== id) return;
   const oppId = allGames[id].opponent;
@@ -114,9 +114,11 @@ const makeMove = (id, moveId) => {
 }
 
 module.exports = {
-  gameState,
+  getGame,
   addPlayer,
-  startBattle,
   checkForDeaths,
-  makeMove,
+  startGame,
+  move,
+  select,
+  loot,
 }

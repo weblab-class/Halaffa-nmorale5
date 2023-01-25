@@ -20,7 +20,7 @@ import { get, post } from "../utilities";
 // import starters from '../attributes/starters.json' assert { type: 'JSON' };
 // import enemies from '../attributes/enemies.json' assert { type: 'JSON' };
 
-import Battle from "./modules/Battle.js"; // temporary
+import { configureUpdates, startQueue, makeMove, selectOption, collectLoot } from "../../client-socket";
 
 
 /**
@@ -38,6 +38,7 @@ export default class App extends React.Component {
       equippedStarter: 1,
       unlockedStarters: [false, false, false],
       numWins: 0,
+      gameState: null,
     }
   }
 
@@ -52,17 +53,22 @@ export default class App extends React.Component {
     grabVals().then((attr) => {
       this.setState({attributes: attr});
     });
+    configureUpdates((updatedGameState) => {
+      this.setState({gameState: updatedGameState})
+    });
     this.componentDidUpdate();
   }
 
   componentDidUpdate() {
-    get("/api/whoami").then((user) => {
-      if (user._id !== this.state.userId) {
-        // they are registed in the database, and currently logged in.
-        this.setState({ userId: user._id, userName: user.name, currency: user.currency,
-          equippedStarter: user.starter, unlockedStarters: [...user.unlocked], numWins: user.numWins});
-      }
-    });
+    if (!this.state.userId) {
+      get("/api/whoami").then((user) => {
+        if (user._id !== this.state.userId) {
+          // they are registed in the database, and currently logged in.
+          this.setState({ userId: user._id, userName: user.name, currency: user.currency,
+            equippedStarter: user.starter, unlockedStarters: [...user.unlocked], numWins: user.numWins});
+        }
+      });
+    }
   }
 
   handleLogout() {
@@ -168,12 +174,9 @@ export default class App extends React.Component {
           <Game 
             path="/game"
             attributes={this.state.attributes}
-            starter={this.state.equippedStarter} 
-          />
-          <Battle
-            path="/battle"
-            attributes={this.state.attributes}
-            playerId={this.state.userId}
+            starter={this.state.equippedStarter}
+            gameState={this.state.gameState}
+            events={{startQueue, makeMove, selectOption, collectLoot}}
           />
           <Gallery
             path="/gallery"

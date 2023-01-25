@@ -6,14 +6,22 @@ socket.on("connect", () => {
   post("/api/initsocket", { socketid: socket.id });
 });
 
-export const makeMove = (moveId) => {
-  socket.emit("move", moveId);
-};
-
 export const configureUpdates = (updateFunc) => {
   socket.on("update", updateFunc);
 };
 
-export const startBattle = () => {
-  socket.emit("start", {});
+export const startQueue = () => {
+  socket.emit("queue", {});
 };
+
+export const makeMove = (moveId) => {
+  socket.emit("move", moveId);
+};
+
+export const selectOption = (option) => {
+  socket.emit("select", option);
+}
+
+export const collectLoot = (toDiscard) => {
+  socket.emit("loot", toDiscard);
+}

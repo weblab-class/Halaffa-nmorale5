@@ -19,8 +19,6 @@ const addUser = (user, socket) => {
   }
   userToSocketMap[user._id] = socket;
   socketToUserMap[socket.id] = user;
-  gameLogic.addPlayer(user._id);
-  console.log(socketToUserMap);
 };
 
 const removeUser = (user, socket) => {
@@ -28,15 +26,8 @@ const removeUser = (user, socket) => {
   delete socketToUserMap[socket.id];
 };
 
-const sendNewGameState = () => {
-  console.log("sending an update...")
-  console.log(gameLogic.gameState.players.length)
-  io.emit("update", gameLogic.gameState);
-}
-
-const startBattle = () => {
-  gameLogic.startBattle();
-  sendNewGameState();
+const sendNewGameState = (id) => {
+  getSocketFromUserID(id).emit("update", gameLogic.getGame(id));
 }
 
 module.exports = {
@@ -50,15 +41,34 @@ module.exports = {
         removeUser(user, socket);
       });
 
+      socket.on("queue", (x) => {
+        const user = getUserFromSocketID(socket.id);
+        const resultingLobby = gameLogic.addPlayer(user._id);
+        if (resultingLobby.length == 2) {
+          resultingLobby.forEach((id) => {
+            gameLogic.startGame(id);
+            sendNewGameState(id);
+          });
+        }
+      })
+
       socket.on("move", (moveId) => {
         const user = getUserFromSocketID(socket.id);
-        gameLogic.makeMove(user._id, moveId);
+        gameLogic.move(user._id, moveId);
         sendNewGameState();
       });
 
-      socket.on("start", (x) => {
-        startBattle();
-      })
+      socket.on("select", (option) => {
+        const user = getUserFromSocketID(socket.id);
+        gameLogic.select(user._id, option);
+        sendNewGameState();
+      });
+
+      socket.on("loot", (discards) => {
+        const user = getUserFromSocketID(socket.id);
+        gameLogic.loot(user._id, discards);
+        sendNewGameState();
+      });
     });
   },
 
