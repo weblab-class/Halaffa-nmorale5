@@ -11,7 +11,7 @@ export default class Character extends React.Component {
       buttonName = this.props.starter.name;
     }
     return (
-      <div>
+      <div className="u-flexColumn u-flex-justifyCenter">
         <img
           className="sprite"
           src={require('../../images/' + this.props.starter.sprite).default}
