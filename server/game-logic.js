@@ -25,6 +25,7 @@ const addPlayer = (id) => {
   if (allGames[id]) return;
   const opponent = unpaired.pop();
   allGames[id] = {
+    id: id,
     opponent: opponent,
     floor: null,
     screen: null,

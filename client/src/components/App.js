@@ -174,7 +174,6 @@ export default class App extends React.Component {
           <Game 
             path="/game"
             attributes={this.state.attributes}
-            starter={this.state.equippedStarter}
             gameState={this.state.gameState}
             events={{startQueue, makeMove, selectOption, collectLoot}}
           />

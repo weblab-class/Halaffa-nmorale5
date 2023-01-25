@@ -6,39 +6,43 @@ import Stats from '../modules/Stats.js';
 
 export default function Game(props) {
   let screen;
-  switch (this.state.currentScreen) {
+  switch (props.gameState.screen) {
     case "battle":
       screen = (
         <Battle 
-          attributes={this.props.attributes} 
-          gameData={this.state.gameData} 
-          enemyData={this.state.enemyData}
-          onPlayerDied={() => this.onPlayerDied()}
-          onEnemyDied={() => this.onEnemyDied()}
+          attributes={props.attributes}
+          battleData={props.gameState.battleData}
+          makeMove={props.events.makeMove}
         />
       );
       break;
-    case "results":
+    case "loot":
       screen = (
         <LootResults
-          loot={this.state.lootData}
-          onClick={() => this.onLootCollected()}
+          attributes={props.attributes}
+          lootData={props.gameState.lootData}
+          collectLoot={props.events.collectLoot}
         />
       );
       break;
     case "select":
       screen = (
         <EnemySelect
-          attributes={this.props.attributes}
-          onEnemyChosen={(enemy) => this.onEnemyChosen(enemy)}
+          attributes={props.attributes}
+          selectionData={props.gameState.selectionData}
+          selectOption={props.events.selectOption}
         />
       );
+    default:
+      screen = (
+        <h1>You're not in an active game.</h1>
+      )
   }
   return (
     <>
       <Stats
-        attributes={this.props.attributes}
-        stats={this.state.gameData}
+        attributes={props.attributes}
+        stats={props.gameState.generalStats}
       />
       {screen}
     </>
