@@ -5,9 +5,11 @@ const moves = require('../client/src/attributes/moves.json');
 const starters = require('../client/src/attributes/starters.json');
 const enemies = require('../client/src/attributes/enemies.json');
 
-const gameState = {
-  players: [],
-  turn: null,
+const allGames = {} // maps ids to gameStates
+const unpaired = [] // list of ids of games missing opponents (expected length 0 or 1)
+
+const getGame = (id) => {
+  return allGames[id];
 }
 
 const getStarterData = (id) => {
@@ -16,36 +18,98 @@ const getStarterData = (id) => {
 }
 
 const addPlayer = (id) => {
-  if (gameState.players.length < 2) {
-    const starter = getStarterData(id);
-    gameState.players.push({ ...starter, id });
-    console.log(`Added player with ID ${id} and starter ${starter.name}`);
-  } else {
-    console.log(`Failed to add player since 2 people already in game`);
+  // if already in game (but was disconnected), do nothing.
+  // else, join open lobby.
+  // else, create new lobby.
+  // Returns list of ids in lobby.
+  if (allGames[id]) return;
+  const opponent = unpaired.pop();
+  allGames[id] = {
+    opponent: opponent,
+    floor: null,
+    screen: null,
+    selectionData: null,
+    lootData: null,
+    battleData: null,
+    generalStats: { ...getStarterData(id) },
+  }
+  if (opponent) {
+    allGames[opponent].opponent = id; // the opponent's opponent is me
+    return [opponent, id];
+  }
+  return [id];
+}
+
+const prepareSelect = (id) => {
+  allGames[id].selectionData = [0, 1, 2].map(eqId => equipment[eqId]);
+}
+
+const prepareBattle = (id, selection) => {
+  allGames[id].battleData = {
+    [id]: { ...allGames[id].generalStats },
+    "BOT": { ...enemies[selection] },
+    turn: id,
   }
 }
 
-const startBattle = () => {
-  gameState.turn = (gameState.players[0].speed > gameState.players[1].speed ? 0 : 1);
-  console.log("Game started");
+const prepareLoot = (id, selection) => {
+  allGames[id].lootData = allGames[id].selectionData[selection];
 }
 
-const checkForDeaths = () => {
-  return gameState.players[0].health <= 0 || gameState.players[1].health <= 0;
+const addLootToStats = (id) => {
+  const stats = allGames[id].generalStats;
+  const loot = allGames[id].lootData;
+  allGames[id].generalStats = {
+    ...stats,
+    red: stats.red + loot.red,
+    green: stats.green + loot.green,
+    blue: stats.blue + loot.blue,
+    equipment: stats.equipment.concat([loot.id])
+  }
 }
 
-const makeMove = (playerId, moveId) => {
-  if (gameState.players[gameState.turn].id !== playerId) return;
-  const i = gameState.turn;
-  const player = gameState.players[i];
-  const enemy = gameState.players[i ^ 1];
+const startGame = (id) => {
+  // sets up game for one of the players only
+  // expects startGame to be called twice: once on behalf of each player
+  allGames[id].screen = "select";
+  allGames[id].floor = 1;
+  prepareSelect(id);
+}
+
+const select = (id, i) => {
+  // chooses the i-th index of selectionData to be the prize at stake for the next battle
+  allGames[id].screen = "battle";
+  prepareBattle(id, i);
+  prepareLoot(id, i);
+}
+
+const loot = (id, discards) => {
+  // confirms that the user has clicked past the loot screen.
+  // ignores discards for now; should eventually remove discards from generalData.
+  allGames[id].screen = "select";
+  allGames[id].floor++;
+  addLootToStats(id);
+  prepareSelect(id);
+}
+
+const checkForDeaths = (id) => {
+  const opponent = allGames[id].opponent;
+  return allGames[id].battleData[id].health <= 0 || allGames[id].battleData[opponent].health <= 0;
+}
+
+const makeMove = (id, moveId) => {
+  const data = allGames[id].battleData;
+  if (data.turn !== id) return;
+  const oppId = allGames[id].opponent;
+  const player = data[id];
+  const enemy = data[oppId];
   const [newPlayer, newEnemy] = resolveMove(player, enemy, moveId);
-  gameState.players[i] = newPlayer;
-  gameState.players[i ^ 1] = newEnemy;
-  if (checkForDeaths()) {
-    gameState.turn = null; // game is now over
+  data[id] = newPlayer;
+  data[oppId] = newEnemy;
+  if (checkForDeaths(id)) {
+    data.turn = null; // game is now over
   } else {
-    gameState.turn = i ^ 1; // switch to opponent's turn
+    data.turn = oppId; // switch to opponent's turn
   }
 }
 
