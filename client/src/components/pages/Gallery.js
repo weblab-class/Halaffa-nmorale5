@@ -4,6 +4,7 @@ import CurrencyUI from "./CurrencyUI";
 import GalleryStarterEntry from "../modules/GalleryStarterEntry";
 import GalleryEnemyEntry from "../modules/GalleryEnemyEntry";
 import GalleryEquipmentEntry from "../modules/GalleryEquipmentEntry";
+import "../../utilities.css";
 
 export default class Gallery extends React.Component {
   render() {

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+import "../../utilities.css";
 
 function EquipmentIcon(props) {
   return (
-    <p
+    <img
       onMouseOver={props.onHover}
       onMouseOut={props.onUnhover}
-    >
-      {props.name.toUpperCase() /* TODO: replace with an icon */}
-    </p>
+      className="sprite"
+      src={require('../../images/' + props.sprite).default}
+    />
   )
 }
 
@@ -28,6 +29,7 @@ export default function Stats(props) {
       <EquipmentIcon
         key={equipmentId}
         name={eq.name}
+        sprite={eq.sprite}
         onHover={() => setDescription(equipmentId)}
         onUnhover={() => setDescription(null)}
       />

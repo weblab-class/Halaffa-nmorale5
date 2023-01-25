@@ -94,10 +94,10 @@ export default class App extends React.Component {
   };
 
   unlockStarter(starterId) {
-    if (this.state.currency >= starters[starterId].cost) {
+    if (this.state.currency >= this.state.attributes.starters[starterId].cost) {
       let newArray = [...this.state.unlockedStarters];
       newArray[starterId] = true;
-      const body = {unlocked : newArray, currency : this.state.currency - starters[starterId].cost}
+      const body = {unlocked : newArray, currency : this.state.currency - this.state.attributes.starters[starterId].cost}
       post("/api/buy", body).then((user) => {
         this.setState({ userId: user._id,  userName: user.name, currency: user.currency,
           equippedStarter: user.starter, unlockedStarters: [...user.unlocked], numWins: user.numWins});

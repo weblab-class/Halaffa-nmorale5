@@ -14,15 +14,17 @@ export default class Shop extends React.Component {
               Back
           </Link>
         </button>
-        {starterList.map((starter) => (
-          <Character
-            onClickChoose = {this.props.onClickChoose}
-            onClickBuy = {this.props.onClickBuy}
-            starter = {starter}
-            isUnlocked = {this.props.unlockedStarters[starter.id]}
-            key={starter.id}
-          />
-        ))}
+        <div className="u-flex">
+          {starterList.map((starter) => (
+            <Character
+              onClickChoose = {this.props.onClickChoose}
+              onClickBuy = {this.props.onClickBuy}
+              starter = {starter}
+              isUnlocked = {this.props.unlockedStarters[starter.id]}
+              key={starter.id}
+            />
+          ))}
+        </div>
       </div>
     )
   }
