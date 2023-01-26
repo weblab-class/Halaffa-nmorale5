@@ -20,7 +20,7 @@ import { get, post } from "../utilities";
 // import starters from '../attributes/starters.json' assert { type: 'JSON' };
 // import enemies from '../attributes/enemies.json' assert { type: 'JSON' };
 
-import { configureUpdates, startQueue, makeMove, selectOption, collectLoot } from "../../client-socket";
+import { configureUpdates, startQueue, makeMove, selectOption, collectLoot } from "../client-socket";
 
 
 /**
@@ -182,6 +182,7 @@ export default class App extends React.Component {
             currency={this.state.currency}
             userId={this.state.userId}
             userName={this.state.userName}
+            startQueue={startQueue}
           />
           <Shop
             path="/shop"
@@ -204,7 +205,7 @@ export default class App extends React.Component {
             path="/game"
             attributes={this.state.attributes}
             gameState={this.state.gameState}
-            events={{startQueue, makeMove, selectOption, collectLoot}}
+            events={{makeMove, selectOption, collectLoot}}
           />
           <Gallery
             path="/gallery"

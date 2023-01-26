@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Battle from '../modules/Battle.js';
 import EnemySelect from '../modules/EnemySelect.js';
 import LootResults from '../modules/LootResults.js';

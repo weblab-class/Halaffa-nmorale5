@@ -29,7 +29,11 @@ export default class Select extends React.Component {
     return (
       <div>
         <CurrencyUI currency={this.props.currency} userName={this.props.userName}/>
-        <SelectButtons onHover={(buttonName) => this.onHover(buttonName)} onUnhover={(buttonName) => this.onUnhover(buttonName)}/>
+        <SelectButtons 
+          onHover={(buttonName) => this.onHover(buttonName)} 
+          onUnhover={(buttonName) => this.onUnhover(buttonName)}
+          startQueue={this.props.startQueue}
+        />
         <SelectText text = {this.state.text}/>
       </div>
     )
