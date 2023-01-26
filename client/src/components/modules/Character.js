@@ -18,7 +18,7 @@ export default class Character extends React.Component {
         />
         <SelectCharacter 
           onClickChoose = {onClickFunc}
-          starter ={this.props.starter} 
+          starter = {this.props.starter}
           name = {buttonName}
         />
       </div>

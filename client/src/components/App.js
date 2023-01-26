@@ -51,7 +51,18 @@ export default class App extends React.Component {
       this.setState({attributes: attr});
     });
     this.componentDidUpdate();
+    get("/api/user").then((user) => {
+      if (user._id) {
+        // they are registed in the database, and currently logged in.
+        this.setState({ userId: user._id, userName: user.name, currency: user.currency,
+          equippedStarter: user.starter, unlockedStarters: [...user.unlocked], numWins: user.numWins});
+      }
+    });
   }
+
+  // || user.name !== this.state.userName
+  //|| user.currency !== this.state.currency || user.starter !== this.state.equippedStarter
+  //|| user.numWins !== user.numWins
 
   componentDidUpdate() {
     get("/api/whoami").then((user) => {
@@ -65,7 +76,7 @@ export default class App extends React.Component {
 
   handleLogout() {
     this.setState({userId: null, userName: "Guest", currency: 0, equippedStarter: 0,
-     unlockedStarters: [false, false, false], numWins: 0});
+     unlockedStarters: [false, false, false, false, false, false], numWins: 0});
     post("/api/logout");
   };
 
@@ -86,16 +97,32 @@ export default class App extends React.Component {
   };
 
   unlockStarter(starterId) {
-    if (this.state.currency >= this.state.attributes.starters[starterId].cost) {
-      let newArray = [...this.state.unlockedStarters];
-      newArray[starterId] = true;
-      const body = {unlocked : newArray, currency : this.state.currency - this.state.attributes.starters[starterId].cost}
-      post("/api/buy", body).then((user) => {
-        this.setState({ userId: user._id,  userName: user.name, currency: user.currency,
-          equippedStarter: user.starter, unlockedStarters: [...user.unlocked], numWins: user.numWins});
-      });
-    }
+    get("/api/starter", {id: starterId}).then((starter) => {
+      if (this.state.currency >= starter.cost) {
+        let newArray = [...this.state.unlockedStarters];
+        newArray[starter.id] = true;
+        const body = {unlocked : newArray, currency : this.state.currency - starter.cost}
+        post("/api/buy", body).then((user) => {
+          this.setState({ userId: user._id,  userName: user.name, currency: user.currency,
+            equippedStarter: user.starter, unlockedStarters: [...user.unlocked], numWins: user.numWins});
+        });
+      }
+    });
   };
+
+  addCurrency(amount) {
+    post("/api/earn", {amount: amount}).then((user) => {
+      this.setState({ userId: user._id,  userName: user.name, currency: user.currency,
+        equippedStarter: user.starter, unlockedStarters: [...user.unlocked], numWins: user.numWins});
+    });
+  }
+
+  addWin() {
+    post("api/win").then((user) => {
+      this.setState({ userId: user._id,  userName: user.name, currency: user.currency,
+        equippedStarter: user.starter, unlockedStarters: [...user.unlocked], numWins: user.numWins});
+    });
+  }
 
   debug() {
     // post("/api/debug", {}).then((user) => {
@@ -162,6 +189,8 @@ export default class App extends React.Component {
             path="/leaderboard"
             debug={() => this.debug()}
             numWins={this.state.numWins}
+            onWin={() => this.addWin()}
+            addCurrency={(amount) => this.addCurrency(amount)}
           />
           <Game 
             path="/game"

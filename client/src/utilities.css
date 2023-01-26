@@ -53,6 +53,10 @@ button {
   background-color: var(--primary);
 }
 
+button:hover {
+  background-color: var(--primary--dim);
+}
+
 .buttonOnHover {
   font-family: var(--font);
   font-size: larger;

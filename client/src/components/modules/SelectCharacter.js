@@ -4,6 +4,7 @@ import "../../utilities.css";
 
 export default function SelectCharacter(props) {
   function finalFunction() {
+    console.log(props.starter.id);
     return props.onClickChoose(props.starter.id);
   }
   return (

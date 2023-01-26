@@ -7,7 +7,7 @@ import Stats from '../modules/Stats.js';
 export default class Game extends React.Component {
   constructor(props) {
     super(props);
-    let starter = this.props.attributes.starters[this.props.starter];
+    let starter = this.props.attributes.starters[this.props.starter]; //TODO: Change with get(/api/starter)
     this.state = {
       gameData: {
         name: starter.name,

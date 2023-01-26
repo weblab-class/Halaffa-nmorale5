@@ -28,6 +28,8 @@ router.get("/whoami", (req, res) => {
   res.send(req.user);
 });
 
+
+
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in
   if (req.user)
@@ -38,6 +40,24 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 // | write your API methods below!|
 // |------------------------------|
+
+router.post("/debug", (req, res) => {
+  User.findOne({_id: req.user._id}).then((user) =>{
+    user.unlocked = [true, false, false];
+    user.currency = 10;
+    user.save().then((user) => res.send(user));
+  });
+});
+
+router.get("/user", (req, res) => {
+  if (!req.user) {
+    // not logged in
+    return res.send({});
+  }
+  User.findOne({_id: req.user._id}).then((user) => {
+    res.send(user);
+  });
+})
 
 router.get("/starter", (req, res) => {
   Starter.findOne({ id: req.query.id }).then((starter) => {
@@ -170,6 +190,20 @@ router.post("/buy", (req, res) => {
   User.findOne({_id: req.user._id}).then((user) =>{
     user.currency = req.body.currency;
     user.unlocked = req.body.unlocked;
+    user.save().then((user) => res.send(user));
+  });
+});
+
+router.post("/earn", (req, res) => {
+  User.findOne({_id: req.user._id}).then((user) =>{
+    user.currency = req.body.amount + user.currency;
+    user.save().then((user) => res.send(user));
+  });
+});
+
+router.post("/win", (req, res) => {
+  User.findOne({_id: req.user._id}).then((user) =>{
+    user.numWins = user.numWins + 1;
     user.save().then((user) => res.send(user));
   });
 });
