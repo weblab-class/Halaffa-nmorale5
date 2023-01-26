@@ -56,8 +56,11 @@ module.exports = {
         const user = getUserFromSocketID(socket.id);
         gameLogic.move(user._id, moveId);
         sendNewGameState(user._id);
+        setTimeout(() => gameLogic.progressBattle(user._id));
         if (!gameLogic.getGame(user._id).battleData.BOT) {
-          sendNewGameState(gameLogic.getGame(user._id).opponent)
+          const opponent = gameLogic.getGame(user._id).opponent;
+          sendNewGameState(opponent);
+          setTimeout(() => gameLogic.progressBattle(opponent));
         }
       });
 

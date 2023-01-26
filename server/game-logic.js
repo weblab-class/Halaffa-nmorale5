@@ -100,35 +100,57 @@ const checkForDeaths = (id) => {
   return allGames[id].battleData[id].health <= 0 || allGames[id].battleData[opponent].health <= 0;
 }
 
-const move = (id, moveId) => {
-  const battleData = allGames[id].battleData;
-  if (battleData.turn !== id) return;
-  const oppId = allGames[id].opponent;
-  const player = battleData[id];
-  const enemy = battleData[oppId];
+const move = (gameId, playerId, moveId) => {
+  // makes a move by playerId, on the game given by gameId
+  const battleData = allGames[gameId].battleData;
+  const player = battleData[playerId];
+  const enemyId = gameId == playerId ? allGames[gameId].opponent : gameId;
+  const enemy = battleData[enemyId];
   const [newPlayer, newEnemy] = resolveMove(player, enemy, moveId);
-  battleData[id] = newPlayer;
-  battleData[oppId] = newEnemy;
+  battleData[playerId] = newPlayer;
+  battleData[enemyId] = newEnemy;
   battleData.animating = true;
 }
 
 const makeBotMove = (id) => {
   const moveId = allGames[id].battleData.BOT.moves[0]; // always choose first move for now
-  move("BOT", moveId);
+  move(id, "BOT", moveId);
 }
 
 const progressBattle = (id) => {
   const battleData = allGames[id].battleData;
   const opponent = battleData.BOT ? "BOT" : allGames[id].opponent;
   // check for deaths
+  if (battleData[id].health <= 0) {
+    if (opponent == "BOT") {
+      allGames[id].screen = "select";
+    } else {
+      allGames[id].screen = "lose";
+    }
+    return;
+  }
+  if (battleData[opponent].health <= 0) {
+    if (opponent == "BOT") {
+      allGames[id].screen = "loot";
+    } else {
+      allGames[id].screen = "win";
+    }
+    return;
+  }
+  // stop animating and change player's turn
+  battleData.animating = false;
+  if (battleData.turn == id) battleData.turn = opponent;
+  else battleData.turn = id;
+  // if it's the bot's turn next, make move for them
+  if (battleData.turn == "BOT") makeBotMove(id);  
 }
 
 module.exports = {
   getGame,
   addPlayer,
-  checkForDeaths,
   startGame,
-  move,
   select,
   loot,
+  move,
+  progressBattle,
 }
