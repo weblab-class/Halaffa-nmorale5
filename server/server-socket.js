@@ -55,19 +55,22 @@ module.exports = {
       socket.on("move", (moveId) => {
         const user = getUserFromSocketID(socket.id);
         gameLogic.move(user._id, moveId);
-        sendNewGameState();
+        sendNewGameState(user._id);
+        if (!gameLogic.getGame(user._id).battleData.BOT) {
+          sendNewGameState(gameLogic.getGame(user._id).opponent)
+        }
       });
 
       socket.on("select", (option) => {
         const user = getUserFromSocketID(socket.id);
         gameLogic.select(user._id, option);
-        sendNewGameState();
+        sendNewGameState(user._id);
       });
 
       socket.on("loot", (discards) => {
         const user = getUserFromSocketID(socket.id);
         gameLogic.loot(user._id, discards);
-        sendNewGameState();
+        sendNewGameState(user._id);
       });
     });
   },

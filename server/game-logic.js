@@ -48,8 +48,10 @@ const prepareSelect = (id) => {
 const prepareBattle = (id, selection) => {
   allGames[id].battleData = {
     [id]: { ...allGames[id].generalStats },
-    "BOT": { ...enemies[selection] },
+    BOT: { ...enemies[selection] },
     turn: id,
+    lastMove: null,
+    animating: false,
   }
 }
 
@@ -99,19 +101,26 @@ const checkForDeaths = (id) => {
 }
 
 const move = (id, moveId) => {
-  const data = allGames[id].battleData;
-  if (data.turn !== id) return;
+  const battleData = allGames[id].battleData;
+  if (battleData.turn !== id) return;
   const oppId = allGames[id].opponent;
-  const player = data[id];
-  const enemy = data[oppId];
+  const player = battleData[id];
+  const enemy = battleData[oppId];
   const [newPlayer, newEnemy] = resolveMove(player, enemy, moveId);
-  data[id] = newPlayer;
-  data[oppId] = newEnemy;
-  if (checkForDeaths(id)) {
-    data.turn = null; // game is now over
-  } else {
-    data.turn = oppId; // switch to opponent's turn
-  }
+  battleData[id] = newPlayer;
+  battleData[oppId] = newEnemy;
+  battleData.animating = true;
+}
+
+const makeBotMove = (id) => {
+  const moveId = allGames[id].battleData.BOT.moves[0]; // always choose first move for now
+  move("BOT", moveId);
+}
+
+const progressBattle = (id) => {
+  const battleData = allGames[id].battleData;
+  const opponent = battleData.BOT ? "BOT" : allGames[id].opponent;
+  // check for deaths
 }
 
 module.exports = {
