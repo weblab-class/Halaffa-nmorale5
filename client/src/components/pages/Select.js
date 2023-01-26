@@ -2,6 +2,8 @@ import React from "react";
 import SelectButtons from "../modules/SelectButtons.js";
 import SelectText from "../modules/SelectText.js";
 import CurrencyUI from "./CurrencyUI.js";
+import "../../utilities.css";
+
 
 
 export default class Select extends React.Component {
@@ -29,10 +31,11 @@ export default class Select extends React.Component {
     return (
       <div>
         <CurrencyUI currency={this.props.currency} userName={this.props.userName}/>
-        <div className = "u-flexRow">
+        <div className="u-flexRow">
           <SelectButtons 
             onHover={(buttonName) => this.onHover(buttonName)} 
             onUnhover={(buttonName) => this.onUnhover(buttonName)}
+            className = "u-flexGrow"
             />
           <SelectText text = {this.state.text}/>
         </div>

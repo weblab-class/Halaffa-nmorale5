@@ -2,4 +2,8 @@
   margin: var(--l);
   padding: var(--l);
   background-color:lightsteelblue;
+  border-color:#1f1f1f;
+  border-width: var(--xs);
+  border-radius: var(--s);
+  font-size: medium;
 }

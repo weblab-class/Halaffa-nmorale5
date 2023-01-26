@@ -1,0 +1,10 @@
+.currencyUI {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(141, 99, 52);
+}
+
+.currencyEntry {
+  margin: var(--m);
+  font-size: medium;
+}

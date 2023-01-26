@@ -34,11 +34,11 @@ export default function WinLose(props) {
       <p>
         You earned: {currency}
       </p>
-      <button onClick={finalFunction}>
-        <Link to="/select">
+      <Link to="/select">
+        <button onClick={finalFunction}>
           Return to Profile
-        </Link>
-      </button>
+        </button>
+      </Link>
     </div>
   )
 }
