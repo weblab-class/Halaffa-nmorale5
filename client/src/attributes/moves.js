@@ -14,11 +14,10 @@ const moves = {
   }
 }
 
-function resolveMove(playerStats, enemyStats, moveId, playerAttacksEnemy=true) {
+function resolveMove(playerStats, enemyStats, moveId) {
   let player = {...playerStats};
   let enemy = {...enemyStats};
-  if (playerAttacksEnemy) moves[moveId](player, enemy);
-  else                    moves[moveId](enemy, player);
+  moves[moveId](player, enemy);
   return [player, enemy];
 }
 

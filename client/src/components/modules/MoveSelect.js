@@ -18,15 +18,15 @@ export default class MoveSelect extends React.Component {
   }
 
   render() {
-    const game = this.props.gameState;
-    const moveList = game.players[game.turn].moves.map((moveId) => {
+    const game = this.props.battleData;
+    const moveList = game[this.props.players[0]].moves.map((moveId) => {
       const move = this.props.attributes.moves.find(({id}) => id === moveId);
       return (
         <li key={moveId}>
           <MoveButton
             name={move.name}
             power={move.power}
-            onClick={() => this.props.onFinished(moveId)}
+            onClick={() => this.props.makeMove(moveId)}
             onHover={() => this.onHover(moveId)}
             onUnhover={() => this.onUnhover(moveId)}
           />

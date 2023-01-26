@@ -5,6 +5,9 @@ import LootResults from '../modules/LootResults.js';
 import Stats from '../modules/Stats.js';
 
 export default function Game(props) {
+  if (!props.gameState) return (
+    <h1>You're not in an active game.</h1>
+  )
   let screen;
   switch (props.gameState.screen) {
     case "battle":
@@ -12,6 +15,10 @@ export default function Game(props) {
         <Battle 
           attributes={props.attributes}
           battleData={props.gameState.battleData}
+          players={[
+            props.gameState.id, 
+            props.gameState.battleData.BOT ? "BOT" : props.gameState.opponent,
+          ]}
           makeMove={props.events.makeMove}
         />
       );
@@ -33,10 +40,6 @@ export default function Game(props) {
           selectOption={props.events.selectOption}
         />
       );
-    default:
-      screen = (
-        <h1>You're not in an active game.</h1>
-      )
   }
   return (
     <>

@@ -2,8 +2,8 @@ import React from 'react';
 import './BattleUpper.css';
 
 export default function BattleUpper(props) {
-  const player1 = props.gameState.players[0]
-  const player2 = props.gameState.players[1]
+  const player1 = props.battleData[props.players[0]]
+  const player2 = props.battleData[props.players[1]]
   return (
     <>
       <img

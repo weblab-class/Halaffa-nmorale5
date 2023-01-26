@@ -38,6 +38,7 @@ const addPlayer = (id) => {
     allGames[opponent].opponent = id; // the opponent's opponent is me
     return [opponent, id];
   }
+  unpaired.push(id)
   return [id];
 }
 
@@ -95,24 +96,22 @@ const loot = (id, discards) => {
   prepareSelect(id);
 }
 
-const checkForDeaths = (id) => {
-  const opponent = allGames[id].opponent;
-  return allGames[id].battleData[id].health <= 0 || allGames[id].battleData[opponent].health <= 0;
-}
-
 const move = (gameId, playerId, moveId) => {
   // makes a move by playerId, on the game given by gameId
   const battleData = allGames[gameId].battleData;
   const player = battleData[playerId];
-  const enemyId = gameId == playerId ? allGames[gameId].opponent : gameId;
+  const enemyId = gameId == playerId ?
+    (battleData.BOT ? "BOT" : allGames[gameId].opponent) : gameId;
   const enemy = battleData[enemyId];
   const [newPlayer, newEnemy] = resolveMove(player, enemy, moveId);
   battleData[playerId] = newPlayer;
   battleData[enemyId] = newEnemy;
+  battleData.lastMove = moveId;
   battleData.animating = true;
 }
 
 const makeBotMove = (id) => {
+  console.log(allGames[id].battleData)
   const moveId = allGames[id].battleData.BOT.moves[0]; // always choose first move for now
   move(id, "BOT", moveId);
 }
@@ -146,6 +145,7 @@ const progressBattle = (id) => {
 }
 
 module.exports = {
+  allGames,
   getGame,
   addPlayer,
   startGame,

@@ -50,17 +50,37 @@ module.exports = {
             sendNewGameState(id);
           });
         }
+        console.log(gameLogic.allGames)
       })
 
       socket.on("move", (moveId) => {
         const user = getUserFromSocketID(socket.id);
-        gameLogic.move(user._id, moveId);
+        // process move and make animation play
+        gameLogic.move(user._id, user._id, moveId);
         sendNewGameState(user._id);
-        setTimeout(() => gameLogic.progressBattle(user._id));
-        if (!gameLogic.getGame(user._id).battleData.BOT) {
+        const opponentIsBot = gameLogic.getGame(user._id).battleData.BOT
+        setTimeout(() => {
+          // choose & process move for bot or allow opponent to select their next move
+          gameLogic.progressBattle(user._id);
+          sendNewGameState(user._id)
+          if (opponentIsBot) {
+            setTimeout(() => {
+              // allow player to select their next move
+              gameLogic.progressBattle(user._id);
+              sendNewGameState(user._id)
+            }, 2000)
+          }
+        }, 2000);
+        if (!opponentIsBot) {
           const opponent = gameLogic.getGame(user._id).opponent;
+          // process move for opponent and make their screen animate
+          gameLogic.move(opponent, user._id, moveId);
           sendNewGameState(opponent);
-          setTimeout(() => gameLogic.progressBattle(opponent));
+          setTimeout(() => {
+            // allow player to select their move
+            gameLogic.progressBattle(opponent);
+            sendNewGameState(opponent);
+          }, 2000);
         }
       });
 
@@ -80,8 +100,6 @@ module.exports = {
 
   addUser: addUser,
   removeUser: removeUser,
-
-  startBattle: startBattle,
 
   getSocketFromUserID: getSocketFromUserID,
   getUserFromSocketID: getUserFromSocketID,

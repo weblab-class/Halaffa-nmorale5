@@ -16,7 +16,7 @@ export default class SelectButtons extends React.Component {
           buttonName="Multiplayer"
           onHover={this.props.onHover}
           onUnhover={this.props.onUnhover}
-          onClick={this.props.startQueue}
+          startQueue={this.props.startQueue}
         />
         <SelectButton
           link="/leaderboard"

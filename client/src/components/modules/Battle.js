@@ -10,11 +10,13 @@ export default function Battle(props) {
       <BattleUpper
         attributes={props.attributes}
         battleData={props.battleData}
+        players={props.players}
       />
       <BattleLower
         attributes={props.attributes}
         battleData={props.battleData}
-        makeMove={makeMove}
+        players={props.players}
+        makeMove={props.makeMove}
       />
     </>
   )
