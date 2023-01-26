@@ -51,6 +51,8 @@ button {
   font-size: larger;
   margin: var(--m);
   background-color: var(--primary);
+  padding: var(--m);
+  border-radius: var(--s);
 }
 
 button:hover {
@@ -84,6 +86,14 @@ button:hover {
 
 .u-flex-alignCenter {
   align-items: center;
+}
+
+.u-flexWrap {
+  flex-wrap: wrap;
+}
+
+.u-flexStay {
+  flex: 0 0 auto;
 }
 
 .u-inlineBlock {

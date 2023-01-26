@@ -16,7 +16,7 @@ export default class Home extends React.Component {
         <div className="u-flexColumn u-flex-alignCenter">
           <img className="logo" src = {require('../../images/rUIns.png').default} />
           <div className="homeButtons u-flexRow">
-            <button onMouseOver="buttonOnHover">
+            <button>
               <Link to="/select">
                   Quickplay
               </Link>

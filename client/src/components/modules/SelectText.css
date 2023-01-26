@@ -1,0 +1,5 @@
+.selectText {
+  margin: var(--l);
+  padding: var(--l);
+  background-color:lightsteelblue;
+}

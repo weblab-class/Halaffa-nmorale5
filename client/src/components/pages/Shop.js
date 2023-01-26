@@ -14,7 +14,7 @@ export default class Shop extends React.Component {
               Back
           </Link>
         </button>
-        <div className="u-flex">
+        <div className="u-flex u-flexWrap">
           {starterList.map((starter) => (
             <Character
               onClickChoose = {this.props.onClickChoose}
