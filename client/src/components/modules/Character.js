@@ -20,6 +20,7 @@ export default class Character extends React.Component {
           onClickChoose = {onClickFunc}
           starter = {this.props.starter}
           name = {buttonName}
+          primaryColor = "buttonGreen"
         />
       </div>
     )

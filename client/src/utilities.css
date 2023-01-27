@@ -17,6 +17,7 @@
 /* TODO: REPLACE WITH YOUR OWN FONT! */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&family=Press+Start+2P&display=swap');
 
+
 :root {
   --primary: #e6e294;
   --primary--dim: #c8c57a;
@@ -50,13 +51,48 @@ button {
   font-family: var(--font);
   font-size: larger;
   margin: var(--m);
-  background-color: var(--primary);
+  image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+  image-rendering: -moz-crisp-edges;          /* Firefox                        */
+  image-rendering: -o-crisp-edges;            /* Opera                          */
+  image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+  image-rendering: pixelated;                 /* Universal support since 2021   */
+  image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+  -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+  background-image: url("images/Button.png");
+  background-size: cover;
   padding: var(--m);
-  border-radius: var(--s);
+  border-width: 0;
+  height: 80px;
+  width: 240px;
+
 }
 
 button:hover {
-  background-color: var(--primary--dim);
+  background-image: url("images/ButtonHover1.png");
+}
+
+.buttonRed {
+  background-image: url("images/MoveButtonFire.png");
+}
+
+.buttonBlue {
+  background-image: url("images/MoveButtonWater.png");
+}
+
+.buttonGreen {
+  background-image: url("images/MoveButtonGrass.png");
+}
+
+.buttonRed:hover {
+  background-image: url("images/MoveButtonFireHover.png");
+}
+
+.buttonBlue:hover {
+  background-image: url("images/MoveButtonWaterHover.png");
+}
+
+.buttonGreen:hover {
+  background-image: url("images/MoveButtonGrassHover.png");
 }
 
 .u-flex {
@@ -163,8 +199,5 @@ button:hover {
   margin: var(--l);
 }
 
-.content {
-  background-color: #eeeeee
-}
 
 html {background-color: #eeeeee}

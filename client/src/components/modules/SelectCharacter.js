@@ -8,7 +8,7 @@ export default function SelectCharacter(props) {
     return props.onClickChoose(props.starter.id);
   }
   return (
-    <div className="u-flexColumn u-flex-justifyCenter">
+    <div className={"u-flexColumn u-flex-justifyCenter" + props.primaryColor}>
       <button onClick={finalFunction} className="u-flex-justifyCenter">
         {props.name}
       </button>
