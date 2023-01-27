@@ -16,11 +16,11 @@ export default class Home extends React.Component {
         <div className="u-flexColumn u-flex-alignCenter">
           <img className="logo" src = {require('../../images/rUIns.png').default} />
           <div className="homeButtons u-flexRow">
-            <button>
-              <Link to="/select">
-                  Quickplay
-              </Link>
-            </button>
+            <Link to="/select">
+              <button>
+                Quickplay
+              </button>
+            </Link>
             {this.props.userId ? (
             <button
               onClick={() => {

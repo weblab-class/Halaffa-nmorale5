@@ -14,11 +14,11 @@ export default class Gallery extends React.Component {
     return (
       <div>
         <CurrencyUI currency={this.props.currency} userName={this.props.userName}/>
-        <button>
-          <Link to="/select">
-              Back
-          </Link>
-        </button>
+        <Link to="/select">
+          <button>
+            Back
+          </button>
+        </Link>
         <h1>Starters</h1>
         {starterList.map((starter) => (
           <GalleryStarterEntry

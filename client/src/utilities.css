@@ -59,13 +59,6 @@ button:hover {
   background-color: var(--primary--dim);
 }
 
-.buttonOnHover {
-  font-family: var(--font);
-  font-size: larger;
-  margin: var(--m);
-  background-color: var(--primary--dim);
-}
-
 .u-flex {
   display: flex;
 }
@@ -94,6 +87,10 @@ button:hover {
 
 .u-flexStay {
   flex: 0 0 auto;
+}
+
+.u-flexGrow {
+  flex: 1 0 auto;
 }
 
 .u-inlineBlock {
@@ -165,3 +162,9 @@ button:hover {
 
   margin: var(--l);
 }
+
+.content {
+  background-color: #eeeeee
+}
+
+html {background-color: #eeeeee}

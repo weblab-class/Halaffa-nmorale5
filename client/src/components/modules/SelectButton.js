@@ -1,15 +1,19 @@
 import React from 'react';
 import { Link } from "@reach/router";
+import "../../utilities.css";
+
 
 export default function SelectButton(props) {
   return (
-    <button 
-      onMouseOver={() => props.onHover(props.buttonName)}
-      onMouseOut={() => props.onUnhover(props.buttonName)}
-    >
+    <div>
       <Link to={props.link}>
-          {props.buttonName}
+        <button
+          onMouseOver={() => props.onHover(props.buttonName)}
+          onMouseOut={() => props.onUnhover(props.buttonName)}
+          >
+            {props.buttonName}
+        </button>
       </Link>
-    </button>
+    </div>
   )
 }

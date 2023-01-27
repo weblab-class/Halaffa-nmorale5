@@ -10,11 +10,11 @@ export default class Leaderboard extends React.Component {
   render() {
     return (
       <div>
-        <button>
-          <Link to="/select">
+        <Link to="/select">
+          <button>
               Back
-          </Link>
-        </button>
+          </button>
+        </Link>
         <button onClick={this.props.debug}>
           Debug
         </button>

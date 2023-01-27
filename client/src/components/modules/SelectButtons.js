@@ -1,10 +1,11 @@
 import React from 'react';
 import SelectButton from './SelectButton';
+import "../../utilities.css"
 
 export default class SelectButtons extends React.Component {
   render() {
     return (
-      <div className="u-flexColumn">
+      <div className="u-flexColumn u-flexGrow">
         <SelectButton 
           link="/game" 
           buttonName="Play"
