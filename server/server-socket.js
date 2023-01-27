@@ -27,7 +27,15 @@ const removeUser = (user, socket) => {
 };
 
 const sendNewGameState = (id) => {
-  getSocketFromUserID(id).emit("update", gameLogic.getGame(id));
+  if (getSocketFromUserID(id)) {
+    getSocketFromUserID(id).emit("update", gameLogic.getGame(id));
+  }
+}
+
+const rejoinGame = (id) => {
+  if (gameLogic.getGame(id)) {
+    sendNewGameState(id);
+  }
 }
 
 module.exports = {
@@ -43,18 +51,22 @@ module.exports = {
 
       socket.on("queue", (x) => {
         const user = getUserFromSocketID(socket.id);
+        if (!user) return;
         const resultingLobby = gameLogic.addPlayer(user._id);
-        if (resultingLobby.length == 2) {
+        if (resultingLobby && resultingLobby.length == 2) {
           resultingLobby.forEach((id) => {
             gameLogic.startGame(id);
             sendNewGameState(id);
           });
+        } else {
+          sendNewGameState(user._id);
         }
         console.log(gameLogic.allGames)
       })
 
       socket.on("move", (moveId) => {
         const user = getUserFromSocketID(socket.id);
+        if (!user) return;
         // process move and make animation play
         gameLogic.move(user._id, user._id, moveId);
         sendNewGameState(user._id);
@@ -86,12 +98,14 @@ module.exports = {
 
       socket.on("select", (option) => {
         const user = getUserFromSocketID(socket.id);
+        if (!user) return;
         gameLogic.select(user._id, option);
         sendNewGameState(user._id);
       });
 
       socket.on("loot", (discards) => {
         const user = getUserFromSocketID(socket.id);
+        if (!user) return;
         gameLogic.loot(user._id, discards);
         sendNewGameState(user._id);
       });
@@ -100,6 +114,9 @@ module.exports = {
 
   addUser: addUser,
   removeUser: removeUser,
+
+  sendNewGameState: sendNewGameState,
+  rejoinGame: rejoinGame,
 
   getSocketFromUserID: getSocketFromUserID,
   getUserFromSocketID: getUserFromSocketID,

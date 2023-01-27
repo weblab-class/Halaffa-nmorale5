@@ -11,8 +11,7 @@ export const configureUpdates = (updateFunc) => {
 };
 
 export const startQueue = () => {
-  console.log("sending message to server")
-  socket.emit("queue", {});
+  socket.emit("queue", "classic");
 };
 
 export const makeMove = (moveId) => {

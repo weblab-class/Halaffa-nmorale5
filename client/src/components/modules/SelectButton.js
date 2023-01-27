@@ -6,7 +6,6 @@ export default function SelectButton(props) {
     <button 
       onMouseOver={() => props.onHover(props.buttonName)}
       onMouseOut={() => props.onUnhover(props.buttonName)}
-      onClick={props.startQueue}
     >
       <Link to={props.link}>
           {props.buttonName}

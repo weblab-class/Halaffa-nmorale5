@@ -15,13 +15,10 @@ import "../utilities.css";
 import { socket } from "../client-socket.js";
 import { get, post } from "../utilities";
 
-// import equipment from '../attributes/equipment.json' assert { type: 'JSON' };
-// import moves from '../attributes/moves.json' assert { type: 'JSON' };
-// import starters from '../attributes/starters.json' assert { type: 'JSON' };
-// import enemies from '../attributes/enemies.json' assert { type: 'JSON' };
-
-import { configureUpdates, startQueue, makeMove, selectOption, collectLoot } from "../client-socket";
-
+import equipment from '../attributes/equipment.json' assert { type: 'JSON' };
+import moves from '../attributes/moves.json' assert { type: 'JSON' };
+import starters from '../attributes/starters.json' assert { type: 'JSON' };
+import enemies from '../attributes/enemies.json' assert { type: 'JSON' };
 
 /**
  * Define the "App" component
@@ -43,19 +40,17 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    const grabVals = async () => {
-      let equipment = await get("/api/equipments", {});
-      let moves = await get("/api/moves", {});
-      let starters = await get("/api/starters", {});
-      let enemies = await get("/api/enemies", {});
-      return { equipment, moves, starters, enemies };
-      }
-    grabVals().then((attr) => {
-      this.setState({attributes: attr});
-    });
-    configureUpdates((updatedGameState) => {
-      this.setState({gameState: updatedGameState})
-    });
+    // const grabVals = async () => {
+    //   let equipment = await get("/api/equipments", {});
+    //   let moves = await get("/api/moves", {});
+    //   let starters = await get("/api/starters", {});
+    //   let enemies = await get("/api/enemies", {});
+    //   return { equipment, moves, starters, enemies };
+    //   }
+    // grabVals().then((attr) => {
+    //   this.setState({attributes: attr});
+    // });
+    this.setState({attributes: {equipment, moves, starters, enemies}})
     this.componentDidUpdate();
     get("/api/user").then((user) => {
       if (user._id) {
@@ -168,6 +163,9 @@ export default class App extends React.Component {
   }
 
   render() {
+    if (!this.state.attributes) {
+      return <h1>Loading...</h1>
+    }
     return (
       <>
         <Router>
@@ -182,7 +180,6 @@ export default class App extends React.Component {
             currency={this.state.currency}
             userId={this.state.userId}
             userName={this.state.userName}
-            startQueue={startQueue}
           />
           <Shop
             path="/shop"
@@ -205,7 +202,6 @@ export default class App extends React.Component {
             path="/game"
             attributes={this.state.attributes}
             gameState={this.state.gameState}
-            events={{makeMove, selectOption, collectLoot}}
           />
           <Gallery
             path="/gallery"

@@ -27,6 +27,7 @@ const addPlayer = (id) => {
   allGames[id] = {
     id: id,
     opponent: opponent,
+    gameMode: "classic",
     floor: null,
     screen: null,
     selectionData: null,

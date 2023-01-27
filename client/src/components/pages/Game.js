@@ -4,22 +4,33 @@ import EnemySelect from '../modules/EnemySelect.js';
 import LootResults from '../modules/LootResults.js';
 import Stats from '../modules/Stats.js';
 
+import { configureUpdates, startQueue, makeMove, selectOption, collectLoot } from "../../client-socket";
+import GameSelect from '../modules/GameSelect.js';
+
 export default function Game(props) {
-  if (!props.gameState) return (
-    <h1>You're not in an active game.</h1>
-  )
+  const [gameState, setGameState] = useState(null);
+  useEffect(() => {
+    configureUpdates(setGameState);
+  }, [])
+  console.log(gameState);
+  if (!gameState) return (
+    <GameSelect startQueue={startQueue}/>
+  );
+  if (!gameState.opponent) return (
+    <h1>You joined the queue! Waiting for an opponent...</h1>
+  );
   let screen;
-  switch (props.gameState.screen) {
+  switch (gameState.screen) {
     case "battle":
       screen = (
         <Battle 
           attributes={props.attributes}
-          battleData={props.gameState.battleData}
+          battleData={gameState.battleData}
           players={[
-            props.gameState.id, 
-            props.gameState.battleData.BOT ? "BOT" : props.gameState.opponent,
+            gameState.id, 
+            gameState.battleData.BOT ? "BOT" : gameState.opponent,
           ]}
-          makeMove={props.events.makeMove}
+          makeMove={makeMove}
         />
       );
       break;
@@ -27,8 +38,8 @@ export default function Game(props) {
       screen = (
         <LootResults
           attributes={props.attributes}
-          lootData={props.gameState.lootData}
-          collectLoot={props.events.collectLoot}
+          lootData={gameState.lootData}
+          collectLoot={collectLoot}
         />
       );
       break;
@@ -36,8 +47,8 @@ export default function Game(props) {
       screen = (
         <EnemySelect
           attributes={props.attributes}
-          selectionData={props.gameState.selectionData}
-          selectOption={props.events.selectOption}
+          selectionData={gameState.selectionData}
+          selectOption={selectOption}
         />
       );
   }
@@ -45,7 +56,7 @@ export default function Game(props) {
     <>
       <Stats
         attributes={props.attributes}
-        stats={props.gameState.generalStats}
+        stats={gameState.generalStats}
       />
       {screen}
     </>

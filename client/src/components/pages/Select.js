@@ -11,8 +11,9 @@ export default class Select extends React.Component {
       text : "Hover over a button to see its description."
     }
     this.mapping = {
-      "Single Player": "Play a game by yourself, fighting a powerful boss after collecting as many power-ups as possible in 5 minutes!",
-      "Multiplayer": "Play a game with another person online, fighting the other person after you each get 5 minutes of preparation.",
+      // "Single Player": "Play a game by yourself, fighting a powerful boss after collecting as many power-ups as possible in 5 minutes!",
+      // "Multiplayer": "Play a game with another person online, fighting the other person after you each get 5 minutes of preparation.",
+      "Play": "Start the game!",
       "Shop": "Choose what starter to play as and unlock new ones with currency you earn from play.",
       "Leaderboard": "See who the top players are!",
       "Gallery": "See sprites and stats of starters and enemies."
@@ -33,8 +34,7 @@ export default class Select extends React.Component {
           <SelectButtons 
             onHover={(buttonName) => this.onHover(buttonName)} 
             onUnhover={(buttonName) => this.onUnhover(buttonName)}
-            startQueue={this.props.startQueue}
-            />
+          />
           <SelectText text = {this.state.text}/>
         </div>
       </div>

@@ -7,16 +7,9 @@ export default class SelectButtons extends React.Component {
       <div className="u-flexColumn">
         <SelectButton 
           link="/game" 
-          buttonName="Single Player"
+          buttonName="Play"
           onHover={this.props.onHover}
           onUnhover={this.props.onUnhover}
-        />
-        <SelectButton
-          link="/game"
-          buttonName="Multiplayer"
-          onHover={this.props.onHover}
-          onUnhover={this.props.onUnhover}
-          startQueue={this.props.startQueue}
         />
         <SelectButton
           link="/leaderboard"
