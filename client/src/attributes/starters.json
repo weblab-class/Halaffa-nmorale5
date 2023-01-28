@@ -18,7 +18,7 @@
   {
     "id": 1,
     "name": "Bob",
-    "sprite": "FireStarter.png",
+    "sprite": "FireStarterNew.png",
     "back_sprite": "FireStarterBack.png",
     "red": 7,
     "green": 1,
