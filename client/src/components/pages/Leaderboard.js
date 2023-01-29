@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "@reach/router";
-import WinLose from "../modules/WinLose.js";
+import GameOver from "../modules/GameOver.js";
 
 
 export default class Leaderboard extends React.Component {
@@ -21,8 +21,8 @@ export default class Leaderboard extends React.Component {
         <h1>
           Wins: {this.props.numWins}
         </h1>
-        <WinLose win={true} onWin={this.props.onWin} addCurrency={this.props.addCurrency}>
-        </WinLose>
+        <GameOver win={true} onWin={this.props.onWin} addCurrency={this.props.addCurrency}>
+        </GameOver>
       </div>
     )
   }

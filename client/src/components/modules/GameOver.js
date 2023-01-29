@@ -4,20 +4,24 @@ import { Link } from "@reach/router";
 import { get, post } from "../../utilities";
 
 /* 
-Props: props.win (boolean if you won)
+Props: props.game (contains all information about the game)
 props.onWin (addWin function from App.js)
 props.addCurrency (addCurrency function from App.js)
 */
 
-export default function WinLose(props) {
+export default function GameOver(props) {
   let text = "You lost.";
   let currency = 10;
-  if (props.win) {
-    text = "You won!"
+  if (props.game.screen == "win") {
+    text = "You won!";
     currency = 20;
   }
+  if (props.game.screen == "end") {
+    text = "You made it to floor " + props.game.floor + "!";
+    currency = props.game.floor * 2;
+  }
   function combinedOps() {
-    if (props.win) {
+    if (props.game.screen == "win") {
       props.onWin();
     }
     props.addCurrency(currency);

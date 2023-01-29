@@ -7,7 +7,7 @@ import Stats from '../modules/Stats.js';
 import { configureUpdates, configureTimer, startQueue, makeMove, selectOption, collectLoot, endGame } from "../../client-socket";
 import GameSelect from '../modules/GameSelect.js';
 import Timer from '../modules/Timer.js';
-import WinLose from '../modules/WinLose.js';
+import GameOver from '../modules/GameOver.js';
 import Waiting from '../modules/Waiting.js';
 
 export default function Game(props) {
@@ -24,17 +24,9 @@ export default function Game(props) {
   if (!gameState.opponent) return (
     <h1>You joined the queue! Waiting for an opponent...</h1>
   );
-  if (gameState.screen == "win") return (
-    <WinLose 
-      win={true}
-      onWin={props.onWin}
-      addCurrency={props.addCurrency}
-      endGame={endGame}
-    />
-  )
-  if (gameState.screen == "lose") return (
-    <WinLose 
-      win={false}
+  if (["win", "lose", "end"].includes(gameState.screen)) return (
+    <GameOver
+      game={gameState}
       onWin={props.onWin}
       addCurrency={props.addCurrency}
       endGame={endGame}
