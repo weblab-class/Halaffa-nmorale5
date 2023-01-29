@@ -116,8 +116,8 @@ module.exports = {
         }, 2000));
         if (!opponentIsBot) {
           const opponent = gameLogic.getGame(user._id).opponent;
-          // process move for opponent and make their screen animate
-          gameLogic.move(opponent, user._id, moveId);
+          // copy move for opponent
+          gameLogic.getGame(opponent).battleData = {...gameLogic.getGame(user._id).battleData};
           sendNewGameState(opponent);
           toCancel[opponent].push(setTimeout(() => {
             // allow player to select their move
