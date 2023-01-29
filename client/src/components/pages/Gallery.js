@@ -13,7 +13,7 @@ export default class Gallery extends React.Component {
     const equipmentList = this.props.equipment;
     return (
       <div>
-        <CurrencyUI currency={this.props.currency} userName={this.props.userName}/>
+        <CurrencyUI currency={this.props.currency} userName={this.props.userName} userStarter={this.props.userStarter}/>
         <Link to="/select">
           <button>
             Back

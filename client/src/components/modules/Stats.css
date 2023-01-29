@@ -1,0 +1,12 @@
+.equipContainer {
+  background-color: #999999;
+}
+
+.statContainer {
+  width: 224px;
+}
+
+.divider {
+  background-color: black;
+  height: var(--xs);
+}

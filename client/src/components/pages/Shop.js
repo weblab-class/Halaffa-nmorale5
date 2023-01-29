@@ -10,7 +10,7 @@ export default class Shop extends React.Component {
     const starterList = this.props.starters
     return (
       <div>
-        <CurrencyUI currency={this.props.currency} userName={this.props.userName}/>
+        <CurrencyUI currency={this.props.currency} userName={this.props.userName} userStarter={this.props.userStarter}/>
         <div>
           <Link to="/select">
             <button>
