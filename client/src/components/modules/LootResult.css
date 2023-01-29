@@ -1,0 +1,7 @@
+.attribute {
+  margin: var(--xs);
+}
+
+.bg {
+  background-color: var(--primary--dim);
+}

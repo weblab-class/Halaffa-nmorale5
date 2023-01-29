@@ -22,15 +22,14 @@ export default class MoveSelect extends React.Component {
     const moveList = game[this.props.players[0]].moves.map((moveId) => {
       const move = this.props.attributes.moves.find(({id}) => id === moveId);
       return (
-        <li key={moveId}>
-          <MoveButton
-            name={move.name}
-            power={move.power}
-            onClick={() => this.props.makeMove(moveId)}
-            onHover={() => this.onHover(moveId)}
-            onUnhover={() => this.onUnhover(moveId)}
-          />
-        </li>
+        <MoveButton
+          name={move.name}
+          power={move.power}
+          color={move.color}
+          onClick={() => this.props.makeMove(moveId)}
+          onHover={() => this.onHover(moveId)}
+          onUnhover={() => this.onUnhover(moveId)}
+        />
       )
     })
 
@@ -39,10 +38,11 @@ export default class MoveSelect extends React.Component {
 
     return (
       <>
-        <ul>
+        <div className="u-flexColumn">
           {moveList}
-        </ul>
-        <p>{move ? move.description : alt}</p>
+        </div>
+
+        <p>{move ? "(Power: " + move.power + ")  " + move.description : alt}</p>
       </>
     )
   }

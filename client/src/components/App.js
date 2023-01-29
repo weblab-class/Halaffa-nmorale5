@@ -180,18 +180,26 @@ export default class App extends React.Component {
             currency={this.state.currency}
             userId={this.state.userId}
             userName={this.state.userName}
+            userStarter={this.state.equippedStarter}
+            starters={this.state.attributes.starters}
           />
           <Shop
             path="/shop"
             currency={this.state.currency}
             userId={this.state.userId}
             userName={this.state.userName}
+            userStarter={this.state.equippedStarter}
             onClickChoose={(starterId) => this.changeStarter(starterId)}
             onClickBuy={(starterId) => this.unlockStarter(starterId)}
             starters={this.state.attributes.starters}
             unlockedStarters={this.state.unlockedStarters}
           />
           <Leaderboard
+            currency={this.state.currency}
+            userId={this.state.userId}
+            userName={this.state.userName}
+            userStarter={this.state.equippedStarter}
+            starters={this.state.attributes.starters}
             path="/leaderboard"
             debug={() => this.debug()}
             numWins={this.state.numWins}
@@ -207,6 +215,7 @@ export default class App extends React.Component {
             path="/gallery"
             currency={this.state.currency}
             userName={this.state.userName}
+            userStarter={this.state.equippedStarter}
             starters={this.state.attributes.starters}
             enemies={this.state.attributes.enemies}
             equipment={this.state.attributes.equipment}
