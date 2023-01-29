@@ -115,5 +115,50 @@
     "green": 2,
     "description": "Take 20% less damage from moves.",
     "sprite": "VioletNecklace.png"
+  },
+  {
+    "id": 13,
+    "name": "Evil Aura",
+    "description": "Attacks do more damage in exchange for some health after every attack.",
+    "sprite": "EvilAura.png",
+    "red": 4,
+    "blue": 0,
+    "green": 0
+  },
+  {
+    "id": 14,
+    "name": "Mirror",
+    "description": "First attack reflects damage back to foe, then this equipment breaks.",
+    "sprite": "Mirror.png",
+    "red": 1,
+    "blue": 2,
+    "green": 0
+  },
+  {
+    "id": 15,
+    "name": "Rope",
+    "description": "Take less damage from attacks, but deal less damage and lower speed in exchange.",
+    "sprite": "Longsword.png",
+    "red": 0,
+    "blue": 1,
+    "green": 3
+  },
+  {
+    "id": 16,
+    "name": "Strawberry",
+    "description": "Heal damage taken from a move that does more than 30% of max health once per battle.",
+    "sprite": "Strawberry.png",
+    "red": 2,
+    "blue": 0,
+    "green": 2
+  },
+  {
+    "id": 17,
+    "name": "Thorns",
+    "description": "Foe takes 2 damage every time they do damage to you.",
+    "sprite": "Thorns.png",
+    "red": 0,
+    "blue": 0,
+    "green": 4
   }
 ]

@@ -67,11 +67,11 @@ export default function Game(props) {
       <Timer 
         timer={timer}
       />
+      {screen}
       <Stats
         attributes={props.attributes}
         stats={gameState.generalStats}
       />
-      {screen}
     </>
   )
 }
