@@ -5,8 +5,8 @@ const moves = require('../client/src/attributes/moves.json');
 const starters = require('../client/src/attributes/starters.json');
 const enemies = require('../client/src/attributes/enemies.json');
 
-const allGames = {} // maps ids to gameStates
-const unpaired = [] // list of ids of games missing opponents (expected length 0 or 1)
+const allGames = {}; // maps ids to gameStates
+const unpaired = []; // list of ids of games missing opponents (expected length 0 or 1)
 
 const getGame = (id) => {
   return allGames[id];
@@ -127,7 +127,7 @@ const progressBattle = (id) => {
     } else {
       allGames[id].screen = "lose";
     }
-    return;
+    return true;
   }
   if (battleData[opponent].health <= 0) {
     if (opponent == "BOT") {
@@ -135,14 +135,34 @@ const progressBattle = (id) => {
     } else {
       allGames[id].screen = "win";
     }
-    return;
+    return true;
   }
   // stop animating and change player's turn
   battleData.animating = false;
   if (battleData.turn == id) battleData.turn = opponent;
   else battleData.turn = id;
   // if it's the bot's turn next, make move for them
-  if (battleData.turn == "BOT") makeBotMove(id);  
+  if (battleData.turn == "BOT") makeBotMove(id);
+  return false;
+}
+
+const onTimeUp = (player) => {
+  const opponent = allGames[player].opponent;
+  allGames[player].gameMode = "final";
+  allGames[player].screen = "battle";
+  const playerStats = allGames[player].generalStats;
+  const opponentStats = allGames[opponent].generalStats;
+  let turn;
+  if (playerStats.speed > opponentStats.speed) turn = player;
+  else if (playerStats.speed < opponentStats.speed) turn = opponent;
+  else turn = (player > opponent) ? player : opponent; // arbitrarily break ties by id
+  allGames[player].battleData = {
+    [player]: { ...playerStats },
+    [opponent]: { ...opponentStats },
+    turn: turn,
+    lastMove: null,
+    animating: false,
+  };
 }
 
 module.exports = {
@@ -154,4 +174,5 @@ module.exports = {
   loot,
   move,
   progressBattle,
+  onTimeUp,
 }

@@ -9,6 +9,9 @@ const getSocketFromUserID = (userid) => userToSocketMap[userid];
 const getUserFromSocketID = (socketid) => socketToUserMap[socketid];
 const getSocketFromSocketID = (socketid) => io.sockets.connected[socketid];
 
+const timers = {}; // maps game IDs to the currently remaining time
+const GAME_TIME = 60; // how long the game lasts before final battle
+
 const addUser = (user, socket) => {
   const oldSocket = userToSocketMap[user._id];
   if (oldSocket && oldSocket.id !== socket.id) {
@@ -38,6 +41,28 @@ const rejoinGame = (id) => {
   }
 }
 
+const sendTime = (id) => {
+  if (getSocketFromUserID(id)) {
+    getSocketFromUserID(id).emit("timer", timers[id]);
+  }
+}
+
+const startTimer = (id) => {
+  timers[id] = GAME_TIME;
+  const timerId = setInterval(() => {
+    timers[id]--;
+    if (timers[id] >= 0) {
+      sendTime(id);
+    } else {
+      gameLogic.onTimeUp(id)
+      sendNewGameState(id);
+      timers[id] = undefined;
+      sendTime(id); // tell client to disable timer display
+      clearInterval(timerId);
+    }
+  }, 1000)
+}
+
 module.exports = {
   init: (http) => {
     io = require("socket.io")(http);
@@ -57,6 +82,7 @@ module.exports = {
           resultingLobby.forEach((id) => {
             gameLogic.startGame(id);
             sendNewGameState(id);
+            startTimer(id);
           });
         } else {
           sendNewGameState(user._id);
@@ -73,9 +99,9 @@ module.exports = {
         const opponentIsBot = gameLogic.getGame(user._id).battleData.BOT
         setTimeout(() => {
           // choose & process move for bot or allow opponent to select their next move
-          gameLogic.progressBattle(user._id);
+          const gameOver = gameLogic.progressBattle(user._id);
           sendNewGameState(user._id)
-          if (opponentIsBot) {
+          if (opponentIsBot && !gameOver) {
             setTimeout(() => {
               // allow player to select their next move
               gameLogic.progressBattle(user._id);

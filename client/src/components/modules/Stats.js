@@ -23,11 +23,11 @@ function EquipmentDescription(props) {
 
 export default function Stats(props) {
   const [description, setDescription] = useState(null)
-  const equipmentList = props.stats.equipment.map((equipmentId) => {
+  const equipmentList = props.stats.equipment.map((equipmentId, i) => {
     const eq = props.attributes.equipment.find(({id}) => id === equipmentId)
     return (
       <EquipmentIcon
-        key={equipmentId}
+        key={i}
         name={eq.name}
         sprite={eq.sprite}
         onHover={() => setDescription(equipmentId)}

@@ -10,6 +10,10 @@ export const configureUpdates = (updateFunc) => {
   socket.on("update", updateFunc);
 };
 
+export const configureTimer = (timerFunc) => {
+  socket.on("timer", timerFunc);
+}
+
 export const startQueue = () => {
   socket.emit("queue", "classic");
 };

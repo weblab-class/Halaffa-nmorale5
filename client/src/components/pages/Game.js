@@ -4,13 +4,17 @@ import EnemySelect from '../modules/EnemySelect.js';
 import LootResults from '../modules/LootResults.js';
 import Stats from '../modules/Stats.js';
 
-import { configureUpdates, startQueue, makeMove, selectOption, collectLoot } from "../../client-socket";
+import { configureUpdates, configureTimer, startQueue, makeMove, selectOption, collectLoot } from "../../client-socket";
 import GameSelect from '../modules/GameSelect.js';
+import Timer from '../modules/Timer.js';
+import WinLose from '../modules/WinLose.js';
 
 export default function Game(props) {
   const [gameState, setGameState] = useState(null);
+  const [timer, setTimer] = useState(null);
   useEffect(() => {
     configureUpdates(setGameState);
+    configureTimer(setTimer);
   }, [])
   console.log(gameState);
   if (!gameState) return (
@@ -19,6 +23,12 @@ export default function Game(props) {
   if (!gameState.opponent) return (
     <h1>You joined the queue! Waiting for an opponent...</h1>
   );
+  if (gameState.screen == "win") return (
+    <WinLose win={true} />
+  )
+  if (gameState.screen == "lose") return (
+    <WinLose win={false} />
+  )
   let screen;
   switch (gameState.screen) {
     case "battle":
@@ -54,6 +64,9 @@ export default function Game(props) {
   }
   return (
     <>
+      <Timer 
+        timer={timer}
+      />
       <Stats
         attributes={props.attributes}
         stats={gameState.generalStats}
