@@ -1,0 +1,15 @@
+.attribute {
+  margin: var(--xs);
+}
+
+.greenbg {
+  background-color: lightgreen;
+}
+
+.yellowbg {
+  background-color: lightyellow;
+}
+
+.redbg {
+  background-color: lightcoral;
+}

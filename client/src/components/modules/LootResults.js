@@ -1,16 +1,15 @@
 import React from 'react';
+import "./LootResult.css";
 
 export default function LootResults(props) {
   return (
-    <div onClick={() => props.collectLoot({})}>
+    <div className="u-flexColumn u-flex-alignCenter bg">
       <h3>Loot Found:</h3>
-      <ul>
-        <li>XP: {props.lootData.xp}</li>
-        <li>Red: {props.lootData.red}</li>
-        <li>Green: {props.lootData.green}</li>
-        <li>Blue: {props.lootData.blue}</li>
-      </ul>
-      <h4>(click to collect)</h4>
+      <p className="attribute">XP: {props.lootData.xp}</p>
+      <p className="attribute">Red: {props.lootData.red}</p>
+      <p className="attribute">Green: {props.lootData.green}</p>
+      <p className="attribute">Blue: {props.lootData.blue}</p>
+      <button className="button3 bg"  onClick={() => props.collectLoot({})}>Collect</button>
     </div>
   )
 }

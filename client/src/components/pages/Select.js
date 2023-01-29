@@ -31,7 +31,7 @@ export default class Select extends React.Component {
   render() {
     return (
       <div>
-        <CurrencyUI currency={this.props.currency} userName={this.props.userName}/>
+        <CurrencyUI currency={this.props.currency} userName={this.props.userName} userStarter={this.props.userStarter}/>
         <div className="u-flexRow">
           <SelectButtons 
             onHover={(buttonName) => this.onHover(buttonName)} 
