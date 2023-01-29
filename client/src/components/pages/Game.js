@@ -54,11 +54,11 @@ export default function Game(props) {
   }
   return (
     <>
+      {screen}
       <Stats
         attributes={props.attributes}
         stats={gameState.generalStats}
       />
-      {screen}
     </>
   )
 }
