@@ -14,8 +14,8 @@ export const configureTimer = (timerFunc) => {
   socket.on("timer", timerFunc);
 }
 
-export const startQueue = () => {
-  socket.emit("queue", "classic");
+export const startQueue = (mode) => {
+  socket.emit("queue", mode);
 };
 
 export const makeMove = (moveId) => {
@@ -28,4 +28,8 @@ export const selectOption = (option) => {
 
 export const collectLoot = (toDiscard) => {
   socket.emit("loot", toDiscard);
+}
+
+export const endGame = () => {
+  socket.emit("end");
 }

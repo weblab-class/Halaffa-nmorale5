@@ -202,6 +202,8 @@ export default class App extends React.Component {
             path="/game"
             attributes={this.state.attributes}
             gameState={this.state.gameState}
+            onWin={() => this.addWin()}
+            addCurrency={(amount) => this.addCurrency(amount)}
           />
           <Gallery
             path="/gallery"

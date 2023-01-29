@@ -16,14 +16,12 @@ export default function WinLose(props) {
     text = "You won!"
     currency = 20;
   }
-  function finalFunction() {
-    function combinedOps() {
-      if (props.win) {
-        props.onWin();
-      }
-      props.addCurrency(currency);
+  function combinedOps() {
+    if (props.win) {
+      props.onWin();
     }
-    return combinedOps()
+    props.addCurrency(currency);
+    props.endGame();
   }
   
   return (
@@ -35,7 +33,7 @@ export default function WinLose(props) {
         You earned: {currency}
       </p>
       <Link to="/select">
-        <button onClick={finalFunction}>
+        <button onClick={combinedOps}>
           Return to Profile
         </button>
       </Link>

@@ -4,10 +4,11 @@ import EnemySelect from '../modules/EnemySelect.js';
 import LootResults from '../modules/LootResults.js';
 import Stats from '../modules/Stats.js';
 
-import { configureUpdates, configureTimer, startQueue, makeMove, selectOption, collectLoot } from "../../client-socket";
+import { configureUpdates, configureTimer, startQueue, makeMove, selectOption, collectLoot, endGame } from "../../client-socket";
 import GameSelect from '../modules/GameSelect.js';
 import Timer from '../modules/Timer.js';
 import WinLose from '../modules/WinLose.js';
+import Waiting from '../modules/Waiting.js';
 
 export default function Game(props) {
   const [gameState, setGameState] = useState(null);
@@ -24,10 +25,20 @@ export default function Game(props) {
     <h1>You joined the queue! Waiting for an opponent...</h1>
   );
   if (gameState.screen == "win") return (
-    <WinLose win={true} />
+    <WinLose 
+      win={true}
+      onWin={props.onWin}
+      addCurrency={props.addCurrency}
+      endGame={endGame}
+    />
   )
   if (gameState.screen == "lose") return (
-    <WinLose win={false} />
+    <WinLose 
+      win={false}
+      onWin={props.onWin}
+      addCurrency={props.addCurrency}
+      endGame={endGame}
+    />
   )
   let screen;
   switch (gameState.screen) {
@@ -61,6 +72,12 @@ export default function Game(props) {
           selectOption={selectOption}
         />
       );
+      break;
+    case "waiting":
+      screen = (
+        <Waiting />
+      );
+      break;
   }
   return (
     <>

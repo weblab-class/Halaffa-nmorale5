@@ -9,8 +9,9 @@ const getSocketFromUserID = (userid) => userToSocketMap[userid];
 const getUserFromSocketID = (socketid) => socketToUserMap[socketid];
 const getSocketFromSocketID = (socketid) => io.sockets.connected[socketid];
 
-const timers = {}; // maps game IDs to the currently remaining time
 const GAME_TIME = 60; // how long the game lasts before final battle
+const timers = {};    // maps game IDs to the currently remaining time
+const toCancel = {};  // maps game IDs to any setTimeouts that should cancel upon final battle
 
 const addUser = (user, socket) => {
   const oldSocket = userToSocketMap[user._id];
@@ -48,19 +49,23 @@ const sendTime = (id) => {
 }
 
 const startTimer = (id) => {
+  if (gameLogic.getGame(id).gameMode != "classic") {
+    toCancel[id] = [] // make dummy list to avoid bugs
+    return;
+  }
   timers[id] = GAME_TIME;
-  const timerId = setInterval(() => {
+  toCancel[id] = [setInterval(() => {
     timers[id]--;
     if (timers[id] >= 0) {
       sendTime(id);
     } else {
-      gameLogic.onTimeUp(id)
+      gameLogic.startFinalBattle(id)
       sendNewGameState(id);
       timers[id] = undefined;
       sendTime(id); // tell client to disable timer display
-      clearInterval(timerId);
+      toCancel[id].forEach(clearTimeout); // cancel ongoing intervals/timeouts
     }
-  }, 1000)
+  }, 1000)]
 }
 
 module.exports = {
@@ -74,12 +79,12 @@ module.exports = {
         removeUser(user, socket);
       });
 
-      socket.on("queue", (x) => {
+      socket.on("queue", (mode) => {
         const user = getUserFromSocketID(socket.id);
         if (!user) return;
-        const resultingLobby = gameLogic.addPlayer(user._id);
-        if (resultingLobby && resultingLobby.length == 2) {
-          resultingLobby.forEach((id) => {
+        const completedLobby = gameLogic.addPlayer(user._id, mode);
+        if (completedLobby) {
+          completedLobby.forEach((id) => {
             gameLogic.startGame(id);
             sendNewGameState(id);
             startTimer(id);
@@ -97,28 +102,28 @@ module.exports = {
         gameLogic.move(user._id, user._id, moveId);
         sendNewGameState(user._id);
         const opponentIsBot = gameLogic.getGame(user._id).battleData.BOT
-        setTimeout(() => {
+        toCancel[user._id].push(setTimeout(() => {
           // choose & process move for bot or allow opponent to select their next move
           const gameOver = gameLogic.progressBattle(user._id);
           sendNewGameState(user._id)
           if (opponentIsBot && !gameOver) {
-            setTimeout(() => {
+            toCancel[user._id].push(setTimeout(() => {
               // allow player to select their next move
               gameLogic.progressBattle(user._id);
               sendNewGameState(user._id)
-            }, 2000)
+            }, 2000))
           }
-        }, 2000);
+        }, 2000));
         if (!opponentIsBot) {
           const opponent = gameLogic.getGame(user._id).opponent;
           // process move for opponent and make their screen animate
           gameLogic.move(opponent, user._id, moveId);
           sendNewGameState(opponent);
-          setTimeout(() => {
+          toCancel[opponent].push(setTimeout(() => {
             // allow player to select their move
             gameLogic.progressBattle(opponent);
             sendNewGameState(opponent);
-          }, 2000);
+          }, 2000));
         }
       });
 
@@ -126,6 +131,12 @@ module.exports = {
         const user = getUserFromSocketID(socket.id);
         if (!user) return;
         gameLogic.select(user._id, option);
+        const opponent = gameLogic.getGame(user._id).opponent;
+        if (gameLogic.getGame(user._id).screen == "waiting" && gameLogic.getGame(opponent).screen == "waiting") {
+          gameLogic.startFinalBattle(user._id);
+          gameLogic.startFinalBattle(opponent);
+          sendNewGameState(opponent);
+        }
         sendNewGameState(user._id);
       });
 
@@ -135,6 +146,13 @@ module.exports = {
         gameLogic.loot(user._id, discards);
         sendNewGameState(user._id);
       });
+
+      socket.on("end", () => {
+        const user = getUserFromSocketID(socket.id);
+        if (!user) return;
+        gameLogic.removePlayer(user._id);
+        sendNewGameState(user._id);
+      })
     });
   },
 

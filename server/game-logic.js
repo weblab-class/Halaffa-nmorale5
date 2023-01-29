@@ -6,7 +6,10 @@ const starters = require('../client/src/attributes/starters.json');
 const enemies = require('../client/src/attributes/enemies.json');
 
 const allGames = {}; // maps ids to gameStates
-const unpaired = []; // list of ids of games missing opponents (expected length 0 or 1)
+const unpaired = {
+  classic: [],
+  draft: [],
+}; // maps game modes to ids of unpaired players
 
 const getGame = (id) => {
   return allGames[id];
@@ -17,17 +20,17 @@ const getStarterData = (id) => {
   return starters[starter];
 }
 
-const addPlayer = (id) => {
+const addPlayer = (id, mode) => {
   // if already in game (but was disconnected), do nothing.
   // else, join open lobby.
   // else, create new lobby.
   // Returns list of ids in lobby.
-  if (allGames[id]) return;
-  const opponent = unpaired.pop();
+  if (allGames[id]) return null;
+  const opponent = mode == "endless" ? "BOT" : unpaired[mode].pop();
   allGames[id] = {
     id: id,
     opponent: opponent,
-    gameMode: "classic",
+    gameMode: mode,
     floor: null,
     screen: null,
     selectionData: null,
@@ -35,12 +38,19 @@ const addPlayer = (id) => {
     battleData: null,
     generalStats: { ...getStarterData(id) },
   }
+  if (opponent == "BOT") {
+    return [id];
+  }
   if (opponent) {
     allGames[opponent].opponent = id; // the opponent's opponent is me
     return [opponent, id];
   }
-  unpaired.push(id)
-  return [id];
+  unpaired[mode].push(id);
+  return null;
+}
+
+const removePlayer = (id) => {
+  delete allGames[id];
 }
 
 const prepareSelect = (id) => {
@@ -83,9 +93,17 @@ const startGame = (id) => {
 
 const select = (id, i) => {
   // chooses the i-th index of selectionData to be the prize at stake for the next battle
-  allGames[id].screen = "battle";
-  prepareBattle(id, i);
-  prepareLoot(id, i);
+  if (allGames[id].gameMode != "draft") {
+    allGames[id].screen = "battle";
+    prepareBattle(id, i);
+    prepareLoot(id, i);
+  } else {
+    prepareLoot(id, i);
+    addLootToStats(id);
+    prepareSelect(id);
+    allGames[id].floor++;
+    if (allGames[id].floor > 5) allGames[id].screen = "waiting";
+  }
 }
 
 const loot = (id, discards) => {
@@ -122,7 +140,9 @@ const progressBattle = (id) => {
   const opponent = battleData.BOT ? "BOT" : allGames[id].opponent;
   // check for deaths
   if (battleData[id].health <= 0) {
-    if (opponent == "BOT") {
+    if (allGames[id].gameMode == "endless") {
+      allGames[id].screen = "end";
+    } else if (opponent == "BOT") {
       allGames[id].screen = "select";
     } else {
       allGames[id].screen = "lose";
@@ -146,7 +166,7 @@ const progressBattle = (id) => {
   return false;
 }
 
-const onTimeUp = (player) => {
+const startFinalBattle = (player) => {
   const opponent = allGames[player].opponent;
   allGames[player].gameMode = "final";
   allGames[player].screen = "battle";
@@ -169,10 +189,11 @@ module.exports = {
   allGames,
   getGame,
   addPlayer,
+  removePlayer,
   startGame,
   select,
   loot,
   move,
   progressBattle,
-  onTimeUp,
+  startFinalBattle,
 }
