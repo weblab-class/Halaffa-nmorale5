@@ -1,0 +1,25 @@
+.currencyEntryLink {
+  margin: var(--s);
+  padding: var(--s);
+  color: white;
+  font-size: small;
+  text-decoration: none;
+}
+
+.removeLine:visited {
+  text-decoration: none;
+}
+
+.removeLine {
+  text-decoration: none;
+}
+
+.currencyEntryLink:hover {
+  background-color: var(--primary--dim);
+}
+
+.currencyDivider {
+  width: 1px;
+  background-color: white;
+  margin: var(--s);
+}

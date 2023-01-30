@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "@reach/router";
 import { GoogleOAuthProvider, GoogleLogin, googleLogout } from "@react-oauth/google";
@@ -15,13 +14,8 @@ export default class Home extends React.Component {
       <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
         <div className="u-flexColumn u-flex-alignCenter">
           <img className="logo" src = {require('../../images/rUIns.png').default} />
+          {this.props.userId ? (
           <div className="homeButtons u-flexRow">
-            <Link to="/select">
-              <button>
-                Quickplay
-              </button>
-            </Link>
-            {this.props.userId ? (
             <button
               onClick={() => {
                 googleLogout();
@@ -30,12 +24,17 @@ export default class Home extends React.Component {
             >
               Logout
             </button>
-            ) : (
-              <Link to="/select">
-                <GoogleLogin onSuccess={this.props.handleLogin} onError={(err) => console.log(err)} />
-              </Link>
-            )}
+            <Link to="/game">
+              <button>
+                Play
+              </button>
+            </Link>
           </div>
+          ) : (
+            <Link to="/game">
+              <GoogleLogin onSuccess={this.props.handleLogin} onError={(err) => console.log(err)} />
+            </Link>
+          )}
         </div>
       </GoogleOAuthProvider>
     )

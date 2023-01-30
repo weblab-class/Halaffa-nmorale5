@@ -36,6 +36,7 @@ export default class App extends React.Component {
       unlockedStarters: [false, false, false],
       numWins: 0,
       gameState: null,
+      attributes: {equipment, moves, starters, enemies},
     }
   }
 
@@ -50,13 +51,13 @@ export default class App extends React.Component {
     // grabVals().then((attr) => {
     //   this.setState({attributes: attr});
     // });
-    this.setState({attributes: {equipment, moves, starters, enemies}})
     this.componentDidUpdate();
     get("/api/user").then((user) => {
       if (user._id) {
         // they are registed in the database, and currently logged in.
         this.setState({ userId: user._id, userName: user.name, currency: user.currency,
-          equippedStarter: user.starter, unlockedStarters: [...user.unlocked], numWins: user.numWins});
+          equippedStarter: user.starter, unlockedStarters: [...user.unlocked], numWins: user.numWins,
+          });
       }
     });
   }
@@ -70,8 +71,7 @@ export default class App extends React.Component {
       get("/api/whoami").then((user) => {
         if (user._id !== this.state.userId) {
           // they are registed in the database, and currently logged in.
-          this.setState({ userId: user._id, userName: user.name, currency: user.currency,
-            equippedStarter: user.starter, unlockedStarters: [...user.unlocked], numWins: user.numWins});
+          this.setState({ userId: user._id});
         }
       });
     }
@@ -96,7 +96,10 @@ export default class App extends React.Component {
 
 
   changeStarter(starterId) {
-    this.setState({equippedStarter : starterId});
+    post("/api/changestarter", {starter: starterId}).then((user) => {
+      this.setState({ userId: user._id,  userName: user.name, currency: user.currency,
+        equippedStarter: user.starter, unlockedStarters: [...user.unlocked], numWins: user.numWins});
+    });
   };
 
   unlockStarter(starterId) {
@@ -174,15 +177,19 @@ export default class App extends React.Component {
             handleLogin={(credentialResponse) => this.handleLogin(credentialResponse)}
             handleLogout={() => this.handleLogout()}
             userId={this.state.userId}
+            currency={this.state.currency}
+            userName={this.state.userName}
+            userStarter={this.state.equippedStarter}
+            starters={this.state.attributes.starters}
           />
-          <Select 
+          {/* <Select 
             path="/select"
             currency={this.state.currency}
             userId={this.state.userId}
             userName={this.state.userName}
             userStarter={this.state.equippedStarter}
             starters={this.state.attributes.starters}
-          />
+          /> */}
           <Shop
             path="/shop"
             currency={this.state.currency}
@@ -212,6 +219,10 @@ export default class App extends React.Component {
             gameState={this.state.gameState}
             onWin={() => this.addWin()}
             addCurrency={(amount) => this.addCurrency(amount)}
+            currency={this.state.currency}
+            userId={this.state.userId}
+            userName={this.state.userName}
+            userStarter={this.state.equippedStarter}
           />
           <Gallery
             path="/gallery"
@@ -221,6 +232,8 @@ export default class App extends React.Component {
             starters={this.state.attributes.starters}
             enemies={this.state.attributes.enemies}
             equipment={this.state.attributes.equipment}
+            handleLogin={(credentialResponse) => this.handleLogin(credentialResponse)}
+            handleLogout={() => this.handleLogout()}
           />
           <NotFound default />
         </Router>

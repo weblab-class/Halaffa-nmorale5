@@ -5,6 +5,7 @@ import GalleryStarterEntry from "../modules/GalleryStarterEntry";
 import GalleryEnemyEntry from "../modules/GalleryEnemyEntry";
 import GalleryEquipmentEntry from "../modules/GalleryEquipmentEntry";
 import "../../utilities.css";
+import "./Gallery.css";
 
 export default class Gallery extends React.Component {
   render() {
@@ -14,32 +15,34 @@ export default class Gallery extends React.Component {
     return (
       <div>
         <CurrencyUI currency={this.props.currency} userName={this.props.userName} userStarter={this.props.userStarter}/>
-        <Link to="/select">
-          <button>
-            Back
-          </button>
-        </Link>
-        <h1>Starters</h1>
-        {starterList.map((starter) => (
-          <GalleryStarterEntry
-            starter = {starter}
-            key={starter.id}
-          />
-        ))}
-        <h1>Enemies</h1>
-        {enemyList.map((enemy) => (
-          <GalleryEnemyEntry
-            enemy = {enemy}
-            key={enemy.id}
-          />
-        ))}
-        <h1>Equipment</h1>
-        {equipmentList.map((equipment) => (
-          <GalleryEquipmentEntry
-            equipment = {equipment}
-            key={equipment.id}
-          />
-        ))}
+        <h1 className="u-mMargin">Starters</h1>
+        <div className="u-flexRow u-flexWrap">
+          {starterList.map((starter) => (
+            <GalleryStarterEntry
+              starter = {starter}
+              key={starter.id}
+            />
+          ))}
+        </div>
+        <h1 className="u-mMargin titleMargin">Enemies</h1>
+        <div className="u-flexRow u-flexWrap">
+          {enemyList.map((enemy) => (
+            <GalleryEnemyEntry
+              enemy = {enemy}
+              key={enemy.id}
+            />
+          ))}
+        </div>
+        <h1 className="u-mMargin titleMargin">Equipment</h1>
+        <div className="u-flexRow u-flexWrap">
+          {equipmentList.map((equipment) => (
+            <GalleryEquipmentEntry
+              equipment = {equipment}
+              key={equipment.id}
+            />
+            
+          ))}
+        </div>
       </div>
     )
   }

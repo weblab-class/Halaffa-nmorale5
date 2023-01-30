@@ -1,10 +1,11 @@
 import React from 'react';
 import "../../utilities.css";
+import "./GalleryEntry.css";
 
 export default class GalleryEnemyEntry extends React.Component {
   render() {
     return (
-      <div>
+      <div className="u-mMargin entry">
         <img
           className="sprite"
           src={require('../../images/' + this.props.enemy.sprite).default}

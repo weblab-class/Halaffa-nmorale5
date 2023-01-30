@@ -2,7 +2,7 @@ import React from "react";
 import "../../utilities.css";
 import "./CurrencyUI.css";
 import { get, post } from "../../utilities";
-
+import SelectButtons from "../modules/SelectButtons.js";
 
 
 
@@ -15,10 +15,11 @@ export default class CurrencyUI extends React.Component {
   }
 
   componentDidMount() {
-    this.componentDidUpdate()
+    this.componentDidUpdate();
   }
 
   componentDidUpdate() {
+    console.log(this.props.userStarter)
     get("/api/starter", {id: this.props.userStarter}).then((starter) => {
       if (starter.sprite !== this.state.starterSprite) {
         this.setState({starterSprite: starter.sprite});
@@ -36,14 +37,18 @@ export default class CurrencyUI extends React.Component {
       color = "red";
     }
     return (
-      <div className={"u-flexRow currencyUI u-flexGrow " + color}>
-        <h1 className="currencyEntry">
+      <div className={"u-flexRow currencyUI u-flexGrow  u-flexWrap " + color}>
+        <SelectButtons 
+            onHover={(buttonName) => this.onHover(buttonName)} 
+            onUnhover={(buttonName) => this.onUnhover(buttonName)}
+          />
+        <p className="currencyEntry">
           $: {this.props.currency}
-        </h1>
+        </p>
         
-        <h1 className="currencyEntry">
+        <p className="currencyEntry">
           User: {this.props.userName}
-        </h1>
+        </p>
         <img
           className='spriteSSmall spriteimg'
           src={require('../../images/' + this.state.starterSprite).default} 

@@ -1,0 +1,7 @@
+.Timer {
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary--dim);
+  padding: var(--m);
+  font-size: medium;
+}

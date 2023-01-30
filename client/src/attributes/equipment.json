@@ -138,7 +138,7 @@
     "id": 15,
     "name": "Rope",
     "description": "Take less damage from attacks, but deal less damage and lower speed in exchange.",
-    "sprite": "Longsword.png",
+    "sprite": "Rope.png",
     "red": 0,
     "blue": 1,
     "green": 3

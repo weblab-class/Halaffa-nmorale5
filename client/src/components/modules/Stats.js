@@ -65,10 +65,10 @@ export default function Stats(props) {
           <div className="equipContainer">
             {equipmentList}
           </div>
-          <div>
-            {hoverDisplay}
-          </div>
         </div>
+        <div className="Stat-hoverDisplay">
+          {hoverDisplay}
+        </div> 
       </div>
     </div>
   )

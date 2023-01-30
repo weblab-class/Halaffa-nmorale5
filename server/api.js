@@ -186,6 +186,12 @@ router.post("/debug", (req, res) => {
   });
 });
 
+router.post("/changestarter", (req, res) => {
+  User.findOne({_id: req.user._id}).then((user) =>{
+    user.starter = req.body.starter;
+    user.save().then((user) => res.send(user));
+  });
+});
 
 
 router.post("/buy", (req, res) => {
