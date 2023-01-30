@@ -10,6 +10,10 @@ const GOOGLE_CLIENT_ID = "803833174485-67fjpsh9j1q1fshtp4nb0ndvqa0l6jc4.apps.goo
 export default class Home extends React.Component {
 
   render() {
+    let link = "/about";
+    if (this.props.hasPlayed) {
+      link = "/game";
+    }
     return (
       <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
         <div className="u-flexColumn u-flex-alignCenter">
@@ -24,7 +28,7 @@ export default class Home extends React.Component {
             >
               Logout
             </button>
-            <Link to="/game">
+            <Link to={link}>
               <button>
                 Play
               </button>

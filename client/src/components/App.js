@@ -1,13 +1,11 @@
 import React from "react";
 import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
-import Select from "./pages/Select.js"
 import Game from "./pages/Game.js";
 import Home from "./pages/Home.js";
-import Leaderboard from "./pages/Leaderboard.js";
+import About from "./pages/About.js";
 import Shop from "./pages/Shop.js";
 import Gallery from "./pages/Gallery.js";
-import Skeleton from "./pages/Skeleton.js";
 
 import jwt_decode from "jwt-decode";
 
@@ -35,6 +33,7 @@ export default class App extends React.Component {
       equippedStarter: 1,
       unlockedStarters: [false, false, false],
       numWins: 0,
+      hasPlayed: false,
       gameState: null,
       attributes: {equipment, moves, starters, enemies},
     }
@@ -57,6 +56,7 @@ export default class App extends React.Component {
         // they are registed in the database, and currently logged in.
         this.setState({ userId: user._id, userName: user.name, currency: user.currency,
           equippedStarter: user.starter, unlockedStarters: [...user.unlocked], numWins: user.numWins,
+          hasPlayed: user.hasPlayed,
           });
       }
     });
@@ -181,6 +181,7 @@ export default class App extends React.Component {
             userName={this.state.userName}
             userStarter={this.state.equippedStarter}
             starters={this.state.attributes.starters}
+            hasPlayed={this.state.hasPlayed}
           />
           {/* <Select 
             path="/select"
@@ -201,17 +202,13 @@ export default class App extends React.Component {
             starters={this.state.attributes.starters}
             unlockedStarters={this.state.unlockedStarters}
           />
-          <Leaderboard
+          <About
             currency={this.state.currency}
             userId={this.state.userId}
             userName={this.state.userName}
             userStarter={this.state.equippedStarter}
             starters={this.state.attributes.starters}
-            path="/leaderboard"
-            debug={() => this.debug()}
-            numWins={this.state.numWins}
-            onWin={() => this.addWin()}
-            addCurrency={(amount) => this.addCurrency(amount)}
+            path="/about"
           />
           <Game 
             path="/game"

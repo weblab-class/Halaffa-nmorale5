@@ -29,6 +29,7 @@ function getOrCreateUser(user) {
       starter: 0,
       unlocked: [true, true, true, false, false, false],
       numWins: 0,
+      hasPlayed: false,
     });
 
     return newUser.save();

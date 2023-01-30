@@ -19,7 +19,6 @@ export default class CurrencyUI extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log(this.props.userStarter)
     get("/api/starter", {id: this.props.userStarter}).then((starter) => {
       if (starter.sprite !== this.state.starterSprite) {
         this.setState({starterSprite: starter.sprite});
@@ -38,10 +37,7 @@ export default class CurrencyUI extends React.Component {
     }
     return (
       <div className={"u-flexRow currencyUI u-flexGrow  u-flexWrap " + color}>
-        <SelectButtons 
-            onHover={(buttonName) => this.onHover(buttonName)} 
-            onUnhover={(buttonName) => this.onUnhover(buttonName)}
-          />
+        <SelectButtons />
         <p className="currencyEntry">
           $: {this.props.currency}
         </p>

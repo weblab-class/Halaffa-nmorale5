@@ -193,6 +193,13 @@ router.post("/changestarter", (req, res) => {
   });
 });
 
+router.post("/played", (req, res) => {
+  User.findOne({_id: req.user._id}).then((user) =>{
+    user.hasPlayed = true;
+    user.save().then((user) => res.send(user));
+  });
+});
+
 
 router.post("/buy", (req, res) => {
   User.findOne({_id: req.user._id}).then((user) =>{
