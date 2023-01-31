@@ -79,10 +79,10 @@ module.exports = {
         removeUser(user, socket);
       });
 
-      socket.on("queue", (mode) => {
+      socket.on("queue", async (mode) => {
         const user = getUserFromSocketID(socket.id);
         if (!user) return;
-        const completedLobby = gameLogic.addPlayer(user._id, mode);
+        const completedLobby = await gameLogic.addPlayer(user._id, mode);
         if (completedLobby) {
           completedLobby.forEach((id) => {
             gameLogic.startGame(id);
@@ -93,7 +93,7 @@ module.exports = {
           sendNewGameState(user._id);
         }
         console.log(gameLogic.allGames)
-      })
+      });
 
       socket.on("move", (moveId) => {
         const user = getUserFromSocketID(socket.id);
@@ -152,7 +152,7 @@ module.exports = {
         if (!user) return;
         gameLogic.removePlayer(user._id);
         sendNewGameState(user._id);
-      })
+      });
     });
   },
 
