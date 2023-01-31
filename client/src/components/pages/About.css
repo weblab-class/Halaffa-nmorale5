@@ -1,0 +1,17 @@
+.About-title{
+  margin-top: 32px;
+  text-align: center;
+  padding: var(--m);
+  font-size: x-large;
+}
+
+.About-header {
+  padding: var(--l);
+  background-color: var(--primary--dim);
+  font-size: larger;
+}
+
+.About-body {
+  margin: var(--m);
+  line-height: var(--m);
+}
