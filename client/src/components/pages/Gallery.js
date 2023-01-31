@@ -33,7 +33,7 @@ export default class Gallery extends React.Component {
             />
           ))}
         </div>
-        <h1 className="u-mMargin titleMargin">Equipment</h1>
+        <h1 className="u-mMargin titleMargin">Equipment and Effects</h1>
         <div className="u-flexRow u-flexWrap">
           {equipmentList.map((equipment) => (
             <GalleryEquipmentEntry

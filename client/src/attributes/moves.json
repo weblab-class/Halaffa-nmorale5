@@ -265,7 +265,7 @@
   },
   {
     "id": 33,
-    "name": "Building Tide",
+    "name": "Rising Tide",
     "description": "Every time this move is used successfully, its Power is increased by 20.",
     "power": 40,
     "accuracy": 90,
@@ -298,7 +298,7 @@
   {
     "id": 37,
     "name": "Fire Frenzy",
-    "description": "Removes you red color's move power bonus for the rest of the battle.",
+    "description": "Sets your Red stat to 0 for the rest of the battle.",
     "power": 160,
     "accuracy": 80,
     "color": "red"

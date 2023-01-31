@@ -52,7 +52,7 @@ export default function Game(props) {
           />
         ))}
       </div>
-      <h1 className="u-mMargin titleMargin">Equipment</h1>
+      <h1 className="u-mMargin titleMargin">Equipment and Effects</h1>
       <div className="u-flexRow u-flexWrap">
         {props.attributes.equipment.map((equipment) => (
           <GalleryEquipmentEntry

@@ -1,8 +1,8 @@
 [
   {
     "id": 0,
-    "name": "Longsword",
-    "description": "Attacks are 50% more powerful",
+    "name": "Longsword I",
+    "description": "Increases Attack by 10%.",
     "sprite": "Longsword.png",
     "red": 2,
     "blue": 1,
@@ -10,116 +10,116 @@
   },
   {
     "id": 1,
-    "name": "Magic mail",
+    "name": "Magic Mail",
     "red": 1,
     "blue": 1,
     "green": 1,
-    "description": "Has 50% more max health.",
+    "description": "Always move first, regardless of Speed.",
     "sprite": "MagicMail.png"
   },
   {
     "id": 2,
-    "name": "Running Shoes",
+    "name": "Running Shoes I",
     "red": 3,
     "blue": 0,
     "green": 0,
-    "description": "Has 50% more speed.",
+    "description": "Increases Speed by 10%.",
     "sprite": "RunningShoes.png"
   },
   {
     "id": 3,
-    "name": "Holy Aura",
+    "name": "Holy Aura I",
     "red": 0,
     "blue": 2,
     "green": 1,
-    "description": "Heals for a small amount after each attack.",
+    "description": "Heals 5% of Max Health after each attack.",
     "sprite": "HolyAura.png"
   },
   {
     "id": 4,
-    "name": "Cloak",
+    "name": "Cloak I",
     "red": 0,
     "blue": 0,
     "green": 0,
-    "description": "10% chance to dodge attack.",
+    "description": "5% chance to dodge attack.",
     "sprite": "Cloak.png"
   },
   {
     "id": 5,
-    "name": "Green Ring",
+    "name": "Green Ring I",
     "red": 0,
     "blue": 0,
     "green": 5,
-    "description": "Green moves do 20% more damage.",
+    "description": "Green moves do 10% more damage.",
     "sprite": "GreenRing.png"
   },
   {
     "id": 6,
-    "name": "Blue Ring",
+    "name": "Blue Ring I",
     "red": 0,
     "blue": 5,
     "green": 0,
-    "description": "Blue moves do 20% more damage.",
+    "description": "Blue moves do 10% more damage.",
     "sprite": "BlueRing.png"
   },
   {
     "id": 7,
-    "name": "Red Ring",
+    "name": "Red Ring I",
     "red": 5,
     "blue": 0,
     "green": 0,
-    "description": "Red moves do 20% more damage.",
+    "description": "Red moves do 10% more damage.",
     "sprite": "RedRing.png"
   },
   {
     "id": 8,
-    "name": "Violet Ring",
+    "name": "Violet Ring I",
     "red": 2,
     "blue": 2,
     "green": 2,
-    "description": "All moves do 10% more damage.",
+    "description": "All moves do 5% more damage.",
     "sprite": "VioletRing.png"
   },
   {
     "id": 9,
-    "name": "Green Necklace",
+    "name": "Green Necklace I",
     "red": 0,
     "blue": 0,
     "green": 5,
-    "description": "Take 30% less damage from Green moves.",
+    "description": "Take 15% less damage from Green moves.",
     "sprite": "GreenNecklace.png"
   },
   {
     "id": 10,
-    "name": "Blue Necklace",
+    "name": "Blue Necklace I",
     "red": 0,
     "blue": 5,
     "green": 0,
-    "description": "Take 30% less damage from Blue moves.",
+    "description": "Take 15% less damage from Blue moves.",
     "sprite": "BlueNecklace.png"
   },
   {
     "id": 11,
-    "name": "Red Necklace",
+    "name": "Red Necklace I",
     "red": 5,
     "blue": 0,
     "green": 0,
-    "description": "Take 30% less damage from Red moves.",
+    "description": "Take 15% less damage from Red moves.",
     "sprite": "RedNecklace.png"
   },
   {
     "id": 12,
-    "name": "Violet Necklace",
+    "name": "Violet Necklace I",
     "red": 2,
     "blue": 2,
     "green": 2,
-    "description": "Take 20% less damage from moves.",
+    "description": "Take 10% less damage from moves.",
     "sprite": "VioletNecklace.png"
   },
   {
     "id": 13,
-    "name": "Evil Aura",
-    "description": "Attacks do more damage in exchange for some health after every attack.",
+    "name": "Evil Aura I",
+    "description": "Attacks do 20% more damage in exchange for some health after every attack.",
     "sprite": "EvilAura.png",
     "red": 4,
     "blue": 0,
@@ -132,12 +132,13 @@
     "sprite": "Mirror.png",
     "red": 1,
     "blue": 2,
-    "green": 0
+    "green": 0,
+    "lifetime": 1
   },
   {
     "id": 15,
-    "name": "Rope",
-    "description": "Take less damage from attacks, but deal less damage and lower speed in exchange.",
+    "name": "Rope I",
+    "description": "Take 20% less damage from attacks, but deal 20% less damage and lower speed in exchange.",
     "sprite": "Rope.png",
     "red": 0,
     "blue": 1,
@@ -150,15 +151,493 @@
     "sprite": "Strawberry.png",
     "red": 2,
     "blue": 0,
-    "green": 2
+    "green": 2,
+    "lifetime": 1
   },
   {
     "id": 17,
-    "name": "Thorns",
+    "name": "Thorns I",
+    "description": "Foe takes 1 damage every time they do damage to you.",
+    "sprite": "Thorns.png",
+    "red": 0,
+    "blue": 0,
+    "green": 4
+  },
+  {
+    "id": 18,
+    "name": "Longsword II",
+    "description": "Increases Attack by 20%.",
+    "sprite": "Longsword.png",
+    "red": 2,
+    "blue": 1,
+    "green": 0
+  },
+  {
+    "id": 19,
+    "name": "Running Shoes II",
+    "red": 3,
+    "blue": 0,
+    "green": 0,
+    "description": "Increases Speed by 20%.",
+    "sprite": "RunningShoes.png"
+  },
+  {
+    "id": 20,
+    "name": "Holy Aura II",
+    "red": 0,
+    "blue": 2,
+    "green": 1,
+    "description": "Heals 8% of Max Health after each attack.",
+    "sprite": "HolyAura.png"
+  },
+  {
+    "id": 21,
+    "name": "Cloak II",
+    "red": 0,
+    "blue": 0,
+    "green": 0,
+    "description": "10% chance to dodge attack.",
+    "sprite": "Cloak.png"
+  },
+  {
+    "id": 22,
+    "name": "Green Ring II",
+    "red": 0,
+    "blue": 0,
+    "green": 5,
+    "description": "Green moves do 20% more damage.",
+    "sprite": "GreenRing.png"
+  },
+  {
+    "id": 23,
+    "name": "Blue Ring II",
+    "red": 0,
+    "blue": 5,
+    "green": 0,
+    "description": "Blue moves do 20% more damage.",
+    "sprite": "BlueRing.png"
+  },
+  {
+    "id":24,
+    "name": "Red Ring II",
+    "red": 5,
+    "blue": 0,
+    "green": 0,
+    "description": "Red moves do 20% more damage.",
+    "sprite": "RedRing.png"
+  },
+  {
+    "id": 25,
+    "name": "Violet Ring II",
+    "red": 2,
+    "blue": 2,
+    "green": 2,
+    "description": "All moves do 10% more damage.",
+    "sprite": "VioletRing.png"
+  },
+  {
+    "id": 26,
+    "name": "Green Necklace II",
+    "red": 0,
+    "blue": 0,
+    "green": 5,
+    "description": "Take 30% less damage from Green moves.",
+    "sprite": "GreenNecklace.png"
+  },
+  {
+    "id": 27,
+    "name": "Blue Necklace II",
+    "red": 0,
+    "blue": 5,
+    "green": 0,
+    "description": "Take 30% less damage from Blue moves.",
+    "sprite": "BlueNecklace.png"
+  },
+  {
+    "id": 28,
+    "name": "Red Necklace II",
+    "red": 5,
+    "blue": 0,
+    "green": 0,
+    "description": "Take 30% less damage from Red moves.",
+    "sprite": "RedNecklace.png"
+  },
+  {
+    "id": 29,
+    "name": "Violet Necklace II",
+    "red": 2,
+    "blue": 2,
+    "green": 2,
+    "description": "Take 20% less damage from moves.",
+    "sprite": "VioletNecklace.png"
+  },
+  {
+    "id": 30,
+    "name": "Evil Aura II",
+    "description": "Attacks do 30% more damage in exchange for some health after every attack.",
+    "sprite": "EvilAura.png",
+    "red": 4,
+    "blue": 0,
+    "green": 0
+  },
+  {
+    "id": 31,
+    "name": "Rope II",
+    "description": "Take 30% less damage from attacks, but deal 30% less damage and lower speed in exchange.",
+    "sprite": "Rope.png",
+    "red": 0,
+    "blue": 1,
+    "green": 3
+  },
+  {
+    "id": 32,
+    "name": "Longsword III",
+    "description": "Increases Attack by 30%.",
+    "sprite": "Longsword.png",
+    "red": 2,
+    "blue": 1,
+    "green": 0
+  },
+  {
+    "id": 33,
+    "name": "Running Shoes III",
+    "red": 3,
+    "blue": 0,
+    "green": 0,
+    "description": "Increases Speed by 30%.",
+    "sprite": "RunningShoes.png"
+  },
+  {
+    "id": 34,
+    "name": "Holy Aura III",
+    "red": 0,
+    "blue": 2,
+    "green": 1,
+    "description": "Heals 10% of Max Health after each attack.",
+    "sprite": "HolyAura.png"
+  },
+  {
+    "id": 35,
+    "name": "Cloak III",
+    "red": 0,
+    "blue": 0,
+    "green": 0,
+    "description": "15% chance to dodge attack.",
+    "sprite": "Cloak.png"
+  },
+  {
+    "id": 36,
+    "name": "Green Ring III",
+    "red": 0,
+    "blue": 0,
+    "green": 5,
+    "description": "Green moves do 30% more damage.",
+    "sprite": "GreenRing.png"
+  },
+  {
+    "id": 37,
+    "name": "Blue Ring III",
+    "red": 0,
+    "blue": 5,
+    "green": 0,
+    "description": "Blue moves do 30% more damage.",
+    "sprite": "BlueRing.png"
+  },
+  {
+    "id": 38,
+    "name": "Red Ring III",
+    "red": 5,
+    "blue": 0,
+    "green": 0,
+    "description": "Red moves do 30% more damage.",
+    "sprite": "RedRing.png"
+  },
+  {
+    "id": 39,
+    "name": "Violet Ring III",
+    "red": 2,
+    "blue": 2,
+    "green": 2,
+    "description": "All moves do 15% more damage.",
+    "sprite": "VioletRing.png"
+  },
+  {
+    "id": 40,
+    "name": "Green Necklace III",
+    "red": 0,
+    "blue": 0,
+    "green": 5,
+    "description": "Take 40% less damage from Green moves.",
+    "sprite": "GreenNecklace.png"
+  },
+  {
+    "id": 41,
+    "name": "Blue Necklace III",
+    "red": 0,
+    "blue": 5,
+    "green": 0,
+    "description": "Take 40% less damage from Blue moves.",
+    "sprite": "BlueNecklace.png"
+  },
+  {
+    "id": 42,
+    "name": "Red Necklace III",
+    "red": 5,
+    "blue": 0,
+    "green": 0,
+    "description": "Take 40% less damage from Red moves.",
+    "sprite": "RedNecklace.png"
+  },
+  {
+    "id": 43,
+    "name": "Violet Necklace III",
+    "red": 2,
+    "blue": 2,
+    "green": 2,
+    "description": "Take 25% less damage from moves.",
+    "sprite": "VioletNecklace.png"
+  },
+  {
+    "id": 44,
+    "name": "Evil Aura III",
+    "description": "Attacks do 40% more damage in exchange for some health after every attack.",
+    "sprite": "EvilAura.png",
+    "red": 4,
+    "blue": 0,
+    "green": 0
+  },
+  {
+    "id": 45,
+    "name": "Rope III",
+    "description": "Take 30% less damage from attacks, but deal 15% less damage.",
+    "sprite": "Rope.png",
+    "red": 0,
+    "blue": 1,
+    "green": 3
+  },
+  {
+    "id": 46,
+    "name": "Thorns II",
     "description": "Foe takes 2 damage every time they do damage to you.",
     "sprite": "Thorns.png",
     "red": 0,
     "blue": 0,
     "green": 4
+  },
+  {
+    "id": 47,
+    "name": "Thorns III",
+    "description": "Foe takes 3 damage every time they do damage to you.",
+    "sprite": "Thorns.png",
+    "red": 0,
+    "blue": 0,
+    "green": 4
+  },
+  {
+    "id": 100,
+    "name": "Sleep",
+    "description": "You cannot move until you wake up.",
+    "sprite": "Sleep.png",
+    "red": 0,
+    "blue": 0,
+    "green": 0,
+    "lifetime": 2
+  },
+  {
+    "id": 101,
+    "name": "Burned",
+    "description": "8% of your Max Health is depleted after every one of your turns.",
+    "sprite": "Burned.png",
+    "red": 0,
+    "blue": 0,
+    "green": 0
+  },
+  {
+    "id": 102,
+    "name": "Frozen",
+    "description": "Speed is halved.",
+    "sprite": "Frozen.png",
+    "red": 0,
+    "blue": 0,
+    "green": 0,
+    "lifetime": 5
+  },
+  {
+    "id": 200,
+    "name": "Aim",
+    "description": "Next move used will have 100 accuracy.",
+    "sprite": "Aim.png",
+    "red": 0,
+    "blue": 0,
+    "green": 0,
+    "lifetime": 1
+  },
+  {
+    "id": 201,
+    "name": "Blue Mist",
+    "description": "You take 30% less from Blue moves.",
+    "sprite": "BlueMist.png",
+    "red": 0,
+    "blue": 0,
+    "green": 0
+  },
+  {
+    "id": 202,
+    "name": "Green Mist",
+    "description": "You take 30% less from Green moves.",
+    "sprite": "GreenMist.png",
+    "red": 0,
+    "blue": 0,
+    "green": 0
+  },
+  {
+    "id": 203,
+    "name": "Red Mist",
+    "description": "You take 30% less from Red moves.",
+    "sprite": "RedMist.png",
+    "red": 0,
+    "blue": 0,
+    "green": 0
+  },
+  {
+    "id": 204,
+    "name": "Blue Room",
+    "description": "All Blue moves have 50% more Power.",
+    "sprite": "BlueRoom.png",
+    "red": 0,
+    "blue": 0,
+    "green": 0
+  },
+  {
+    "id": 205,
+    "name": "Blue Roots",
+    "description": "Opposing Blue moves have 20% less Power.",
+    "sprite": "BlueRoots.png",
+    "red": 0,
+    "blue": 0,
+    "green": 0
+  },
+  {
+    "id": 206,
+    "name": "Green Roots",
+    "description": "Opposing Green moves have 20% less Power.",
+    "sprite": "GreenRoots.png",
+    "red": 0,
+    "blue": 0,
+    "green": 0
+  },
+  {
+    "id": 207,
+    "name": "Red Roots",
+    "description": "Opposing Red moves have 20% less Power.",
+    "sprite": "RedRoots.png",
+    "red": 0,
+    "blue": 0,
+    "green": 0
+  },
+  {
+    "id": 208,
+    "name": "Calming Meadow",
+    "description": "You will fall asleep the turn after you are affected by this.",
+    "sprite": "CalmingMeadow.png",
+    "red": 0,
+    "blue": 0,
+    "green": 0,
+    "lifetime": 1
+  },
+  {
+    "id": 209,
+    "name": "Insomnia",
+    "description": "Prevents falling asleep.",
+    "sprite": "Daydream.png",
+    "red": 0,
+    "blue": 0,
+    "green": 0
+  },
+  {
+    "id": 210,
+    "name": "Downstream",
+    "description": "Your moves do 30% more damage.",
+    "sprite": "Downstream.png",
+    "red": 0,
+    "blue": 0,
+    "green": 0
+  },
+  {
+    "id": 211,
+    "name": "Fiery Punch",
+    "description": "Your next move has 20 less Accuracy.",
+    "sprite": "FieryPunch.png",
+    "red": 0,
+    "blue": 0,
+    "green": 0,
+    "lifetime": 1
+  },
+  {
+    "id": 212,
+    "name": "Fiery Tackle",
+    "description": "Your next move has 20 more Accuracy.",
+    "sprite": "FieryTackle.png",
+    "red": 0,
+    "blue": 0,
+    "green": 0,
+    "lifetime": 1
+  },
+  {
+    "id": 213,
+    "name": "Fire Frenzy",
+    "description": "Your Red stat is set to 0.",
+    "sprite": "FireFrenzy.png",
+    "red": 0,
+    "blue": 0,
+    "green": 0,
+    "lifetime": 1
+  },
+  {
+    "id": 214,
+    "name": "Gamble",
+    "description": "Your next move will have 50 Accuracy.",
+    "sprite": "Gamble.png",
+    "red": 0,
+    "blue": 0,
+    "green": 0,
+    "lifetime": 2
+  },
+  {
+    "id": 215,
+    "name": "Garden",
+    "description": "Healing after each turn.",
+    "sprite": "Garden.png",
+    "red": 0,
+    "blue": 0,
+    "green": 0,
+    "lifetime": 4
+  },
+  {
+    "id": 216,
+    "name": "Rising Tide",
+    "description": "Rising Tide has an additional 20 Power.",
+    "sprite": "RisingTide.png",
+    "red": 0,
+    "blue": 0,
+    "green": 0
+  },
+  {
+    "id": 217,
+    "name": "Storm",
+    "description": "Take damage equal to your Red stat at the end of every turn.",
+    "sprite": "Storm.png",
+    "red": 0,
+    "blue": 0,
+    "green": 0
+  },
+  {
+    "id": 218,
+    "name": "Wonder Room",
+    "description": "All added effects, including Equipment, are nullified, and none can be applied.",
+    "sprite": "WonderRoom.png",
+    "red": 0,
+    "blue": 0,
+    "green": 0
   }
 ]
