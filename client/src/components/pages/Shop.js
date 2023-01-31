@@ -12,11 +12,6 @@ export default class Shop extends React.Component {
       <div>
         <CurrencyUI currency={this.props.currency} userName={this.props.userName} userStarter={this.props.userStarter}/>
         <div>
-          <Link to="/select">
-            <button>
-              Back
-            </button>
-          </Link>
           <div className="u-flex u-flexWrap">
             {starterList.map((starter) => (
               <Character

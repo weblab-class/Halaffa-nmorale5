@@ -1,7 +1,11 @@
 import React from 'react';
+import "./Timer.css";
 
 export default function Timer(props) {
-  return (
-    <h1>{props.timer}</h1>
-  )
+  if (props.timer){
+    return (
+      <div className="Timer">Time Left: {props.timer}</div>
+    )
+  }
+  return null;
 }

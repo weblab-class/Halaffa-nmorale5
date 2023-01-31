@@ -2,6 +2,7 @@ import React from 'react';
 import "../../utilities.css";
 import { Link } from "@reach/router";
 import { get, post } from "../../utilities";
+import "./GameOver.css";
 
 /* 
 Props: props.game (contains all information about the game)
@@ -29,18 +30,18 @@ export default function GameOver(props) {
   }
   
   return (
-    <div className="u-flexColumn u-flex-justifyCenter">
-      <h1>
-        {text}
-      </h1>
-      <p>
-        You earned: {currency}
-      </p>
-      <Link to="/select">
-        <button onClick={combinedOps}>
-          Return to Profile
-        </button>
-      </Link>
-    </div>
+      <div className="u-flexColumn u-flex-justifyCenter u-flex-alignCenter container">
+        <h1 className="noGrow">
+          {text}
+        </h1>
+        <h2 className="noGrow">
+          You earned: {currency}
+        </h2>
+        <Link to="/game" className="gameOverButton">
+          <button onClick={combinedOps}>
+            Return to Profile
+          </button>
+        </Link>
+      </div>
   )
 }

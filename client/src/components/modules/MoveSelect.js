@@ -38,7 +38,7 @@ export default class MoveSelect extends React.Component {
 
     return (
       <>
-        <div className="u-flexColumn">
+        <div className="u-flexRow">
           {moveList}
         </div>
 

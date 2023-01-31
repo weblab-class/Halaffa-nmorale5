@@ -1,12 +1,18 @@
 .equipContainer {
   background-color: #999999;
+  flex: 1 1 auto;
 }
 
 .statContainer {
   width: 224px;
+  max-width: 50vw;
 }
 
 .divider {
   background-color: black;
   height: var(--xs);
+}
+
+.Stat-hoverDisplay {
+  margin: var(--s);
 }

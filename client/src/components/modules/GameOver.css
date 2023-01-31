@@ -1,0 +1,20 @@
+.growingBlocks {
+  flex: 1, 1, auto;
+  max-height: 1000px;
+  min-width: 1px;
+}
+
+.noGrow {
+  flex: 1, 0, auto;
+  margin: var(--l);
+}
+
+.gameOverButton {
+  flex: 1, 0, auto;
+  margin: var(--s);
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+}

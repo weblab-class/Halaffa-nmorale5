@@ -1,0 +1,21 @@
+.GameSelect-divider {
+  height: var(--xs);
+  background-color: black;
+}
+
+.GameSelect-single {
+  margin: var(--s);
+  margin-top: var(--l);
+
+}
+
+.GameSelect-multi {
+  margin: var(--s);
+  margin-top: var(--l);
+}
+
+.GameSelect-container {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
