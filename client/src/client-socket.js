@@ -18,6 +18,10 @@ export const startQueue = (mode) => {
   socket.emit("queue", mode);
 };
 
+export const cancelQueue = () => {
+  socket.emit("cancel");
+}
+
 export const makeMove = (moveId) => {
   socket.emit("move", moveId);
 };

@@ -6,9 +6,8 @@ export default function BattleLower(props) {
   let returnElem;
   const game = props.battleData;
   if (game.animating) {
-    returnElem =  <MoveSummary
-      playersTurn={game.turn == props.players[0]}
-      moveName={props.attributes.moves.find(({id}) => id === game.lastMove).name}
+    returnElem = <MoveSummary
+      text={game.text}
     />
   }
   else if (game.turn == props.players[0]) {

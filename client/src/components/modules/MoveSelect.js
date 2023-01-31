@@ -9,31 +9,31 @@ export default class MoveSelect extends React.Component {
     };
   }
 
-  onHover(moveId) {
-    this.setState({ visibleDescription: moveId });
+  onHover(moveIdx) {
+    this.setState({ visibleDescription: moveIdx });
   }
 
-  onUnhover(moveId) {
+  onUnhover(moveIdx) {
     this.setState({ visibleDescription: null });
   }
 
   render() {
     const game = this.props.battleData;
-    const moveList = game[this.props.players[0]].moves.map((moveId) => {
-      const move = this.props.attributes.moves.find(({id}) => id === moveId);
+    const moveList = game[this.props.players[0]].moves.map((move, i) => {
       return (
         <MoveButton
+          key={i}
           name={move.name}
           power={move.power}
           color={move.color}
-          onClick={() => this.props.makeMove(moveId)}
-          onHover={() => this.onHover(moveId)}
-          onUnhover={() => this.onUnhover(moveId)}
+          onClick={() => this.props.makeMove(i)}
+          onHover={() => this.onHover(i)}
+          onUnhover={() => this.onUnhover(i)}
         />
       )
     })
 
-    const move = this.props.attributes.moves.find(({id}) => id === this.state.visibleDescription);
+    const move = game[this.props.players[0]].moves[this.state.visibleDescription];
     const alt = "Hover over a move to view description";
 
     return (
@@ -42,7 +42,7 @@ export default class MoveSelect extends React.Component {
           {moveList}
         </div>
 
-        <p>{move ? "(Power: " + move.power + ")  " + move.description : alt}</p>
+        <p>{move ? `[PWR: ${move.power}] [ACC: ${move.accuracy}%]\n${move.description}` : alt}</p>
       </>
     )
   }

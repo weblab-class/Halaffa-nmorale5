@@ -95,6 +95,13 @@ module.exports = {
         console.log(gameLogic.allGames)
       });
 
+      socket.on("cancel", () => {
+        const user = getUserFromSocketID(socket.id);
+        if (!user) return;
+        gameLogic.cancel(user._id);
+        sendNewGameState(user._id);
+      })
+
       socket.on("move", (moveId) => {
         const user = getUserFromSocketID(socket.id);
         if (!user) return;

@@ -1,4 +1,5 @@
 const resolveMove = require('../client/src/attributes/moves.js');
+const resolveEquipment = require('../client/src/attributes/equipment.js')
 
 const equipment = require('../client/src/attributes/equipment.json');
 const moves = require('../client/src/attributes/moves.json');
@@ -26,7 +27,7 @@ const addPlayer = async (id, mode) => {
   // else, create new lobby.
   // Returns list of ids in lobby if game is ready to begin
   if (allGames[id]) return null;
-  const opponent = mode == "endless" ? "BOT" : unpaired[mode].pop();
+  const opponent = mode == "endless" ? "BOT" : unpaired[mode].shift();
   allGames[id] = {
     id: id,
     opponent: opponent,
@@ -54,9 +55,20 @@ const removePlayer = (id) => {
   delete allGames[id];
 }
 
+const cancel = (id) => {
+  delete allGames[id];
+  if (unpaired.classic.includes(id)) unpaired.classic.shift();
+  if (unpaired.draft.includes(id)) unpaired.draft.shift();
+}
+
 const prepareSelect = (id) => {
-  // generateSelections(id); TODO: uncomment this line and delete below
-  allGames[id].selectionData = [0, 1, 2].map(eqId => equipment[eqId]);
+  const loot = [0, 1, 2].map(eqId => ({ ...equipment[eqId]}));
+  const enemys = [0, 1, 2].map(enemyId => ({ ...enemies[enemyId] }));
+  enemys.forEach((e, i) => e.equipment = [i]);
+  allGames[id].selectionData = {
+    loot: loot,
+    enemies: enemys,
+  };
 }
 
 const prepareBattle = (id, selection) => {
@@ -66,6 +78,9 @@ const prepareBattle = (id, selection) => {
     turn: id,
     animating: false,
   }
+  console.log("BattleData:")
+  console.log(allGames[id].battleData)
+  console.log(allGames[id].battleData[id])
   applyEquipment(allGames[id].battleData[id], allGames[id].battleData.BOT);
   applyStats(allGames[id].battleData[id], allGames[id].battleData.BOT);
 }
@@ -98,7 +113,7 @@ const select = (id, i) => {
   // chooses the i-th index of selectionData to be the prize at stake for the next battle
   if (allGames[id].gameMode != "draft") {
     allGames[id].screen = "battle";
-    allGames[id].selected = i;
+    allGames[id].selection = i;
     prepareBattle(id, i);
     prepareLoot(id, i);
   } else {
@@ -126,17 +141,21 @@ const move = (gameId, playerId, moveIdx) => {
   const enemyId = gameId == playerId ?
     (battleData.BOT ? "BOT" : allGames[gameId].opponent) : gameId;
   const enemy = battleData[enemyId];
-  executeMove(player, enemy, moveIdx);
+  const resultText = executeMove(player, enemy, moveIdx);
+  battleData.text = resultText;
   battleData.animating = true;
   resetBuffs(gameId);
-  applyEquipment(battleData[player], battleData[enemy]);
-  applyStats(battleData[player], battleData[enemy]);
+  console.log("HERE")
+  console.log(playerId)
+  console.log(battleData[playerId])
+  applyEquipment(battleData[playerId], battleData[enemyId]);
+  applyStats(battleData[playerId], battleData[enemyId]);
 }
 
 const makeBotMove = (id) => {
   console.log(allGames[id].battleData)
-  const moveId = allGames[id].battleData.BOT.moves[0]; // always choose first move for now
-  move(id, "BOT", moveId);
+  const moveIdx = 0; // always choose first move for now
+  move(id, "BOT", moveIdx);
 }
 
 const progressBattle = (id) => {
@@ -195,29 +214,27 @@ const startFinalBattle = (player) => {
 // takes array of equipment ids and returns array of all equipment data
 const getEquipment = (ids) => ids.map((eqId) => {
   const eq = { ...equipment.find(({id}) => id === eqId) };
-  eq.func = equipmentFuncs[eqId];
   return eq;
 })
 
 // takes array of move ids and returns array of all move data
 const getMoves = (ids) => ids.map((moveId) => {
   const move = { ...moves.find(({id}) => id === moveId) };
-  move.func = moveFuncs[moveId];
   move.callbacks = [];
   return move;
 })
 
 // takes generalStats or selectionData.enemies[i] and returns copy with eq and move ids replaced with the real data
-const getStats = (stats) => ({
-  ...stats,
-  moves: getMoves(stats.moves),
-  equipment: getEquipment(stats.equipment),
-})
-
-// LOOT & ENEMY GENERATION
-
-const generateSelections = (id) => {
-
+const getStats = (stats) => {
+  console.log(stats)
+  const out = {
+    ...stats,
+    moves: getMoves(stats.moves),
+    equipment: getEquipment(stats.equipment),
+  }
+  console.log("out")
+  console.log(out)
+  return out
 }
 
 // MOVE CALCULATIONS
@@ -249,8 +266,8 @@ const applyEquipment = (player, enemy) => {
   // const player = allGames[id].battleData;
   // const enemyId = allGames[id].battleData.BOT ? "BOT" : allGames[id].opponent;
   // const enemy = enemyId == "BOT" ? allGames[id].selectionData.enemies[allGames[id].selection] : allGames[enemyId].generalStats;
-  player.equipment.forEach(eq => eq.func(eq, player, enemy));
-  enemy.equipment.forEach(eq => eq.func(eq, enemy, player));
+  player.equipment.forEach(eq => resolveEquipment(eq, player, enemy));
+  enemy.equipment.forEach(eq => resolveEquipment(eq, enemy, player));
 }
 
 // applies both player's stats to adjust all moves' power and accuracy
@@ -259,12 +276,13 @@ const applyStats = (player, enemy) => {
   // based on attack/elements and speed-to-enemy-speed ratio
 }
 
+// makes the move, taking into account all buffs, then calls all equipment callbacks
 const executeMove = (player, enemy, idx) => {
   const move = player.moves[idx];
   // moveSummary contains difference in player health, enemy health, and battle text as a result of move
-  const moveSummary = move.func(player, enemy);
+  const moveSummary = resolveMove(move, player, enemy);
   move.callbacks.forEach((cb) => cb(moveSummary));
-  return moveSummary;
+  return moveSummary.text;
 }
 
 module.exports = {
@@ -272,6 +290,7 @@ module.exports = {
   getGame,
   addPlayer,
   removePlayer,
+  cancel,
   startGame,
   select,
   loot,

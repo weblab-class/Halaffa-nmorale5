@@ -5,7 +5,7 @@ import "./EnemySelect.css";
 export default function EnemySelect(props) {
   return (
     <div className="u-flex u-flexWrap u-flex-justifyCenter bg">
-      {props.selectionData.map((option, i) => (
+      {props.selectionData.loot.map((option, i) => (
         <EnemyOption
           key={i}
           option={option}
