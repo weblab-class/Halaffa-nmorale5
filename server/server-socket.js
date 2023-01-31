@@ -79,10 +79,10 @@ module.exports = {
         removeUser(user, socket);
       });
 
-      socket.on("queue", (mode) => {
+      socket.on("queue", async (mode) => {
         const user = getUserFromSocketID(socket.id);
         if (!user) return;
-        const completedLobby = gameLogic.addPlayer(user._id, mode);
+        const completedLobby = await gameLogic.addPlayer(user._id, mode);
         if (completedLobby) {
           completedLobby.forEach((id) => {
             gameLogic.startGame(id);
@@ -93,6 +93,13 @@ module.exports = {
           sendNewGameState(user._id);
         }
         console.log(gameLogic.allGames)
+      });
+
+      socket.on("cancel", () => {
+        const user = getUserFromSocketID(socket.id);
+        if (!user) return;
+        gameLogic.cancel(user._id);
+        sendNewGameState(user._id);
       })
 
       socket.on("move", (moveId) => {
@@ -116,8 +123,8 @@ module.exports = {
         }, 2000));
         if (!opponentIsBot) {
           const opponent = gameLogic.getGame(user._id).opponent;
-          // process move for opponent and make their screen animate
-          gameLogic.move(opponent, user._id, moveId);
+          // copy move for opponent
+          gameLogic.getGame(opponent).battleData = {...gameLogic.getGame(user._id).battleData};
           sendNewGameState(opponent);
           toCancel[opponent].push(setTimeout(() => {
             // allow player to select their move
@@ -152,7 +159,7 @@ module.exports = {
         if (!user) return;
         gameLogic.removePlayer(user._id);
         sendNewGameState(user._id);
-      })
+      });
     });
   },
 

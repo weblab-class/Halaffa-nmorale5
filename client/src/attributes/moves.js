@@ -1,11 +1,8 @@
-const equipment = require('../client/src/attributes/equipment.json');
-const equipmentFuncs = require('../client/src/attributes/equipment.js');
+const equipment = require('./equipment.json');
 
-const getEquipment = (eqId) => {
-  const eq = { ...equipment.find(({id}) => id === eqId) };
-  eq.func = equipmentFuncs[eqId];
-  return eq;
-};
+const getEquipment = (eqId) => ({
+  ...equipment.find(({id}) => id === eqId),
+});
 
 /**
  * move: {
@@ -27,21 +24,17 @@ const getEquipment = (eqId) => {
 // (unless it's adding a new equipment).
 
 const moveFuncs = {
-  0: (move, player, enemy) => {
-    // deal some damage
-    return { player: 0, enemy: -move.power * .5 };
-  },
-  100: (move, player, enemy) => {
+  90: (move, player, enemy) => {
     // deal a some damage and heal a bit
     return { player: move.power * .2, enemy: -move.power * .5 };
   },
-  101: (move, player, enemy) => {
+  91: (move, player, enemy) => {
     // cast storm on both players
     player.equipment.push(getEquipment(217));
     enemy.equipment.push(getEquipment(217));
     return { player: 0, enemy: 0 };
   },
-  102: (move, player, enemy) => {
+  92: (move, player, enemy) => {
     // damage enemy for each of their red moves, and heal for each of your green moves
     let redMult = 0;
     let greenMult = 0;
@@ -53,14 +46,28 @@ const moveFuncs = {
     })
     return { player: move.power * greenMult, enemy: -move.power * redMult };
   },
+  0: (move, player, enemy) => {
+    return { player: 0, enemy: -1 };
+  },
+  1: (move, player, enemy) => {
+    return { player: 0, enemy: -2 };
+  },
+  2: (move, player, enemy) => {
+    return { player: 0, enemy: -3 };
+  },
 };
 
 module.exports = (move, player, enemy) => {
-  if (move.accuracy > Math.random()) {
-    const healthDiffs = moveFuncs[move.id](move, player, enemy);
-    player.health += healthDiffs.player;
-    enemy.health += healthDiffs.enemy;
-    return { ...healthDiffs, missed: false };
+  console.log("move")
+  console.log(move)
+  if (move.accuracy/100 > Math.random()) {
+    const moveSummary = moveFuncs[move.id](move, player, enemy);
+    player.health += moveSummary.player;
+    enemy.health += moveSummary.enemy;
+    if (moveSummary.missed === undefined) moveSummary.missed = false;
+    if (moveSummary.text === undefined) moveSummary.text = [];
+    moveSummary.text.unshift(`${player.name} used ${move.name}!`)
+    return moveSummary;
   }
-  return { player: 0, enemy: 0, missed: true }
+  return { player: 0, enemy: 0, missed: true, text: [`${player.name} used ${move.name}!`, "It missed!"] };
 }

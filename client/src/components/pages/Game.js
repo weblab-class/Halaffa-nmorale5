@@ -7,7 +7,7 @@ import GalleryStarterEntry from "../modules/GalleryStarterEntry";
 import GalleryEnemyEntry from "../modules/GalleryEnemyEntry";
 import GalleryEquipmentEntry from "../modules/GalleryEquipmentEntry";
 
-import { configureUpdates, configureTimer, startQueue, makeMove, selectOption, collectLoot, endGame } from "../../client-socket";
+import { configureUpdates, configureTimer, startQueue, cancelQueue, makeMove, selectOption, collectLoot, endGame } from "../../client-socket";
 import GameSelect from '../modules/GameSelect.js';
 import Timer from '../modules/Timer.js';
 import GameOver from '../modules/GameOver.js';
@@ -34,6 +34,7 @@ export default function Game(props) {
   if (!gameState.opponent) return (
     <div className="u-flexColumn">
       <h1 className="u-flex-justifyCenter u-mMargin">You joined the queue! Waiting for an opponent...</h1>
+      <button onClick={cancelQueue}>Cancel</button>
       <h1 className="u-mMargin">Starters</h1>
       <div className="u-flexRow u-flexWrap">
         {props.attributes.starters.map((starter) => (
