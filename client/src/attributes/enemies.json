@@ -10,7 +10,8 @@
     "health": 5,
     "speed": 1,
     "moves": [1],
-    "XP": 20
+    "XP": 20,
+    "tier": 1
   },
   {
     "id": 1,
@@ -23,7 +24,8 @@
     "health": 1,
     "speed": 7,
     "moves": [1],
-    "XP": 30
+    "XP": 30,
+    "tier": 1
   },
   {
     "id": 2,
@@ -36,7 +38,8 @@
     "health": 3,
     "speed": 2,
     "moves": [1],
-    "XP": 5
+    "XP": 5,
+    "tier": 1
   },
   {
     "id": 3,
@@ -62,7 +65,8 @@
     "health": 13,
     "speed": 3,
     "moves": [1],
-    "XP": 40
+    "XP": 40,
+    "tier": 2
   },
   {
     "id": 5,
@@ -75,7 +79,8 @@
     "health": 10,
     "speed": 5,
     "moves": [1],
-    "XP": 50
+    "XP": 50,
+    "tier": 2
   },
   {
     "id": 6,
@@ -88,7 +93,8 @@
     "health": 8,
     "speed": 5,
     "moves": [1],
-    "XP": 50
+    "XP": 50,
+    "tier": 1
   },
   {
     "id": 7,
@@ -101,7 +107,8 @@
     "health": 20,
     "speed": 3,
     "moves": [1],
-    "XP": 50
+    "XP": 50,
+    "tier": 1
   },
   {
     "id": 8,
@@ -114,7 +121,8 @@
     "health": 10,
     "speed": 9,
     "moves": [1],
-    "XP": 60
+    "XP": 60,
+    "tier": 2
   },
   {
     "id": 9,
@@ -127,7 +135,8 @@
     "health": 12,
     "speed": 5,
     "moves": [1],
-    "XP": 50
+    "XP": 50,
+    "tier": 1
   },
   {
     "id": 10,
@@ -140,7 +149,8 @@
     "health": 14,
     "speed": 5,
     "moves": [1],
-    "XP": 50
+    "XP": 50,
+    "tier": 3
   },
   {
     "id": 11,
@@ -153,7 +163,8 @@
     "health": 15,
     "speed": 8,
     "moves": [1],
-    "XP": 80
+    "XP": 80,
+    "tier": 3
   },
   {
     "id": 12,
@@ -166,7 +177,8 @@
     "health": 22,
     "speed": 7,
     "moves": [1],
-    "XP": 180
+    "XP": 180,
+    "tier": 3
   },
   {
     "id": 13,
@@ -179,7 +191,8 @@
     "health": 50,
     "speed": 5,
     "moves": [1],
-    "XP": 180
+    "XP": 180,
+    "tier": 3    
   },
   {
     "id": 14,
@@ -192,6 +205,7 @@
     "health": 38,
     "speed": 11,
     "moves": [1],
-    "XP": 250
+    "XP": 250,
+    "tier": 3
   }
 ]
