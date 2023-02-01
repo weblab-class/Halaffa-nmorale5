@@ -345,7 +345,7 @@ const equipmentFuncs = {
       if (moveResult.enemy < 0){
         player.health += moveResult.enemy;
         enemy.health -= moveResult.enemy;
-        moveResult.text += ["The attack was reflected!"];
+        moveResult.text.push("The attack was reflected!");
         eq.lifetime--;
       }
     }
@@ -397,7 +397,7 @@ const equipmentFuncs = {
     const eat = (moveResult) => {
       if (moveResult.enemy < -player.maxhealth*0.3) {
         enemy.health -= moveResult.enemy;
-        moveResult.text += ["A Strawberry was eaten!"]
+        moveResult.text.push("A Strawberry was eaten!")
         eq.lifetime--;
       }
     }
@@ -410,7 +410,7 @@ const equipmentFuncs = {
     const hurt = (moveResult) => {
       if (moveResult.enemy < 0) {
         player.health -= 1;
-        moveResult.text += ["You were hurt by Thorns."]
+        moveResult.text.push("You were hurt by Thorns.")
       }
     }
     enemy.moves.forEach(move => move.callbacks.push(hurt));
@@ -419,7 +419,7 @@ const equipmentFuncs = {
     const hurt = (moveResult) => {
       if (moveResult.enemy < 0) {
         player.health -= 2;
-        moveResult.text += ["You were hurt by Thorns."]
+        moveResult.text.push("You were hurt by Thorns.")
       }
     }
     enemy.moves.forEach(move => move.callbacks.push(hurt));
@@ -428,14 +428,14 @@ const equipmentFuncs = {
     const hurt = (moveResult) => {
       if (moveResult.enemy < 0) {
         player.health -= 3;
-        moveResult.text += ["You were hurt by Thorns."]
+        moveResult.text.push("You were hurt by Thorns.")
       }
     }
     enemy.moves.forEach(move => move.callbacks.push(hurt));
   },
   100: (eq, player, enemy) => {
     const sleep = (moveResult) => {
-      moveResult.text = "You are asleep."
+      moveResult.text = ["You are asleep."]
       eq.lifetime--;
     }
     player.moves.forEach(move => move.callbacks.push(sleep));
@@ -447,7 +447,7 @@ const equipmentFuncs = {
   101: (eq, player, enemy) => {
     const burn = (moveResult) => {
       player.health -= Math.round(player.maxhealth*0.08);
-      moveResult.text += ["You suffer from burns."];
+      moveResult.text.push("You suffer from burns.");
     }
     player.moves.forEach(move => move.callbacks.push(burn));
   },
@@ -542,7 +542,7 @@ const equipmentFuncs = {
       if (eq.lifetime == 0) {
         player.equipment.push(getEquipment(100));
       }
-      moveResult.text += ["The calming meadow lulls you into a deep slumber."]
+      moveResult.text.push("The calming meadow lulls you into a deep slumber.")
     }
     player.moves.forEach(move => move.callbacks.push(decay));
     if (eq.lifetime == 0) {
@@ -574,8 +574,11 @@ const equipmentFuncs = {
     const decay = (moveResult) => {
       eq.lifetime--;
     }
-    player.moves.forEach(move => move.accuracy = move.accuracy+20);
+    console.log("accuracy")
+    console.log(player.moves)
+    player.moves.forEach(move => move.accuracy += 20);
     player.moves.forEach(move => move.callbacks.push(decay));
+    console.log(player.moves)
     if (eq.lifetime == 0) {
       return true; // this will indicate to game-logic to destroy this equipment
     }
@@ -597,7 +600,7 @@ const equipmentFuncs = {
     const heal = (moveResult) => {
       player.health += Math.min(Math.round(player.maxhealth*0.12), player.maxhealth-player.health);
       eq.lifetime--;
-      moveResult.text += ["The garden harvest offers some restoration."];
+      moveResult.text.push("The garden harvest offers some restoration.")
     }
     player.moves.forEach(move => move.callbacks.push(heal));
     if (eq.lifetime == 0) {
@@ -614,14 +617,14 @@ const equipmentFuncs = {
   217: (eq, player, enemy) => {
     const damage = (moveResult) => {
       player.health -= player.red;
-      moveResult.text += ["The storm chips away."];
+      moveResult.text.push("The storm chips away.")
     }
     player.moves.forEach(move => move.callbacks.push(damage));
   },
   218: (eq, player, enemy) => {
     const remove = (moveResult) => {
       player.equipment = [getEquipment(218)];
-      moveResult.text += ["Wonder Room has permanently disabled equipment and effects!"];
+      moveResult.text.push("Wonder Room has permanently disabled equipment and effects!");
     }
     player.moves.forEach(move => move.callbacks.push(remove));
   },

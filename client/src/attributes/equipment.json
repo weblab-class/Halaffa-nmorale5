@@ -7,6 +7,9 @@
     "red": 2,
     "blue": 1,
     "green": 0,
+    "attack": 3,
+    "health": 1,
+    "speed": 1,
     "tier": 1
   },
   {
@@ -18,6 +21,9 @@
     "description": "Increases Speed and Attack by 50% after 4 turns.",
     "sprite": "MagicMail.png",
     "lifetime": 4,
+    "attack": 1,
+    "health": 1,
+    "speed": 1,
     "tier": 2
   },
   {
@@ -28,6 +34,9 @@
     "green": 0,
     "description": "Increases Speed by 10%.",
     "sprite": "RunningShoes.png",
+    "attack": 1,
+    "health": 1,
+    "speed": 3,
     "tier": 1
   },
   {
@@ -38,6 +47,9 @@
     "green": 1,
     "description": "Heals 5% of Max Health after each attack.",
     "sprite": "HolyAura.png",
+    "attack": 1,
+    "health": 3,
+    "speed": 1,
     "tier": 1
   },
   {
@@ -48,6 +60,9 @@
     "green": 0,
     "description": "Reduce opponent accuracy a little.",
     "sprite": "Cloak.png",
+    "attack": 2,
+    "health": 2,
+    "speed": 2,
     "tier": 1
   },
   {
@@ -58,6 +73,9 @@
     "green": 5,
     "description": "Green moves have 10% more Power.",
     "sprite": "GreenRing.png",
+    "attack": 1,
+    "health": 2,
+    "speed": 1,
     "tier": 1
   },
   {
@@ -68,6 +86,9 @@
     "green": 0,
     "description": "Blue moves have 10% more Power.",
     "sprite": "BlueRing.png",
+    "attack": 1,
+    "health": 1,
+    "speed": 2,
     "tier": 1
   },
   {
@@ -78,6 +99,9 @@
     "green": 0,
     "description": "Red moves have 10% more Power.",
     "sprite": "RedRing.png",
+    "attack": 2,
+    "health": 1,
+    "speed": 1,
     "tier": 1
   },
   {
@@ -88,6 +112,9 @@
     "green": 2,
     "description": "All moves have 5% more Power.",
     "sprite": "VioletRing.png",
+    "attack": 1,
+    "health": 1,
+    "speed": 1,
     "tier": 1
   },
   {
@@ -98,6 +125,9 @@
     "green": 5,
     "description": "Take 15% less damage from Green moves.",
     "sprite": "GreenNecklace.png",
+    "attack": 1,
+    "health": 2,
+    "speed": 1,
     "tier": 1
   },
   {
@@ -108,6 +138,9 @@
     "green": 0,
     "description": "Take 15% less damage from Blue moves.",
     "sprite": "BlueNecklace.png",
+    "attack": 1,
+    "health": 1,
+    "speed": 2,
     "tier": 1
   },
   {
@@ -118,6 +151,9 @@
     "green": 0,
     "description": "Take 15% less damage from Red moves.",
     "sprite": "RedNecklace.png",
+    "attack": 2,
+    "health": 1,
+    "speed": 1,
     "tier": 1
   },
   {
@@ -128,6 +164,9 @@
     "green": 2,
     "description": "Take 10% less damage from moves.",
     "sprite": "VioletNecklace.png",
+    "attack": 1,
+    "health": 1,
+    "speed": 1,
     "tier": 1
   },
   {
@@ -138,6 +177,9 @@
     "red": 4,
     "blue": 0,
     "green": 0,
+    "attack": 2,
+    "health": 0,
+    "speed": 2,
     "tier": 1
   },
   {
@@ -148,6 +190,9 @@
     "red": 1,
     "blue": 2,
     "green": 0,
+    "attack": 1,
+    "health": 1,
+    "speed": 0,
     "lifetime": 1,
     "tier": 3
   },
@@ -159,6 +204,9 @@
     "red": 0,
     "blue": 1,
     "green": 3,
+    "attack": 2,
+    "health": 2,
+    "speed": 0,
     "tier": 1
   },
   {
@@ -169,6 +217,9 @@
     "red": 2,
     "blue": 0,
     "green": 2,
+    "attack": 0,
+    "health": 4,
+    "speed": 0,
     "lifetime": 1,
     "tier": 2
   },
@@ -180,6 +231,9 @@
     "red": 0,
     "blue": 0,
     "green": 4,
+    "attack": 2,
+    "health": 1,
+    "speed": 0,
     "tier": 1
   },
   {
@@ -190,6 +244,9 @@
     "red": 2,
     "blue": 1,
     "green": 0,
+    "attack": 4,
+    "health": 1,
+    "speed": 1,
     "tier": 2
   },
   {
@@ -200,6 +257,9 @@
     "green": 0,
     "description": "Increases Speed by 20%.",
     "sprite": "RunningShoes.png",
+    "attack": 1,
+    "health": 1,
+    "speed": 4,
     "tier": 2
   },
   {
@@ -210,6 +270,9 @@
     "green": 1,
     "description": "Heals 8% of Max Health after each attack.",
     "sprite": "HolyAura.png",
+    "attack": 1,
+    "health": 4,
+    "speed": 1,
     "tier": 2
   },
   {
@@ -220,6 +283,9 @@
     "green": 0,
     "description": "Reduce opponent accuracy a decent amount.",
     "sprite": "Cloak.png",
+    "attack": 2,
+    "health": 2,
+    "speed": 2,
     "tier": 2
   },
   {
@@ -230,6 +296,9 @@
     "green": 5,
     "description": "Green moves do 20% more damage.",
     "sprite": "GreenRing.png",
+    "attack": 1,
+    "health": 2,
+    "speed": 1,
     "tier": 2
   },
   {
@@ -240,6 +309,9 @@
     "green": 0,
     "description": "Blue moves do 20% more damage.",
     "sprite": "BlueRing.png",
+    "attack": 1,
+    "health": 1,
+    "speed": 2,
     "tier": 2
   },
   {
@@ -250,6 +322,9 @@
     "green": 0,
     "description": "Red moves do 20% more damage.",
     "sprite": "RedRing.png",
+    "attack": 2,
+    "health": 1,
+    "speed": 1,
     "tier": 2
   },
   {
@@ -260,6 +335,9 @@
     "green": 2,
     "description": "All moves do 10% more damage.",
     "sprite": "VioletRing.png",
+    "attack": 2,
+    "health": 2,
+    "speed": 2,
     "tier": 2
   },
   {
@@ -270,6 +348,9 @@
     "green": 5,
     "description": "Take 30% less damage from Green moves.",
     "sprite": "GreenNecklace.png",
+    "attack": 2,
+    "health": 2,
+    "speed": 1,
     "tier": 2
   },
   {
@@ -280,6 +361,9 @@
     "green": 0,
     "description": "Take 30% less damage from Blue moves.",
     "sprite": "BlueNecklace.png",
+    "attack": 2,
+    "health": 2,
+    "speed": 1,
     "tier": 2
   },
   {
@@ -290,6 +374,9 @@
     "green": 0,
     "description": "Take 30% less damage from Red moves.",
     "sprite": "RedNecklace.png",
+    "attack": 2,
+    "health": 2,
+    "speed": 1,
     "tier": 2
   },
   {
@@ -300,6 +387,9 @@
     "green": 2,
     "description": "Take 20% less damage from moves.",
     "sprite": "VioletNecklace.png",
+    "attack": 2,
+    "health": 2,
+    "speed": 2,
     "tier": 2
   },
   {
@@ -310,6 +400,9 @@
     "red": 4,
     "blue": 0,
     "green": 0,
+    "attack": 3,
+    "health": 0,
+    "speed": 3,
     "tier": 2
   },
   {
@@ -320,6 +413,9 @@
     "red": 0,
     "blue": 1,
     "green": 3,
+    "attack": 2,
+    "health": 3,
+    "speed": 0,
     "tier": 2
   },
   {
@@ -330,6 +426,9 @@
     "red": 2,
     "blue": 1,
     "green": 0,
+    "attack": 5,
+    "health": 1,
+    "speed": 1,
     "tier": 3
   },
   {
@@ -340,6 +439,9 @@
     "green": 0,
     "description": "Increases Speed by 30%.",
     "sprite": "RunningShoes.png",
+    "attack": 1,
+    "health": 1,
+    "speed": 5,
     "tier": 3
   },
   {
@@ -350,6 +452,9 @@
     "green": 1,
     "description": "Heals 10% of Max Health after each attack.",
     "sprite": "HolyAura.png",
+    "attack": 1,
+    "health": 5,
+    "speed": 1,
     "tier": 3
   },
   {
@@ -360,6 +465,9 @@
     "green": 0,
     "description": "Reduce opponent accuracy considerably.",
     "sprite": "Cloak.png",
+    "attack": 3,
+    "health": 3,
+    "speed": 3,
     "tier": 3
   },
   {
@@ -370,6 +478,9 @@
     "green": 5,
     "description": "Green moves do 30% more damage.",
     "sprite": "GreenRing.png",
+    "attack": 2,
+    "health": 2,
+    "speed": 2,
     "tier": 3
   },
   {
@@ -380,6 +491,9 @@
     "green": 0,
     "description": "Blue moves do 30% more damage.",
     "sprite": "BlueRing.png",
+    "attack": 2,
+    "health": 2,
+    "speed": 2,
     "tier": 3
   },
   {
@@ -390,6 +504,9 @@
     "green": 0,
     "description": "Red moves do 30% more damage.",
     "sprite": "RedRing.png",
+    "attack": 2,
+    "health": 2,
+    "speed": 2,
     "tier": 3
   },
   {
@@ -400,6 +517,9 @@
     "green": 2,
     "description": "All moves do 15% more damage.",
     "sprite": "VioletRing.png",
+    "attack": 2,
+    "health": 2,
+    "speed": 2,
     "tier": 3
   },
   {
@@ -410,6 +530,9 @@
     "green": 5,
     "description": "Take 40% less damage from Green moves.",
     "sprite": "GreenNecklace.png",
+    "attack": 2,
+    "health": 2,
+    "speed": 2,
     "tier": 3
   },
   {
@@ -420,6 +543,9 @@
     "green": 0,
     "description": "Take 40% less damage from Blue moves.",
     "sprite": "BlueNecklace.png",
+    "attack": 2,
+    "health": 2,
+    "speed": 2,
     "tier": 3
   },
   {
@@ -430,6 +556,9 @@
     "green": 0,
     "description": "Take 40% less damage from Red moves.",
     "sprite": "RedNecklace.png",
+    "attack": 2,
+    "health": 2,
+    "speed": 2,
     "tier": 3
   },
   {
@@ -440,6 +569,9 @@
     "green": 2,
     "description": "Take 25% less damage from moves.",
     "sprite": "VioletNecklace.png",
+    "attack": 2,
+    "health": 2,
+    "speed": 2,
     "tier": 3
   },
   {
@@ -450,6 +582,9 @@
     "red": 4,
     "blue": 0,
     "green": 0,
+    "attack": 2,
+    "health": 5,
+    "speed": 0,
     "tier": 3
   },
   {
@@ -460,6 +595,9 @@
     "red": 0,
     "blue": 1,
     "green": 3,
+    "attack": 2,
+    "health": 2,
+    "speed": 2,
     "tier": 3
   },
   {
@@ -470,6 +608,9 @@
     "red": 0,
     "blue": 0,
     "green": 4,
+    "attack": 2,
+    "health": 2,
+    "speed": 2,
     "tier": 2
   },
   {
@@ -480,6 +621,9 @@
     "red": 0,
     "blue": 0,
     "green": 4,
+    "attack": 2,
+    "health": 4,
+    "speed": 2,
     "tier": 3
   },
   {

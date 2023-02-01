@@ -61,7 +61,6 @@ export default function BattleStats(props) {
           <ul>
             <li>ATK: {props.player.attack}</li>
             <li>SPD: {props.player.speed}</li>
-            {/* <li>XP: {props.player.xp}</li> */}
             <li>RED: {props.player.red}</li>
             <li>GRN: {props.player.green}</li>
             <li>BLU: {props.player.blue}</li>

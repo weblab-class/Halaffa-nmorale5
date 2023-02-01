@@ -102,11 +102,13 @@ const prepareSelect = (id) => {
   // enemys.forEach((e, i) => e.equipment = [i]);
   const loot = generateLoot(allGames[id].floor);
   const enemys = generateEnemies(allGames[id].floor);
-  enemys.forEach((e, i) => e.equipment = loot[i].color ? [loot[i].id] : []);
+  enemys.forEach((e, i) => e.equipment = loot[i].color ? [] : [loot[i].id]);
   allGames[id].selectionData = {
     loot: loot,
     enemies: enemys,
   };
+  console.log(loot)
+  console.log(enemys)
 }
 
 const prepareBattle = (id, selection) => {
@@ -137,6 +139,9 @@ const addLootToStats = (id) => {
     red: stats.red + loot.red,
     green: stats.green + loot.green,
     blue: stats.blue + loot.blue,
+    attack: stats.attack + loot.attack,
+    health: stats.health + loot.health,
+    speed: stats.speed + loot.speed,
     equipment: stats.equipment.concat([loot.id])
   }
 }
@@ -170,10 +175,19 @@ const loot = (id, discard) => {
   // removes the move at index given by discard (if any)
   allGames[id].screen = "select";
   allGames[id].floor++;
-  if (discard || discard === 0) {
-    allGames[id].generalStats.moves.splice(discard, 1);
+  if (discard === null) {
+    if (allGames[id].lootData.color) {
+      // move
+      allGames[id].generalStats.moves.push(allGames[id].lootData.id);
+    } else {
+      // equipment
+      addLootToStats(id);
+    }
   }
-  addLootToStats(id);
+  else if (discard >= 0) {
+    allGames[id].generalStats.moves.splice(discard, 1);
+    allGames[id].generalStats.moves.push(allGames[id].lootData.id);
+  }
   prepareSelect(id);
 }
 
@@ -314,15 +328,17 @@ const applyEquipment = (player, enemy) => {
 
 // applies both player's stats to adjust all moves' power and accuracy
 const applyStats = (player, enemy) => {
-  // TODO: make some formula for calculating power and accuracy of each move, 
-  // based on attack/elements and speed-to-enemy-speed ratio
   player.moves.forEach((move) => {
     move.power = move.power * Math.sqrt(player.attack + 2 * player[move.color]);
-    move.accuracy = (1 - (1 - move.accuracy/100)**Math.sqrt(player.speed/enemy.speed)) * 100;
+    if (move.accuracy > 100) move.accuracy = 100;
+    else if (move.accuracy < 0) move.accuracy = 0;
+    else move.accuracy = (1 - (1 - move.accuracy/100)**Math.sqrt(player.speed/enemy.speed)) * 100;
   });
   enemy.moves.forEach((move) => {
     move.power = move.power * Math.sqrt(enemy.attack + 2 * enemy[move.color]);
-    move.accuracy = (1 - (1 - move.accuracy/100)**Math.sqrt(enemy.speed/player.speed)) * 100;
+    if (move.accuracy > 100) move.accuracy = 100;
+    else if (move.accuracy < 0) move.accuracy = 0;
+    else move.accuracy = (1 - (1 - move.accuracy/100)**Math.sqrt(enemy.speed/player.speed)) * 100;
   });
 }
 
