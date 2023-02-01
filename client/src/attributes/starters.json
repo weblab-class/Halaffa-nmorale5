@@ -43,7 +43,7 @@
     "health": 29,
     "speed": 1,
     "cost": 0,
-    "moves": [37, 38, 39, 40, 41],
+    "moves": [1, 5],
     "equipment": [],
     "XP": 30
   },
