@@ -67,7 +67,11 @@ const heal = (move, player, enemy) => {
   if (move.color == "green") {
     colorBonus = player.green;
   }
-  return { player: Math.round(move.power * sqrt(player.attack + 2*colorBonus) / 100), enemy: 0}
+  return { 
+    player: Math.min(
+      Math.round(move.power * Math.sqrt(player.attack + 2*colorBonus) / 100),
+      player.maxhealth-player.health),
+    enemy: 0}
 }
 
 const addStatus = (character, status) => {
@@ -146,7 +150,7 @@ const moveFuncs = {
     return { player: 0, enemy: 0 };
   },
   8: (move, player, enemy) => {
-    move.power = Math.round(move.power*(speed)/20);
+    move.power = Math.round(move.power*(1+(player.speed)/20));
     return doDamage(move, player, enemy);
   },
   9: (move, player, enemy) => {
