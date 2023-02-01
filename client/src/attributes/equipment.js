@@ -78,30 +78,30 @@ const equipmentFuncs = {
   },
   3: (eq, player, enemy) => {
     const heal = (moveResult) => {
-      player.health = Math.min(player.maxhealth, Math.round(player.maxhealth*1.05+player.health));
+      player.health = Math.min(player.maxhealth, Math.round(player.maxhealth*0.05+player.health));
     }
     player.moves.forEach(move => move.callbacks.push(heal));
   },
   20: (eq, player, enemy) => {
     const heal = (moveResult) => {
-      player.health = Math.min(player.maxhealth, Math.round(player.maxhealth*1.08+player.health));
+      player.health = Math.min(player.maxhealth, Math.round(player.maxhealth*0.08+player.health));
     }
     player.moves.forEach(move => move.callbacks.push(heal));
   },
   34: (eq, player, enemy) => {
     const heal = (moveResult) => {
-      player.health = Math.min(player.maxhealth, Math.round(player.maxhealth*1.1+player.health));
+      player.health = Math.min(player.maxhealth, Math.round(player.maxhealth*0.1+player.health));
     }
     player.moves.forEach(move => move.callbacks.push(heal));
   },
   4: (eq, player, enemy) => {
-    enemy.moves.forEach(move => move.accuracy*.95);
+    enemy.moves.forEach(move => move.accuracy = Math.round(move.accuracy*.95));
   },
   21: (eq, player, enemy) => {
-    enemy.moves.forEach(move => move.accuracy*.9);
+    enemy.moves.forEach(move => move.accuracy = Math.round(move.accuracy*.9));
   },
   35: (eq, player, enemy) => {
-    enemy.moves.forEach(move => move.accuracy*.85);
+    enemy.moves.forEach(move => move.accuracy = Math.round(move.accuracy*.85));
   },
   5: (eq, player, enemy) => {
     for (move of player.moves){
