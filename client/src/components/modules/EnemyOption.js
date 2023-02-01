@@ -9,18 +9,35 @@ export default function EnemyOption(props) {
   else if (props.option.tier == 3) {
     color = "redbg"
   }
+  let name = "buttonGreen";
+  if (props.option.color == "blue"){
+    name = "buttonBlue";
+  }
+  if (props.option.color == "red"){
+    name = "buttonRed";
+  }
   const data = props.option.color ? (
     // Display a move
-    <>
-
-    </>
+    <div className="u-flexRow">
+      <button className={color + " buttonS u-mMargin " + name}>
+        {props.option.name}
+      </button>
+      <p className="Option-desc">{props.option.description}</p>
+    </div>
   ) : (
     // Display an equipment
-    <>
-      <p className="attribute">Red: {props.option.red}</p>
-      <p className="attribute">Green: {props.option.green}</p>
-      <p className="attribute">Blue: {props.option.blue}</p>
-    </>
+    <div className="u-flexRow">
+      <img 
+        className="equip u-mMargin"
+        src={require('../../images/' + props.option.sprite).default}
+      />
+      <div className="Option-desc">{props.option.description}</div>
+      <div className="u-flexColumn">
+        <div className="attribute">Red: {props.option.red}</div>
+        <div className="attribute">Green: {props.option.green}</div>
+        <div className="attribute">Blue: {props.option.blue}</div>
+      </div>
+    </div>
   );
   return (
     <div className={"u-flexColumn u-mMargin u-flex-alignCenter " + color}>

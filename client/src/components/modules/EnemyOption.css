@@ -13,3 +13,12 @@
 .redbg {
   background-color: lightcoral;
 }
+
+.Option-desc {
+  max-width: 200px;
+  margin: var(--m);
+}
+
+.no-hover:hover {
+
+}
