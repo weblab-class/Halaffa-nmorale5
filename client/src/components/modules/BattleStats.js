@@ -71,6 +71,7 @@ export default function BattleStats(props) {
           <div className="equipContainer">
             {playerEquipment}
           </div>
+          <h3>Enemy Equipment:</h3>
           <div className="equipContainer">
             {enemyEquipment}
           </div>
