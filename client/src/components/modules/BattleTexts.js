@@ -3,7 +3,7 @@ import React from 'react';
 export function MoveSummary(props) {
   return (
     <>
-      {props.text}
+      {props.text.map(t => <div>{t}</div>)}
     </>
   );
 }

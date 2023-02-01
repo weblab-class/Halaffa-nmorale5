@@ -229,6 +229,7 @@ const getStats = (stats) => {
   console.log(stats)
   const out = {
     ...stats,
+    maxhealth: stats.health,
     moves: getMoves(stats.moves),
     equipment: getEquipment(stats.equipment),
   }
@@ -250,12 +251,14 @@ const resetBuffs = (id) => {
   allGames[id].battleData[id] = { 
     ...playerOrig,
     health: allGames[id].battleData[id].health,
+    maxhealth: allGames[id].battleData[id].maxhealth,
     moves: getMoves(playerOrig.moves),
     equipment: allGames[id].battleData[id].equipment,
   };
   allGames[id].battleData[enemyId] = {
     ...enemyOrig,
     health: allGames[id].battleData[enemyId].health,
+    maxhealth: allGames[id].battleData[enemyId].maxhealth,
     moves: getMoves(enemyOrig.moves),
     equipment: allGames[id].battleData[enemyId].equipment,
   };
@@ -263,17 +266,22 @@ const resetBuffs = (id) => {
 
 // applies all effects from both players' equipment
 const applyEquipment = (player, enemy) => {
-  // const player = allGames[id].battleData;
-  // const enemyId = allGames[id].battleData.BOT ? "BOT" : allGames[id].opponent;
-  // const enemy = enemyId == "BOT" ? allGames[id].selectionData.enemies[allGames[id].selection] : allGames[enemyId].generalStats;
-  player.equipment.forEach(eq => resolveEquipment(eq, player, enemy));
-  enemy.equipment.forEach(eq => resolveEquipment(eq, enemy, player));
+  player.equipment = player.equipment.filter(eq => !resolveEquipment(eq, player, enemy));
+  enemy.equipment = enemy.equipment.filter(eq => !resolveEquipment(eq, enemy, player));
 }
 
 // applies both player's stats to adjust all moves' power and accuracy
 const applyStats = (player, enemy) => {
   // TODO: make some formula for calculating power and accuracy of each move, 
   // based on attack/elements and speed-to-enemy-speed ratio
+  player.moves.forEach((move) => {
+    move.power = move.power * Math.sqrt(player.attack + 2 * player[move.color]);
+    move.accuracy = (1 - (1 - move.accuracy/100)**Math.sqrt(player.speed/enemy.speed)) * 100;
+  });
+  enemy.moves.forEach((move) => {
+    move.power = move.power * Math.sqrt(enemy.attack + 2 * enemy[move.color]);
+    move.accuracy = (1 - (1 - move.accuracy/100)**Math.sqrt(enemy.speed/player.speed)) * 100;
+  });
 }
 
 // makes the move, taking into account all buffs, then calls all equipment callbacks

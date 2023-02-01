@@ -42,7 +42,7 @@ export default class MoveSelect extends React.Component {
           {moveList}
         </div>
 
-        <p>{move ? `[PWR: ${move.power}] [ACC: ${move.accuracy}%]\n${move.description}` : alt}</p>
+        <p>{move ? `[PWR: ${Math.floor(move.power)}] [ACC: ${Math.floor(move.accuracy)}%]\n${move.description}` : alt}</p>
       </>
     )
   }
