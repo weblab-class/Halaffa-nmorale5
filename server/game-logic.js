@@ -330,13 +330,13 @@ const applyEquipment = (player, enemy) => {
 // applies both player's stats to adjust all moves' power and accuracy
 const applyStats = (player, enemy) => {
   player.moves.forEach((move) => {
-    move.power = move.power * Math.sqrt(player.attack + 2 * player[move.color]);
+    move.power = move.power * Math.sqrt(player.attack + player[move.color]);
     if (move.accuracy > 100) move.accuracy = 100;
     else if (move.accuracy < 0) move.accuracy = 0;
     else move.accuracy = (1 - (1 - move.accuracy/100)**Math.sqrt(player.speed/enemy.speed)) * 100;
   });
   enemy.moves.forEach((move) => {
-    move.power = move.power * Math.sqrt(enemy.attack + 2 * enemy[move.color]);
+    move.power = move.power * Math.sqrt(enemy.attack + enemy[move.color]);
     if (move.accuracy > 100) move.accuracy = 100;
     else if (move.accuracy < 0) move.accuracy = 0;
     else move.accuracy = (1 - (1 - move.accuracy/100)**Math.sqrt(enemy.speed/player.speed)) * 100;

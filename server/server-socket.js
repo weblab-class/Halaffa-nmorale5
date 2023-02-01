@@ -9,7 +9,7 @@ const getSocketFromUserID = (userid) => userToSocketMap[userid];
 const getUserFromSocketID = (socketid) => socketToUserMap[socketid];
 const getSocketFromSocketID = (socketid) => io.sockets.connected[socketid];
 
-const GAME_TIME = 60; // how long the game lasts before final battle
+const GAME_TIME = 180; // how long the game lasts before final battle
 const timers = {};    // maps game IDs to the currently remaining time
 const toCancel = {};  // maps game IDs to any setTimeouts that should cancel upon final battle
 

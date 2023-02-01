@@ -19,8 +19,8 @@ export default function BattleUpper(props) {
             src={require('../../images/' + player2.sprite).default}
           />
           <div className="u-flexColumnR">
-          <p>Your health: {player1.health}</p>
-          <p>Enemy health: {player2.health}</p>
+          <p>Your health: {Math.ceil(player1.health)}</p>
+          <p>Enemy health: {Math.ceil(player2.health)}</p>
           </div>
         </div>
       </div>

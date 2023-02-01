@@ -49,27 +49,13 @@ status_mapping = {
 }
 
 const doDamage = (move, player, enemy) => {
-  let colorBonus = player.red;
-  if (move.color == "blue") {
-    colorBonus = player.blue;
-  }
-  if (move.color == "green") {
-    colorBonus = player.green;
-  }
-  return { player: 0, enemy: -Math.round(move.power * Math.sqrt(player.attack + 2*colorBonus) / 100)}
+  return { player: 0, enemy: -move.power/30 }
 }
 
 const heal = (move, player, enemy) => {
-  let colorBonus = player.red;
-  if (move.color == "blue") {
-    colorBonus = player.blue;
-  }
-  if (move.color == "green") {
-    colorBonus = player.green;
-  }
   return { 
     player: Math.min(
-      Math.round(move.power * Math.sqrt(player.attack + 2*colorBonus) / 100),
+      move.power/30,
       player.maxhealth-player.health),
     enemy: 0}
 }
@@ -159,7 +145,7 @@ const moveFuncs = {
   },
   10: (move, player, enemy) => {
     let damage = doDamage(move, player, enemy);
-    damage[player] = Math.round(damage[enemy]/2);
+    damage.player = Math.round(damage.enemy/2);
     return damage;
   },
   11: (move, player, enemy) => {
