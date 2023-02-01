@@ -107,22 +107,15 @@ const prepareSelect = (id) => {
     loot: loot,
     enemies: enemys,
   };
-  console.log(loot)
-  console.log(enemys)
 }
 
 const prepareBattle = (id, selection) => {
-  console.log(allGames[id].generalStats)
-  console.log(allGames[id].selectionData.enemies[selection])
   allGames[id].battleData = {
     [id]: getStats(allGames[id].generalStats),
     BOT: getStats(allGames[id].selectionData.enemies[selection]),
     turn: id,
     animating: false,
   }
-  console.log("BattleData:")
-  console.log(allGames[id].battleData)
-  console.log(allGames[id].battleData[id])
   applyEquipment(allGames[id].battleData[id], allGames[id].battleData.BOT);
   applyStats(allGames[id].battleData[id], allGames[id].battleData.BOT);
 }
@@ -287,7 +280,6 @@ const getMoves = (ids) => ids.map((moveId) => {
 
 // takes generalStats or selectionData.enemies[i] and returns copy with eq and move ids replaced with the real data
 const getStats = (stats) => {
-  console.log(stats.moves)
   const out = {
     ...stats,
     maxhealth: stats.health,
@@ -373,16 +365,12 @@ const randomChoice = (list) => list[Math.floor(Math.random() * list.length)];
 const generateLoot = (floor) => [1, 2, 3].map((tier) => ({ ...randomChoice(allLoot[tier]) }));
 
 const generateEnemies = (floor) => {
-  console.log("base enemies")
-  console.log(allEnemies)
   const baseEnemies = [1, 2, 3].map((tier) => ({ ...randomChoice(allEnemies[tier]) }));
-  console.log(baseEnemies)
   baseEnemies.forEach((e) => {
     ["attack", "health", "speed", "red", "green", "blue"].forEach((stat) => {
       e[stat] = Math.round(e[stat] * 1.1 ** (floor - 1));
     });
   });
-  console.log(baseEnemies)
   return baseEnemies;
 };
 

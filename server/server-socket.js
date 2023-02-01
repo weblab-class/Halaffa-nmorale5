@@ -92,7 +92,6 @@ module.exports = {
         } else {
           sendNewGameState(user._id);
         }
-        console.log(gameLogic.allGames)
       });
 
       socket.on("cancel", () => {

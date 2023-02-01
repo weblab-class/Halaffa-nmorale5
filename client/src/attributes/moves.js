@@ -321,8 +321,6 @@ const moveFuncs = {
 };
 
 module.exports = (move, player, enemy) => {
-  console.log("move")
-  console.log(move)
   if (move.accuracy/100 > Math.random()) {
     const moveSummary = moveFuncs[move.id](move, player, enemy);
     player.health += moveSummary.player;

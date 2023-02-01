@@ -574,11 +574,8 @@ const equipmentFuncs = {
     const decay = (moveResult) => {
       eq.lifetime--;
     }
-    console.log("accuracy")
-    console.log(player.moves)
     player.moves.forEach(move => move.accuracy += 20);
     player.moves.forEach(move => move.callbacks.push(decay));
-    console.log(player.moves)
     if (eq.lifetime == 0) {
       return true; // this will indicate to game-logic to destroy this equipment
     }
@@ -643,7 +640,5 @@ const equipmentFuncs = {
 };
 
 module.exports = (eq, player, enemy) => {
-  console.log("equipment")
-  console.log(eq)
   return equipmentFuncs[eq.id](eq, player, enemy)
 };

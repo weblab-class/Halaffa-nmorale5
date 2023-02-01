@@ -136,7 +136,7 @@ export default class App extends React.Component {
     //   this.setState({ userId: user._id,  userName: user.name, currency: user.currency,
     //     equippedStarter: user.starter, unlockedStarters: [...user.unlocked], numWins: user.numWins});
     // });
-    console.log(this.state.attributes);
+    //console.log(this.state.attributes);
   }
 
   addAll() {
