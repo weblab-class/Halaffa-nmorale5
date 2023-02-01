@@ -107,6 +107,8 @@ const prepareSelect = (id) => {
     loot: loot,
     enemies: enemys,
   };
+  console.log(loot)
+  console.log(enemys)
 }
 
 const prepareBattle = (id, selection) => {
@@ -170,10 +172,11 @@ const loot = (id, discard) => {
   // removes the move at index given by discard (if any)
   allGames[id].screen = "select";
   allGames[id].floor++;
-  if (discard || discard === 0) {
+  if (discard === 0 || discard > 0) {
     allGames[id].generalStats.moves.splice(discard, 1);
+  } if (discard !== -1) {
+    addLootToStats(id);
   }
-  addLootToStats(id);
   prepareSelect(id);
 }
 

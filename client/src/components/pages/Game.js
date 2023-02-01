@@ -95,6 +95,7 @@ export default function Game(props) {
         <LootResults
           attributes={props.attributes}
           lootData={gameState.lootData}
+          moves={gameState.generalStats.moves}
           collectLoot={collectLoot}
         />
       );
