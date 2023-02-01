@@ -90,6 +90,16 @@ export default class About extends React.Component {
           <li>Endless: Continuously BATTLE ENEMIES until you lose a BATTLE. Try to last as long as possible.</li>
           <li>Draft: Skip the ENEMIES. Just choose EQUIPMENT then BATTLE another player.</li>
         </ul>
+        <p className="About-header">Statuses</p>
+        <p className="About-body">
+          There are currently three different status conditions that are mutually exclusive. This means you
+          can only have any one of these three active at a time:
+        </p>
+        <ul className="About-body">
+          <li>Sleep: Makes it so you can't move. Wears off quickly.</li>
+          <li>Burned: Take damage after every turn. Does not wear off.</li>
+          <li>Frozen: Halve your Speed. Wears off after a while.</li>
+        </ul>
       </div>
     )
   }

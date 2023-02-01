@@ -26,7 +26,7 @@ export default class App extends React.Component {
 
     super(props);
     this.state = {
-      userName: "Guest",
+      userName: "Please Log in with Google in the Home tab.",
       userId: null,
       currency: 10,
       attributes: {starters: [], enemies: [], moves: [], equipment: []},

@@ -78,106 +78,106 @@ const equipmentFuncs = {
   },
   3: (eq, player, enemy) => {
     const heal = (moveResult) => {
-      player.health = Math.min(player.maxhealth, Math.round(player.maxhealth*1.05+player.health));
+      player.health = Math.min(player.maxhealth, Math.round(player.maxhealth*0.05+player.health));
     }
     player.moves.forEach(move => move.callbacks.push(heal));
   },
   20: (eq, player, enemy) => {
     const heal = (moveResult) => {
-      player.health = Math.min(player.maxhealth, Math.round(player.maxhealth*1.08+player.health));
+      player.health = Math.min(player.maxhealth, Math.round(player.maxhealth*0.08+player.health));
     }
     player.moves.forEach(move => move.callbacks.push(heal));
   },
   34: (eq, player, enemy) => {
     const heal = (moveResult) => {
-      player.health = Math.min(player.maxhealth, Math.round(player.maxhealth*1.1+player.health));
+      player.health = Math.min(player.maxhealth, Math.round(player.maxhealth*0.1+player.health));
     }
     player.moves.forEach(move => move.callbacks.push(heal));
   },
   4: (eq, player, enemy) => {
-    enemy.moves.forEach(move => move.accuracy*.95);
+    enemy.moves.forEach(move => move.accuracy = Math.round(move.accuracy*.95));
   },
   21: (eq, player, enemy) => {
-    enemy.moves.forEach(move => move.accuracy*.9);
+    enemy.moves.forEach(move => move.accuracy = Math.round(move.accuracy*.9));
   },
   35: (eq, player, enemy) => {
-    enemy.moves.forEach(move => move.accuracy*.85);
+    enemy.moves.forEach(move => move.accuracy = Math.round(move.accuracy*.85));
   },
   5: (eq, player, enemy) => {
-    for (move in player.moves){
+    for (move of player.moves){
       if (move.color == "green") {
         move.power = Math.round(move.power*1.1);
       }
     }
   },
   22: (eq, player, enemy) => {
-    for (move in player.moves){
+    for (move of player.moves){
       if (move.color == "green") {
         move.power = Math.round(move.power*1.2);
       }
     }
   },
   36: (eq, player, enemy) => {
-    for (move in player.moves){
+    for (move of player.moves){
       if (move.color == "green") {
         move.power = Math.round(move.power*1.3);
       }
     }
   },
   6: (eq, player, enemy) => {
-    for (move in player.moves){
+    for (move of player.moves){
       if (move.color == "blue") {
         move.power = Math.round(move.power*1.1);
       }
     }
   },
   23: (eq, player, enemy) => {
-    for (move in player.moves){
+    for (move of player.moves){
       if (move.color == "blue") {
         move.power = Math.round(move.power*1.2);
       }
     }
   },
   37: (eq, player, enemy) => {
-    for (move in player.moves){
+    for (move of player.moves){
       if (move.color == "blue") {
         move.power = Math.round(move.power*1.3);
       }
     }
   },
   7: (eq, player, enemy) => {
-    for (move in player.moves){
+    for (move of player.moves){
       if (move.color == "red") {
         move.power = Math.round(move.power*1.1);
       }
     }
   },
   24: (eq, player, enemy) => {
-    for (move in player.moves){
+    for (move of player.moves){
       if (move.color == "red") {
         move.power = Math.round(move.power*1.2);
       }
     }
   },
   38: (eq, player, enemy) => {
-    for (move in player.moves){
+    for (move of player.moves){
       if (move.color == "red") {
         move.power = Math.round(move.power*1.3);
       }
     }
   },
   8: (eq, player, enemy) => {
-    for (move in player.moves){
+    for (move of player.moves){
       move.power = Math.round(move.power*1.05);
     }
   },
   25: (eq, player, enemy) => {
-    for (move in player.moves){
+    for (move of player.moves){
       move.power = Math.round(move.power*1.10);
     }
   },
   39: (eq, player, enemy) => {
-    for (move in player.moves){
+    for (move of player.moves){
       move.power = Math.round(move.power*1.15);
     }
   },
@@ -187,7 +187,7 @@ const equipmentFuncs = {
         enemy.health -= Math.round(moveResult.enemy * .15);
       }
     }
-    for (move in enemy.moves){
+    for (move of enemy.moves){
       if (move.color == "green") {
         move.callbacks.push(restore);
       }
@@ -199,7 +199,7 @@ const equipmentFuncs = {
         enemy.health -= Math.round(moveResult.enemy * .3);
       }
     }
-    for (move in enemy.moves){
+    for (move of enemy.moves){
       if (move.color == "green") {
         move.callbacks.push(restore);
       }
@@ -211,7 +211,7 @@ const equipmentFuncs = {
         enemy.health -= Math.round(moveResult.enemy * .4);
       }
     }
-    for (move in enemy.moves){
+    for (move of enemy.moves){
       if (move.color == "green") {
         move.callbacks.push(restore);
       }
@@ -223,7 +223,7 @@ const equipmentFuncs = {
         enemy.health -= Math.round(moveResult.enemy * .15);
       }
     }
-    for (move in enemy.moves){
+    for (move of enemy.moves){
       if (move.color == "blue") {
         move.callbacks.push(restore);
       }
@@ -235,7 +235,7 @@ const equipmentFuncs = {
         enemy.health -= Math.round(moveResult.enemy * .3);
       }
     }
-    for (move in enemy.moves){
+    for (move of enemy.moves){
       if (move.color == "blue") {
         move.callbacks.push(restore);
       }
@@ -247,7 +247,7 @@ const equipmentFuncs = {
         enemy.health -= Math.round(moveResult.enemy * .4);
       }
     }
-    for (move in enemy.moves){
+    for (move of enemy.moves){
       if (move.color == "blue") {
         move.callbacks.push(restore);
       }
@@ -259,7 +259,7 @@ const equipmentFuncs = {
         enemy.health -= Math.round(moveResult.enemy * .15);
       }
     }
-    for (move in enemy.moves){
+    for (move of enemy.moves){
       if (move.color == "red") {
         move.callbacks.push(restore);
       }
@@ -271,7 +271,7 @@ const equipmentFuncs = {
         enemy.health -= Math.round(moveResult.enemy * .3);
       }
     }
-    for (move in enemy.moves){
+    for (move of enemy.moves){
       if (move.color == "red") {
         move.callbacks.push(restore);
       }
@@ -283,7 +283,7 @@ const equipmentFuncs = {
         enemy.health -= Math.round(moveResult.enemy * .4);
       }
     }
-    for (move in enemy.moves){
+    for (move of enemy.moves){
       if (move.color == "red") {
         move.callbacks.push(restore);
       }
@@ -314,7 +314,7 @@ const equipmentFuncs = {
     enemy.moves.forEach(move => move.callbacks.push(restore));
   },
   13: (eq, player, enemy) => {
-    for (move in player.moves){
+    for (move of player.moves){
       move.power = Math.round(move.power*1.2);
     }
     const hurt = (moveResult) => {
@@ -323,7 +323,7 @@ const equipmentFuncs = {
     player.moves.forEach(move => move.callbacks.push(hurt));
   },
   30: (eq, player, enemy) => {
-    for (move in player.moves){
+    for (move of player.moves){
       move.power = Math.round(move.power*1.3);
     }
     const hurt = (moveResult) => {
@@ -332,7 +332,7 @@ const equipmentFuncs = {
     player.moves.forEach(move => move.callbacks.push(hurt));
   },
   44: (eq, player, enemy) => {
-    for (move in player.moves){
+    for (move of player.moves){
       move.power = Math.round(move.power*1.4);
     }
     const hurt = (moveResult) => {
@@ -478,7 +478,7 @@ const equipmentFuncs = {
         enemy.health -= Math.round(moveResult.enemy * .3);
       }
     }
-    for (move in enemy.moves){
+    for (move of enemy.moves){
       if (move.color == "blue") {
         move.callbacks.push(restore);
       }
@@ -490,7 +490,7 @@ const equipmentFuncs = {
         enemy.health -= Math.round(moveResult.enemy * .3);
       }
     }
-    for (move in enemy.moves){
+    for (move of enemy.moves){
       if (move.color == "green") {
         move.callbacks.push(restore);
       }
@@ -502,35 +502,35 @@ const equipmentFuncs = {
         enemy.health -= Math.round(moveResult.enemy * .3);
       }
     }
-    for (move in enemy.moves){
+    for (move of enemy.moves){
       if (move.color == "red") {
         move.callbacks.push(restore);
       }
     }
   },
   204: (eq, player, enemy) => {
-    for (move in player.moves){
+    for (move of player.moves){
       if (move.color == "blue") {
         move.power = Math.round(move.power*1.5);
       }
     }
   },
   205: (eq, player, enemy) => {
-    for (move in enemy.moves){
+    for (move of enemy.moves){
       if (move.color == "blue") {
         move.power = Math.round(move.power*0.8);
       }
     }
   },
   206: (eq, player, enemy) => {
-    for (move in enemy.moves){
+    for (move of enemy.moves){
       if (move.color == "green") {
         move.power = Math.round(move.power*0.8);
       }
     }
   },
   207: (eq, player, enemy) => {
-    for (move in enemy.moves){
+    for (move of enemy.moves){
       if (move.color == "red") {
         move.power = Math.round(move.power*0.8);
       }
@@ -605,7 +605,7 @@ const equipmentFuncs = {
     }
   },
   216: (eq, player, enemy) => {
-    for (move in player.moves){
+    for (move of player.moves){
       if (move.id == 33) {   // 33 = Rising Tide
         move.power += 20;
       }
