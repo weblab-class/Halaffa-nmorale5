@@ -79,10 +79,10 @@ module.exports = {
         removeUser(user, socket);
       });
 
-      socket.on("queue", async (mode) => {
+      socket.on("queue", async (mode, userStarter) => {
         const user = getUserFromSocketID(socket.id);
         if (!user) return;
-        const completedLobby = await gameLogic.addPlayer(user._id, mode);
+        const completedLobby = await gameLogic.addPlayer(user._id, mode, userStarter);
         if (completedLobby) {
           completedLobby.forEach((id) => {
             gameLogic.startGame(id);

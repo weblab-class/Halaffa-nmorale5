@@ -6,6 +6,42 @@ const moves = require('../client/src/attributes/moves.json');
 const starters = require('../client/src/attributes/starters.json');
 const enemies = require('../client/src/attributes/enemies.json');
 
+function formatParams(params) {
+  // iterate of all the keys of params as an array,
+  // map it to a new array of URL string encoded key,value pairs
+  // join all the url params using an ampersand (&).
+  return Object.keys(params)
+    .map((key) => key + "=" + encodeURIComponent(params[key]))
+    .join("&");
+}
+
+// convert a fetch result to a JSON object with error handling for fetch and json errors
+function convertToJSON(res) {
+  if (!res.ok) {
+    throw `API request failed with response status ${res.status} and text: ${res.statusText}`;
+  }
+
+  return res
+    .clone() // clone so that the original is still readable for debugging
+    .json() // start converting to JSON object
+    .catch((error) => {
+      // throw an error containing the text that couldn't be converted to JSON
+      return res.text().then((text) => {
+        throw `API request's result could not be converted to a JSON object: \n${text}`;
+      });
+    });
+}
+
+function get(endpoint, params = {}) {
+  const fullPath = endpoint + "?" + formatParams(params);
+  return fetch(fullPath)
+    .then(convertToJSON)
+    .catch((error) => {
+      // give a useful error message
+      throw `GET request to ${fullPath} failed with error:\n${error}`;
+    });
+}
+
 const allGames = {}; // maps ids to gameStates
 const unpaired = {
   classic: [],
@@ -16,12 +52,11 @@ const getGame = (id) => {
   return allGames[id];
 }
 
-const getStarterData = async (id) => {
-  const starter = 1; // TODO: get the player's starter from the database
-  return { ...starters[starter] };
+const getStarterData = (userStarter) => {
+  return { ...starters[userStarter] };
 }
 
-const addPlayer = async (id, mode) => {
+const addPlayer = async (id, mode, userStarter) => {
   // if already in game (but was disconnected), do nothing.
   // else, join open lobby.
   // else, create new lobby.
@@ -38,7 +73,7 @@ const addPlayer = async (id, mode) => {
     lootData: null,
     battleData: null,
     selection: null,
-    generalStats: { ...await getStarterData(id) },
+    generalStats: { ... getStarterData(userStarter) },
   }
   if (opponent == "BOT") {
     return [id];

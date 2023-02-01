@@ -56,7 +56,7 @@ const doDamage = (move, player, enemy) => {
   if (move.color == "green") {
     colorBonus = player.green;
   }
-  return { player: 0, enemy: -Math.round(move.power * sqrt(player.attack + 2*colorBonus) / 100)}
+  return { player: 0, enemy: -Math.round(move.power * Math.sqrt(player.attack + 2*colorBonus) / 100)}
 }
 
 const heal = (move, player, enemy) => {

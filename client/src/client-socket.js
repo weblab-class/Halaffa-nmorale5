@@ -14,8 +14,8 @@ export const configureTimer = (timerFunc) => {
   socket.on("timer", timerFunc);
 }
 
-export const startQueue = (mode) => {
-  socket.emit("queue", mode);
+export const startQueue = (mode, userStarter) => {
+  socket.emit("queue", mode, userStarter);
 };
 
 export const cancelQueue = () => {
