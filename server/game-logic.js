@@ -156,7 +156,13 @@ const select = (id, i) => {
     prepareLoot(id, i);
   } else {
     prepareLoot(id, i);
-    addLootToStats(id);
+    if (allGames[id].lootData.color) {
+      // move
+      allGames[id].generalStats.moves = allGames[id].generalStats.moves.concat([allGames[id].lootData.id]);
+    } else {
+      // equipment
+      addLootToStats(id);
+    }
     prepareSelect(id);
     allGames[id].floor++;
     if (allGames[id].floor > 5) allGames[id].screen = "waiting";
@@ -171,7 +177,7 @@ const loot = (id, discard) => {
   if (discard === null) {
     if (allGames[id].lootData.color) {
       // move
-      allGames[id].generalStats.moves.push(allGames[id].lootData.id);
+      allGames[id].generalStats.moves = allGames[id].generalStats.moves.concat([allGames[id].lootData.id]);
     } else {
       // equipment
       addLootToStats(id);
@@ -179,7 +185,7 @@ const loot = (id, discard) => {
   }
   else if (discard >= 0) {
     allGames[id].generalStats.moves.splice(discard, 1);
-    allGames[id].generalStats.moves.push(allGames[id].lootData.id);
+    allGames[id].generalStats.moves = allGames[id].generalStats.moves.concat([allGames[id].lootData.id]);
   }
   prepareSelect(id);
 }

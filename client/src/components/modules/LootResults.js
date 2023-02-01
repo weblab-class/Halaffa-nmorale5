@@ -3,7 +3,7 @@ import MoveButton from "./MoveButton.js";
 import "./LootResult.css";
 
 export default function LootResults(props) {
-  if (props.lootData.color && props.moves.length >= 3) {
+  if (props.lootData.color && props.moves.length >= 4) {
     // move
     const [desc, setDesc] = useState(null)
     const onHover = (move) => {
@@ -31,7 +31,8 @@ export default function LootResults(props) {
     const alt = "Hover over a move to view description";
     return (
       <>
-        <h1>Choose a move to swap out:</h1>
+        <h1>You unlocked a new move!</h1>
+        <p>You reached the move limit. Choose one to swap out:</p>
         {currentMoves}
         <MoveButton
             key={3}
@@ -46,17 +47,26 @@ export default function LootResults(props) {
       </>
     )
   }
+  if (props.lootData.color) {
+    return (
+      <>
+        <h1>You unlocked a new move!</h1>
+        <p>{props.lootData.name}</p>
+        <button className="button3 bg" onClick={() => props.collectLoot(null)}>Collect</button>
+      </>
+    )
+  }
   
   return (
     // equipment
     <div className="u-flexColumn u-flex-alignCenter bg">
-      <h3>Loot Found:</h3>
-      <p className="attribute">Red: {props.lootData.red}</p>
-      <p className="attribute">Green: {props.lootData.green}</p>
-      <p className="attribute">Blue: {props.lootData.blue}</p>
-      <p className="attribute">Health: {props.lootData.health}</p>
-      <p className="attribute">Attack: {props.lootData.attack}</p>
-      <p className="attribute">Speed: {props.lootData.speed}</p>
+      <h3>You unlocked a new equipment!</h3>
+      <p className="attribute">Red: +{props.lootData.red}</p>
+      <p className="attribute">Green: +{props.lootData.green}</p>
+      <p className="attribute">Blue: +{props.lootData.blue}</p>
+      <p className="attribute">Health: +{props.lootData.health}</p>
+      <p className="attribute">Attack: +{props.lootData.attack}</p>
+      <p className="attribute">Speed: +{props.lootData.speed}</p>
       <button className="button3 bg" onClick={() => props.collectLoot(null)}>Collect</button>
     </div>
   )
