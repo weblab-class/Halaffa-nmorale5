@@ -11,8 +11,8 @@
     "speed": 4,
     "id": 0,
     "cost": 0,
-    "moves": [0, 1],
-    "equipment": [3],
+    "moves": [2, 13],
+    "equipment": [],
     "XP": 30
   },
   {
@@ -27,8 +27,8 @@
     "health": 5,
     "speed": 6,
     "cost": 0,
-    "moves": [0, 1],
-    "equipment": [3],
+    "moves": [0, 6],
+    "equipment": [],
     "XP": 30
   },
   {
@@ -43,8 +43,8 @@
     "health": 20,
     "speed": 1,
     "cost": 0,
-    "moves": [1, 2],
-    "equipment": [3],
+    "moves": [1, 5],
+    "equipment": [],
     "XP": 30
   },
   {
@@ -59,8 +59,8 @@
     "speed": 3,
     "id": 3,
     "cost": 100,
-    "moves": [1, 2],
-    "equipment": [3],
+    "moves": [1, 9],
+    "equipment": [],
     "XP": 50
   },
   {
@@ -75,8 +75,8 @@
     "speed": 11,
     "id": 4,
     "cost": 100,
-    "moves": [0, 1],
-    "equipment": [3],
+    "moves": [2, 33],
+    "equipment": [],
     "XP": 50
   },
   {
@@ -91,8 +91,8 @@
     "speed": 1,
     "id": 5,
     "cost": 100,
-    "moves": [0, 1],
-    "equipment": [3],
+    "moves": [0, 12],
+    "equipment": [],
     "XP": 50
   }
 ]

@@ -11,7 +11,7 @@ export default function GameSelect(props) {
           <div>
             Single Player:
           </div>
-          <button onClick={() => props.startQueue("endless")} className="button3">
+          <button onClick={() => props.startQueue("endless", props.userStarter)} className="button3">
             Endless
           </button>
         </div>
@@ -21,10 +21,10 @@ export default function GameSelect(props) {
           <div>
             Multiplayer:
           </div>
-          <button onClick={() => props.startQueue("classic")}>
+          <button onClick={() => props.startQueue("classic", props.userStarter)}>
             Classic
           </button>
-          <button onClick={() => props.startQueue("draft")} className="button2">
+          <button onClick={() => props.startQueue("draft", props.userStarter)} className="button2">
             Draft
           </button>
         </div>

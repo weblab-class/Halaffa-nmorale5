@@ -14,8 +14,9 @@
     "red": 1,
     "blue": 1,
     "green": 1,
-    "description": "Always move first, regardless of Speed.",
-    "sprite": "MagicMail.png"
+    "description": "Increases Speed and Attack by 50% after 4 turns.",
+    "sprite": "MagicMail.png",
+    "lifetime": 4
   },
   {
     "id": 2,
@@ -41,7 +42,7 @@
     "red": 0,
     "blue": 0,
     "green": 0,
-    "description": "5% chance to dodge attack.",
+    "description": "Reduce opponent accuracy a little.",
     "sprite": "Cloak.png"
   },
   {
@@ -50,7 +51,7 @@
     "red": 0,
     "blue": 0,
     "green": 5,
-    "description": "Green moves do 10% more damage.",
+    "description": "Green moves have 10% more Power.",
     "sprite": "GreenRing.png"
   },
   {
@@ -59,7 +60,7 @@
     "red": 0,
     "blue": 5,
     "green": 0,
-    "description": "Blue moves do 10% more damage.",
+    "description": "Blue moves have 10% more Power.",
     "sprite": "BlueRing.png"
   },
   {
@@ -68,7 +69,7 @@
     "red": 5,
     "blue": 0,
     "green": 0,
-    "description": "Red moves do 10% more damage.",
+    "description": "Red moves have 10% more Power.",
     "sprite": "RedRing.png"
   },
   {
@@ -77,7 +78,7 @@
     "red": 2,
     "blue": 2,
     "green": 2,
-    "description": "All moves do 5% more damage.",
+    "description": "All moves have 5% more Power.",
     "sprite": "VioletRing.png"
   },
   {
@@ -119,7 +120,7 @@
   {
     "id": 13,
     "name": "Evil Aura I",
-    "description": "Attacks do 20% more damage in exchange for some health after every attack.",
+    "description": "Attacks do 20% more damage in exchange for some health after every turn.",
     "sprite": "EvilAura.png",
     "red": 4,
     "blue": 0,
@@ -196,7 +197,7 @@
     "red": 0,
     "blue": 0,
     "green": 0,
-    "description": "10% chance to dodge attack.",
+    "description": "Reduce opponent accuracy a decent amount.",
     "sprite": "Cloak.png"
   },
   {
@@ -283,7 +284,7 @@
   {
     "id": 31,
     "name": "Rope II",
-    "description": "Take 30% less damage from attacks, but deal 30% less damage and lower speed in exchange.",
+    "description": "Take 30% less damage from attacks, but deal 20% less damage and lower speed in exchange.",
     "sprite": "Rope.png",
     "red": 0,
     "blue": 1,
@@ -322,7 +323,7 @@
     "red": 0,
     "blue": 0,
     "green": 0,
-    "description": "15% chance to dodge attack.",
+    "description": "Reduce opponent accuracy considerably.",
     "sprite": "Cloak.png"
   },
   {
@@ -596,7 +597,7 @@
   {
     "id": 214,
     "name": "Gamble",
-    "description": "Your next move will have 50 Accuracy.",
+    "description": "Your next move will have greatly reduced Accuracy.",
     "sprite": "Gamble.png",
     "red": 0,
     "blue": 0,

@@ -31,7 +31,7 @@ export default class App extends React.Component {
       currency: 10,
       attributes: {starters: [], enemies: [], moves: [], equipment: []},
       equippedStarter: 1,
-      unlockedStarters: [false, false, false],
+      unlockedStarters: [false, false, false, false, false, false],
       numWins: 0,
       hasPlayed: false,
       gameState: null,
