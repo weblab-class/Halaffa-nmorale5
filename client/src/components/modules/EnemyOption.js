@@ -33,9 +33,12 @@ export default function EnemyOption(props) {
       />
       <div className="Option-desc">{props.option.description}</div>
       <div className="u-flexColumn">
-        <div className="attribute">Red: {props.option.red}</div>
-        <div className="attribute">Green: {props.option.green}</div>
-        <div className="attribute">Blue: {props.option.blue}</div>
+        <div className="attribute">ATK: {props.option.attack}</div>
+        <div className="attribute">HP: {props.option.health}</div>
+        <div className="attribute">SPD: {props.option.speed}</div>
+        <div className="attribute">RED: {props.option.red}</div>
+        <div className="attribute">GRN: {props.option.green}</div>
+        <div className="attribute">BLU: {props.option.blue}</div>
       </div>
     </div>
   );
