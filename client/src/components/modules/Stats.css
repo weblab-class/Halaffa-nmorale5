@@ -15,4 +15,5 @@
 
 .Stat-hoverDisplay {
   margin: var(--s);
+  width: 400px;
 }

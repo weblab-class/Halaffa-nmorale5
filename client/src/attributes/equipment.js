@@ -564,7 +564,7 @@ const equipmentFuncs = {
     const decay = (moveResult) => {
       eq.lifetime--;
     }
-    player.moves.forEach(move => move.accuracy -= 20);
+    player.moves.forEach(move => move.accuracy = move.accuracy-20);
     player.moves.forEach(move => move.callbacks.push(decay));
     if (eq.lifetime == 0) {
       return true; // this will indicate to game-logic to destroy this equipment
@@ -574,7 +574,7 @@ const equipmentFuncs = {
     const decay = (moveResult) => {
       eq.lifetime--;
     }
-    player.moves.forEach(move => move.accuracy += 20);
+    player.moves.forEach(move => move.accuracy = move.accuracy+20);
     player.moves.forEach(move => move.callbacks.push(decay));
     if (eq.lifetime == 0) {
       return true; // this will indicate to game-logic to destroy this equipment

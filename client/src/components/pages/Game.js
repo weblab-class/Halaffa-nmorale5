@@ -23,7 +23,6 @@ export default function Game(props) {
     configureUpdates(setGameState);
     configureTimer(setTimer);
   }, [])
-  console.log(gameState);
   if (!gameState) return (
     <GameSelect 
       startQueue={startQueue}
