@@ -51,13 +51,12 @@ export default function Stats(props) {
         <div className="u-sMargin statContainer">
           <h3>Stats:</h3>
           <ul>
-            <li>Attack: {props.stats.attack}</li>
-            <li>Health: {props.stats.health}</li>
-            <li>Speed: {props.stats.speed}</li>
-            <li>XP: {props.stats.xp}</li>
-            <li>Red: {props.stats.red}</li>
-            <li>Green: {props.stats.green}</li>
-            <li>Blue: {props.stats.blue}</li>
+            <li>ATK: {props.stats.attack}</li>
+            <li>SPD: {props.stats.speed}</li>
+            <li>RED: {props.stats.red}</li>
+            <li>GRN: {props.stats.green}</li>
+            <li>BLU: {props.stats.blue}</li>
+            <li>HP: {props.stats.health}</li>
           </ul>
         </div>
         <div className="u-sMargin">

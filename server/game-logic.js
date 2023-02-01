@@ -102,7 +102,7 @@ const prepareSelect = (id) => {
   // enemys.forEach((e, i) => e.equipment = [i]);
   const loot = generateLoot(allGames[id].floor);
   const enemys = generateEnemies(allGames[id].floor);
-  enemys.forEach((e, i) => e.equipment = loot[i].color ? [loot[i].id] : []);
+  enemys.forEach((e, i) => e.equipment = loot[i].color ? [] : [loot[i].id]);
   allGames[id].selectionData = {
     loot: loot,
     enemies: enemys,
@@ -139,6 +139,9 @@ const addLootToStats = (id) => {
     red: stats.red + loot.red,
     green: stats.green + loot.green,
     blue: stats.blue + loot.blue,
+    attack: stats.attack + loot.attack,
+    health: stats.health + loot.health,
+    speed: stats.speed + loot.speed,
     equipment: stats.equipment.concat([loot.id])
   }
 }
@@ -172,10 +175,18 @@ const loot = (id, discard) => {
   // removes the move at index given by discard (if any)
   allGames[id].screen = "select";
   allGames[id].floor++;
-  if (discard === 0 || discard > 0) {
+  if (discard === null) {
+    if (allGames[id].lootData.color) {
+      // move
+      allGames[id].generalStats.moves.push(allGames[id].lootData.id);
+    } else {
+      // equipment
+      addLootToStats(id);
+    }
+  }
+  else if (discard >= 0) {
     allGames[id].generalStats.moves.splice(discard, 1);
-  } if (discard !== -1) {
-    addLootToStats(id);
+    allGames[id].generalStats.moves.push(allGames[id].lootData.id);
   }
   prepareSelect(id);
 }

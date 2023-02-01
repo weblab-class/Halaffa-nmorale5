@@ -75,7 +75,7 @@ const heal = (move, player, enemy) => {
 }
 
 const addStatus = (character, status) => {
-  for (equip in character.equipment) {
+  for (equip of character.equipment) {
     if (equip.id == 100 || equip.id == 101 || equip.id == 102 ||
        (equip.id == status_mapping["insomnia"] && status == "sleep")
        || equip.id == status_mapping["wonderroom"]) {
@@ -88,7 +88,7 @@ const addStatus = (character, status) => {
 
 const addExclusiveEffect = (character, status) => {
   statusID = status_mapping[status];
-  for (equip in character.equipment) {
+  for (equip of character.equipment) {
     if (equip.id == statusID || equip.id == status_mapping["wonderroom"]) {
       return null;
     }
@@ -98,7 +98,7 @@ const addExclusiveEffect = (character, status) => {
 }
 
 const addEffect = (character, status) => {
-  for (equip in character.equipment) {
+  for (equip of character.equipment) {
     if (equip.id == status_mapping["wonderroom"]) {
       return null;
     }
@@ -108,7 +108,7 @@ const addEffect = (character, status) => {
 
 const checkStatus = (character, status) => {
   statusID = status_mapping[status];
-  for (equip in character.equipment) {
+  for (equip of character.equipment) {
     if (equip.id == statusID) {
       return true;
     }
@@ -268,7 +268,7 @@ const moveFuncs = {
   },
   36: (move, player, enemy) => {
     let index = 0;
-    for (equip in player.equipment){
+    for (equip of player.equipment){
       if (equip.id == status_mapping["frozen"]){
         player.equipment = player.equipment.splice(index, 1);
       }

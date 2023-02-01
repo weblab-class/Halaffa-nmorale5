@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import MoveButton from "./MoveButton.js";
 import "./LootResult.css";
-import "./MoveButton.js";
 
 export default function LootResults(props) {
-  if (props.lootData.color && props.moves.length == 3) {
+  if (props.lootData.color && props.moves.length >= 3) {
     // move
     const [desc, setDesc] = useState(null)
     const onHover = (move) => {
@@ -21,7 +21,7 @@ export default function LootResults(props) {
             name={move.name}
             power={move.power}
             color={move.color}
-            onClick={() => props.collect(i)}
+            onClick={() => props.collectLoot(i)}
             onHover={() => onHover(move)}
             onUnhover={() => onUnhover(move)}
           />
@@ -38,11 +38,11 @@ export default function LootResults(props) {
             name={props.lootData.name}
             power={props.lootData.power}
             color={props.lootData.color}
-            onClick={() => props.collect(-1)}
-            onHover={() => onHover(move)}
-            onUnhover={() => onUnhover(move)}
+            onClick={() => props.collectLoot(-1)}
+            onHover={() => onHover(props.lootData)}
+            onUnhover={() => onUnhover(props.lootData)}
           />
-        <h2>{desc ? `[PWR: ${Math.floor(desc.power)}] [ACC: ${Math.floor(desc.accuracy)}%]\n${desc.description}` : alt}</h2>
+        <p>{desc ? `[PWR: ${Math.floor(desc.power)}] [ACC: ${Math.floor(desc.accuracy)}%]\n${desc.description}` : alt}</p>
       </>
     )
   }
