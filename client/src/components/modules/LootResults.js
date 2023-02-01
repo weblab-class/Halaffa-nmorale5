@@ -54,6 +54,9 @@ export default function LootResults(props) {
       <p className="attribute">Red: {props.lootData.red}</p>
       <p className="attribute">Green: {props.lootData.green}</p>
       <p className="attribute">Blue: {props.lootData.blue}</p>
+      <p className="attribute">Health: {props.lootData.health}</p>
+      <p className="attribute">Attack: {props.lootData.attack}</p>
+      <p className="attribute">Speed: {props.lootData.speed}</p>
       <button className="button3 bg" onClick={() => props.collectLoot(null)}>Collect</button>
     </div>
   )

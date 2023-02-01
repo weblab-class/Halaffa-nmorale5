@@ -202,16 +202,19 @@ const move = (gameId, playerId, moveIdx) => {
   battleData.text = resultText;
   battleData.animating = true;
   resetBuffs(gameId);
-  console.log("HERE")
-  console.log(playerId)
-  console.log(battleData[playerId])
   applyEquipment(battleData[playerId], battleData[enemyId]);
   applyStats(battleData[playerId], battleData[enemyId]);
 }
 
 const makeBotMove = (id) => {
-  console.log(allGames[id].battleData)
-  const moveIdx = 0; // always choose first move for now
+  let moveIdx = 0;
+  const num = Math.random();
+  if (num < .33) {
+    moveIdx = 2;
+  }
+  else if (num < .66) {
+    moveIdx = 1;
+  }
   move(id, "BOT", moveIdx);
 }
 

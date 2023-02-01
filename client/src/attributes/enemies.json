@@ -9,7 +9,7 @@
     "attack": 4,
     "health": 5,
     "speed": 1,
-    "moves": [1],
+    "moves": [1, 15, 16],
     "XP": 20,
     "tier": 1
   },
@@ -23,7 +23,7 @@
     "attack": 8,
     "health": 1,
     "speed": 7,
-    "moves": [1],
+    "moves": [0, 6, 10],
     "XP": 30,
     "tier": 1
   },
@@ -37,7 +37,7 @@
     "attack": 1,
     "health": 3,
     "speed": 2,
-    "moves": [1],
+    "moves": [5, 11, 1],
     "XP": 5,
     "tier": 1
   },
@@ -51,8 +51,9 @@
     "attack": 10,
     "health": 7,
     "speed": 2,
-    "moves": [1],
-    "XP": 60
+    "moves": [30, 33, 36],
+    "XP": 60,
+    "tier": 2
   },
   {
     "id": 4,
@@ -64,7 +65,7 @@
     "attack": 2,
     "health": 13,
     "speed": 3,
-    "moves": [1],
+    "moves": [28, 29, 30],
     "XP": 40,
     "tier": 2
   },
@@ -78,7 +79,7 @@
     "attack": 3,
     "health": 10,
     "speed": 5,
-    "moves": [1],
+    "moves": [26, 34, 9],
     "XP": 50,
     "tier": 2
   },
@@ -89,10 +90,10 @@
     "red": 4,
     "green": 4,
     "blue": 1,
-    "attack": 5,
+    "attack": 3,
     "health": 8,
     "speed": 5,
-    "moves": [1],
+    "moves": [36, 29, 15],
     "XP": 50,
     "tier": 1
   },
@@ -101,12 +102,12 @@
     "name": "Rat",
     "sprite": "Rat.png",
     "red": 1,
-    "green": 4,
-    "blue": 4,
-    "attack": 3,
-    "health": 20,
+    "green": 2,
+    "blue": 2,
+    "attack": 2,
+    "health": 12,
     "speed": 3,
-    "moves": [1],
+    "moves": [3, 5, 29],
     "XP": 50,
     "tier": 1
   },
@@ -114,15 +115,15 @@
     "id": 8,
     "name": "Shooting Star",
     "sprite": "StarGuy.png",
-    "red": 5,
+    "red": 6,
     "green": 2,
     "blue": 2,
-    "attack": 5,
-    "health": 10,
+    "attack": 6,
+    "health": 14,
     "speed": 9,
-    "moves": [1],
+    "moves": [37, 41, 17],
     "XP": 60,
-    "tier": 2
+    "tier": 3
   },
   {
     "id": 9,
@@ -130,11 +131,11 @@
     "sprite": "Karp.png",
     "red": 1,
     "green": 2,
-    "blue": 8,
-    "attack": 4,
-    "health": 12,
+    "blue": 5,
+    "attack": 1,
+    "health": 9,
     "speed": 5,
-    "moves": [1],
+    "moves": [2, 17, 14],
     "XP": 50,
     "tier": 1
   },
@@ -145,26 +146,26 @@
     "red": 1,
     "green": 1,
     "blue": 1,
-    "attack": 5,
+    "attack": 3,
     "health": 14,
     "speed": 5,
-    "moves": [1],
+    "moves": [21, 22, 23],
     "XP": 50,
-    "tier": 3
+    "tier": 1
   },
   {
     "id": 11,
     "name": "Ghost",
     "sprite": "Boo.png",
-    "red": 4,
-    "green": 4,
-    "blue": 4,
-    "attack": 5,
+    "red": 3,
+    "green": 3,
+    "blue": 3,
+    "attack": 3,
     "health": 15,
     "speed": 8,
-    "moves": [1],
+    "moves": [32, 10, 4],
     "XP": 80,
-    "tier": 3
+    "tier": 2
   },
   {
     "id": 12,
@@ -176,7 +177,7 @@
     "attack": 12,
     "health": 22,
     "speed": 7,
-    "moves": [1],
+    "moves": [36, 16, 18],
     "XP": 180,
     "tier": 3
   },
@@ -190,7 +191,7 @@
     "attack": 6,
     "health": 50,
     "speed": 5,
-    "moves": [1],
+    "moves": [16, 17, 20],
     "XP": 180,
     "tier": 3    
   },
@@ -204,7 +205,7 @@
     "attack": 10,
     "health": 38,
     "speed": 11,
-    "moves": [1],
+    "moves": [16, 17, 37],
     "XP": 250,
     "tier": 3
   }

@@ -273,7 +273,7 @@ const moveFuncs = {
         player.equipment = player.equipment.splice(index, 1);
       }
     }
-    return heal(move, player, enemy);
+    return doDamage(move, player, enemy);
   },
   37: (move, player, enemy) => {
     addExclusiveEffect(player, "firefrenzy");
