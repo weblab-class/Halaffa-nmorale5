@@ -45,16 +45,16 @@ const equipmentFuncs = {
     player.moves.forEach(move => move.callbacks.push(decay));
   },
   0: (eq, player, enemy) => {
-    player.blue *= 2
+    // player.blue *= 2
   },
   1: (eq, player, enemy) => {
-    player.red *= 2
+    // player.red *= 2
   },
   2: (eq, player, enemy) => {
-    player.attack += 5
+    // player.attack += 5
   },
   3: (eq, player, enemy) => {
-    player.speed *= 2
+    // player.speed *= 2
   },
   217: (eq, player, enemy) => {
 

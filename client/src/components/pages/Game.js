@@ -14,6 +14,7 @@ import GameOver from '../modules/GameOver.js';
 import Waiting from '../modules/Waiting.js';
 import "./Gallery.css";
 import "./Game.css";
+import BattleStats from '../modules/BattleStats.js';
 
 export default function Game(props) {
   const [gameState, setGameState] = useState(null);
@@ -73,7 +74,7 @@ export default function Game(props) {
       addCurrency={props.addCurrency}
       endGame={endGame}
     />
-  )
+  );
   let screen;
   switch (gameState.screen) {
     case "battle":
@@ -113,6 +114,17 @@ export default function Game(props) {
       );
       break;
   }
+  const stats = gameState.screen == "battle" ? (
+      <BattleStats
+        player={gameState.battleData[gameState.id]}
+        enemy={gameState.battleData[gameState.battleData.BOT ? "BOT" : gameState.opponent]}
+      />
+    ) : (
+      <Stats
+        attributes={props.attributes}
+        stats={gameState.generalStats}
+      />
+    );
   return (
     <div>
       <div className="Game-topContainer u-flexColumn u-flex-alignCenter">
@@ -122,10 +134,7 @@ export default function Game(props) {
         {screen}
       </div>
       <div>
-        <Stats
-          attributes={props.attributes}
-          stats={gameState.generalStats}
-        />
+        {stats}
       </div>
     </div>
   )
