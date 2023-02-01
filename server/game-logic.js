@@ -97,9 +97,12 @@ const cancel = (id) => {
 }
 
 const prepareSelect = (id) => {
-  const loot = [0, 1, 2].map(eqId => ({ ...equipment[eqId]}));
-  const enemys = [0, 1, 2].map(enemyId => ({ ...enemies[enemyId] }));
-  enemys.forEach((e, i) => e.equipment = [i]);
+  // const loot = [0, 1, 2].map(eqId => ({ ...equipment[eqId]}));
+  // const enemys = [0, 1, 2].map(enemyId => ({ ...enemies[enemyId] }));
+  // enemys.forEach((e, i) => e.equipment = [i]);
+  const loot = generateLoot(allGames[id].floor);
+  const enemys = generateEnemies(allGames[id].floor);
+  enemys.forEach((e, i) => e.equipment = loot[i].color ? [loot[i].id] : []);
   allGames[id].selectionData = {
     loot: loot,
     enemies: enemys,
@@ -107,6 +110,8 @@ const prepareSelect = (id) => {
 }
 
 const prepareBattle = (id, selection) => {
+  console.log(allGames[id].generalStats)
+  console.log(allGames[id].selectionData.enemies[selection])
   allGames[id].battleData = {
     [id]: getStats(allGames[id].generalStats),
     BOT: getStats(allGames[id].selectionData.enemies[selection]),
@@ -160,11 +165,14 @@ const select = (id, i) => {
   }
 }
 
-const loot = (id, discards) => {
+const loot = (id, discard) => {
   // confirms that the user has clicked past the loot screen.
-  // ignores discards for now; should eventually remove discards from generalData.
+  // removes the move at index given by discard (if any)
   allGames[id].screen = "select";
   allGames[id].floor++;
+  if (discard || discard === 0) {
+    allGames[id].generalStats.moves.splice(discard, 1);
+  }
   addLootToStats(id);
   prepareSelect(id);
 }
@@ -201,6 +209,7 @@ const progressBattle = (id) => {
     if (allGames[id].gameMode == "endless") {
       allGames[id].screen = "end";
     } else if (opponent == "BOT") {
+      prepareSelect(id);
       allGames[id].screen = "select";
     } else {
       allGames[id].screen = "lose";
@@ -261,15 +270,13 @@ const getMoves = (ids) => ids.map((moveId) => {
 
 // takes generalStats or selectionData.enemies[i] and returns copy with eq and move ids replaced with the real data
 const getStats = (stats) => {
-  console.log(stats)
+  console.log(stats.moves)
   const out = {
     ...stats,
     maxhealth: stats.health,
     moves: getMoves(stats.moves),
     equipment: getEquipment(stats.equipment),
   }
-  console.log("out")
-  console.log(out)
   return out
 }
 
@@ -327,6 +334,38 @@ const executeMove = (player, enemy, idx) => {
   move.callbacks.forEach((cb) => cb(moveSummary));
   return moveSummary.text;
 }
+
+// LOOT AND ENEMY GENERATION
+
+const allLoot = {
+  1: equipment.filter(eq => eq.tier == 1).concat(moves.filter(m => m.tier == 1)),
+  2: equipment.filter(eq => eq.tier == 2).concat(moves.filter(m => m.tier == 2)),
+  3: equipment.filter(eq => eq.tier == 3).concat(moves.filter(m => m.tier == 3)),
+};
+
+const allEnemies = {
+  1: enemies.filter(e => e.tier == 1),
+  2: enemies.filter(e => e.tier == 2),
+  3: enemies.filter(e => e.tier == 3),
+};
+
+const randomChoice = (list) => list[Math.floor(Math.random() * list.length)];
+
+const generateLoot = (floor) => [1, 2, 3].map((tier) => ({ ...randomChoice(allLoot[tier]) }));
+
+const generateEnemies = (floor) => {
+  console.log("base enemies")
+  console.log(allEnemies)
+  const baseEnemies = [1, 2, 3].map((tier) => ({ ...randomChoice(allEnemies[tier]) }));
+  console.log(baseEnemies)
+  baseEnemies.forEach((e) => {
+    ["attack", "health", "speed", "red", "green", "blue"].forEach((stat) => {
+      e[stat] = Math.round(e[stat] * 1.1 ** (floor - 1));
+    });
+  });
+  console.log(baseEnemies)
+  return baseEnemies;
+};
 
 module.exports = {
   allGames,

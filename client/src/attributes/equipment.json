@@ -6,7 +6,8 @@
     "sprite": "Longsword.png",
     "red": 2,
     "blue": 1,
-    "green": 0
+    "green": 0,
+    "tier": 1
   },
   {
     "id": 1,
@@ -16,7 +17,8 @@
     "green": 1,
     "description": "Increases Speed and Attack by 50% after 4 turns.",
     "sprite": "MagicMail.png",
-    "lifetime": 4
+    "lifetime": 4,
+    "tier": 2
   },
   {
     "id": 2,
@@ -25,7 +27,8 @@
     "blue": 0,
     "green": 0,
     "description": "Increases Speed by 10%.",
-    "sprite": "RunningShoes.png"
+    "sprite": "RunningShoes.png",
+    "tier": 1
   },
   {
     "id": 3,
@@ -34,7 +37,8 @@
     "blue": 2,
     "green": 1,
     "description": "Heals 5% of Max Health after each attack.",
-    "sprite": "HolyAura.png"
+    "sprite": "HolyAura.png",
+    "tier": 1
   },
   {
     "id": 4,
@@ -43,7 +47,8 @@
     "blue": 0,
     "green": 0,
     "description": "Reduce opponent accuracy a little.",
-    "sprite": "Cloak.png"
+    "sprite": "Cloak.png",
+    "tier": 1
   },
   {
     "id": 5,
@@ -52,7 +57,8 @@
     "blue": 0,
     "green": 5,
     "description": "Green moves have 10% more Power.",
-    "sprite": "GreenRing.png"
+    "sprite": "GreenRing.png",
+    "tier": 1
   },
   {
     "id": 6,
@@ -61,7 +67,8 @@
     "blue": 5,
     "green": 0,
     "description": "Blue moves have 10% more Power.",
-    "sprite": "BlueRing.png"
+    "sprite": "BlueRing.png",
+    "tier": 1
   },
   {
     "id": 7,
@@ -70,7 +77,8 @@
     "blue": 0,
     "green": 0,
     "description": "Red moves have 10% more Power.",
-    "sprite": "RedRing.png"
+    "sprite": "RedRing.png",
+    "tier": 1
   },
   {
     "id": 8,
@@ -79,7 +87,8 @@
     "blue": 2,
     "green": 2,
     "description": "All moves have 5% more Power.",
-    "sprite": "VioletRing.png"
+    "sprite": "VioletRing.png",
+    "tier": 1
   },
   {
     "id": 9,
@@ -88,7 +97,8 @@
     "blue": 0,
     "green": 5,
     "description": "Take 15% less damage from Green moves.",
-    "sprite": "GreenNecklace.png"
+    "sprite": "GreenNecklace.png",
+    "tier": 1
   },
   {
     "id": 10,
@@ -97,7 +107,8 @@
     "blue": 5,
     "green": 0,
     "description": "Take 15% less damage from Blue moves.",
-    "sprite": "BlueNecklace.png"
+    "sprite": "BlueNecklace.png",
+    "tier": 1
   },
   {
     "id": 11,
@@ -106,7 +117,8 @@
     "blue": 0,
     "green": 0,
     "description": "Take 15% less damage from Red moves.",
-    "sprite": "RedNecklace.png"
+    "sprite": "RedNecklace.png",
+    "tier": 1
   },
   {
     "id": 12,
@@ -115,7 +127,8 @@
     "blue": 2,
     "green": 2,
     "description": "Take 10% less damage from moves.",
-    "sprite": "VioletNecklace.png"
+    "sprite": "VioletNecklace.png",
+    "tier": 1
   },
   {
     "id": 13,
@@ -124,7 +137,8 @@
     "sprite": "EvilAura.png",
     "red": 4,
     "blue": 0,
-    "green": 0
+    "green": 0,
+    "tier": 1
   },
   {
     "id": 14,
@@ -134,7 +148,8 @@
     "red": 1,
     "blue": 2,
     "green": 0,
-    "lifetime": 1
+    "lifetime": 1,
+    "tier": 3
   },
   {
     "id": 15,
@@ -143,7 +158,8 @@
     "sprite": "Rope.png",
     "red": 0,
     "blue": 1,
-    "green": 3
+    "green": 3,
+    "tier": 1
   },
   {
     "id": 16,
@@ -153,7 +169,8 @@
     "red": 2,
     "blue": 0,
     "green": 2,
-    "lifetime": 1
+    "lifetime": 1,
+    "tier": 2
   },
   {
     "id": 17,
@@ -162,7 +179,8 @@
     "sprite": "Thorns.png",
     "red": 0,
     "blue": 0,
-    "green": 4
+    "green": 4,
+    "tier": 1
   },
   {
     "id": 18,
@@ -171,7 +189,8 @@
     "sprite": "Longsword.png",
     "red": 2,
     "blue": 1,
-    "green": 0
+    "green": 0,
+    "tier": 2
   },
   {
     "id": 19,
@@ -180,7 +199,8 @@
     "blue": 0,
     "green": 0,
     "description": "Increases Speed by 20%.",
-    "sprite": "RunningShoes.png"
+    "sprite": "RunningShoes.png",
+    "tier": 2
   },
   {
     "id": 20,
@@ -189,7 +209,8 @@
     "blue": 2,
     "green": 1,
     "description": "Heals 8% of Max Health after each attack.",
-    "sprite": "HolyAura.png"
+    "sprite": "HolyAura.png",
+    "tier": 2
   },
   {
     "id": 21,
@@ -198,7 +219,8 @@
     "blue": 0,
     "green": 0,
     "description": "Reduce opponent accuracy a decent amount.",
-    "sprite": "Cloak.png"
+    "sprite": "Cloak.png",
+    "tier": 2
   },
   {
     "id": 22,
@@ -207,7 +229,8 @@
     "blue": 0,
     "green": 5,
     "description": "Green moves do 20% more damage.",
-    "sprite": "GreenRing.png"
+    "sprite": "GreenRing.png",
+    "tier": 2
   },
   {
     "id": 23,
@@ -216,7 +239,8 @@
     "blue": 5,
     "green": 0,
     "description": "Blue moves do 20% more damage.",
-    "sprite": "BlueRing.png"
+    "sprite": "BlueRing.png",
+    "tier": 2
   },
   {
     "id":24,
@@ -225,7 +249,8 @@
     "blue": 0,
     "green": 0,
     "description": "Red moves do 20% more damage.",
-    "sprite": "RedRing.png"
+    "sprite": "RedRing.png",
+    "tier": 2
   },
   {
     "id": 25,
@@ -234,7 +259,8 @@
     "blue": 2,
     "green": 2,
     "description": "All moves do 10% more damage.",
-    "sprite": "VioletRing.png"
+    "sprite": "VioletRing.png",
+    "tier": 2
   },
   {
     "id": 26,
@@ -243,7 +269,8 @@
     "blue": 0,
     "green": 5,
     "description": "Take 30% less damage from Green moves.",
-    "sprite": "GreenNecklace.png"
+    "sprite": "GreenNecklace.png",
+    "tier": 2
   },
   {
     "id": 27,
@@ -252,7 +279,8 @@
     "blue": 5,
     "green": 0,
     "description": "Take 30% less damage from Blue moves.",
-    "sprite": "BlueNecklace.png"
+    "sprite": "BlueNecklace.png",
+    "tier": 2
   },
   {
     "id": 28,
@@ -261,7 +289,8 @@
     "blue": 0,
     "green": 0,
     "description": "Take 30% less damage from Red moves.",
-    "sprite": "RedNecklace.png"
+    "sprite": "RedNecklace.png",
+    "tier": 2
   },
   {
     "id": 29,
@@ -270,7 +299,8 @@
     "blue": 2,
     "green": 2,
     "description": "Take 20% less damage from moves.",
-    "sprite": "VioletNecklace.png"
+    "sprite": "VioletNecklace.png",
+    "tier": 2
   },
   {
     "id": 30,
@@ -279,7 +309,8 @@
     "sprite": "EvilAura.png",
     "red": 4,
     "blue": 0,
-    "green": 0
+    "green": 0,
+    "tier": 2
   },
   {
     "id": 31,
@@ -288,7 +319,8 @@
     "sprite": "Rope.png",
     "red": 0,
     "blue": 1,
-    "green": 3
+    "green": 3,
+    "tier": 2
   },
   {
     "id": 32,
@@ -297,7 +329,8 @@
     "sprite": "Longsword.png",
     "red": 2,
     "blue": 1,
-    "green": 0
+    "green": 0,
+    "tier": 3
   },
   {
     "id": 33,
@@ -306,7 +339,8 @@
     "blue": 0,
     "green": 0,
     "description": "Increases Speed by 30%.",
-    "sprite": "RunningShoes.png"
+    "sprite": "RunningShoes.png",
+    "tier": 3
   },
   {
     "id": 34,
@@ -315,7 +349,8 @@
     "blue": 2,
     "green": 1,
     "description": "Heals 10% of Max Health after each attack.",
-    "sprite": "HolyAura.png"
+    "sprite": "HolyAura.png",
+    "tier": 3
   },
   {
     "id": 35,
@@ -324,7 +359,8 @@
     "blue": 0,
     "green": 0,
     "description": "Reduce opponent accuracy considerably.",
-    "sprite": "Cloak.png"
+    "sprite": "Cloak.png",
+    "tier": 3
   },
   {
     "id": 36,
@@ -333,7 +369,8 @@
     "blue": 0,
     "green": 5,
     "description": "Green moves do 30% more damage.",
-    "sprite": "GreenRing.png"
+    "sprite": "GreenRing.png",
+    "tier": 3
   },
   {
     "id": 37,
@@ -342,7 +379,8 @@
     "blue": 5,
     "green": 0,
     "description": "Blue moves do 30% more damage.",
-    "sprite": "BlueRing.png"
+    "sprite": "BlueRing.png",
+    "tier": 3
   },
   {
     "id": 38,
@@ -351,7 +389,8 @@
     "blue": 0,
     "green": 0,
     "description": "Red moves do 30% more damage.",
-    "sprite": "RedRing.png"
+    "sprite": "RedRing.png",
+    "tier": 3
   },
   {
     "id": 39,
@@ -360,7 +399,8 @@
     "blue": 2,
     "green": 2,
     "description": "All moves do 15% more damage.",
-    "sprite": "VioletRing.png"
+    "sprite": "VioletRing.png",
+    "tier": 3
   },
   {
     "id": 40,
@@ -369,7 +409,8 @@
     "blue": 0,
     "green": 5,
     "description": "Take 40% less damage from Green moves.",
-    "sprite": "GreenNecklace.png"
+    "sprite": "GreenNecklace.png",
+    "tier": 3
   },
   {
     "id": 41,
@@ -378,7 +419,8 @@
     "blue": 5,
     "green": 0,
     "description": "Take 40% less damage from Blue moves.",
-    "sprite": "BlueNecklace.png"
+    "sprite": "BlueNecklace.png",
+    "tier": 3
   },
   {
     "id": 42,
@@ -387,7 +429,8 @@
     "blue": 0,
     "green": 0,
     "description": "Take 40% less damage from Red moves.",
-    "sprite": "RedNecklace.png"
+    "sprite": "RedNecklace.png",
+    "tier": 3
   },
   {
     "id": 43,
@@ -396,7 +439,8 @@
     "blue": 2,
     "green": 2,
     "description": "Take 25% less damage from moves.",
-    "sprite": "VioletNecklace.png"
+    "sprite": "VioletNecklace.png",
+    "tier": 3
   },
   {
     "id": 44,
@@ -405,7 +449,8 @@
     "sprite": "EvilAura.png",
     "red": 4,
     "blue": 0,
-    "green": 0
+    "green": 0,
+    "tier": 3
   },
   {
     "id": 45,
@@ -414,7 +459,8 @@
     "sprite": "Rope.png",
     "red": 0,
     "blue": 1,
-    "green": 3
+    "green": 3,
+    "tier": 3
   },
   {
     "id": 46,
@@ -423,7 +469,8 @@
     "sprite": "Thorns.png",
     "red": 0,
     "blue": 0,
-    "green": 4
+    "green": 4,
+    "tier": 2
   },
   {
     "id": 47,
@@ -432,7 +479,8 @@
     "sprite": "Thorns.png",
     "red": 0,
     "blue": 0,
-    "green": 4
+    "green": 4,
+    "tier": 3
   },
   {
     "id": 100,

@@ -3,19 +3,29 @@ import "./EnemyOption.css";
 
 export default function EnemyOption(props) {
   let color = "greenbg";
-  if (props.option.difficulty == "Medium") {
+  if (props.option.tier == 2) {
     color = "yellowbg";
   }
-  else if (props.option.difficulty == "Hard") {
+  else if (props.option.tier == 3) {
     color = "redbg"
   }
-  return (
-    <div className={"u-flexColumn u-mMargin u-flex-alignCenter " + color}>
-      <h3>Difficulty: {props.option.difficulty}</h3>
-      <p className="attribute">XP: {props.option.xp}</p>
+  const data = props.option.color ? (
+    // Display a move
+    <>
+
+    </>
+  ) : (
+    // Display an equipment
+    <>
       <p className="attribute">Red: {props.option.red}</p>
       <p className="attribute">Green: {props.option.green}</p>
       <p className="attribute">Blue: {props.option.blue}</p>
+    </>
+  );
+  return (
+    <div className={"u-flexColumn u-mMargin u-flex-alignCenter " + color}>
+      <h3>Difficulty: {["Easy", "Medium", "Hard"][props.option.tier - 1]}</h3>
+      {data}
       <button className={"buttonS button2 " + color} onClick={props.onClick}>Fight</button>
     </div>
   )

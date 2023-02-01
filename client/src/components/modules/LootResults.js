@@ -9,7 +9,7 @@ export default function LootResults(props) {
       <p className="attribute">Red: {props.lootData.red}</p>
       <p className="attribute">Green: {props.lootData.green}</p>
       <p className="attribute">Blue: {props.lootData.blue}</p>
-      <button className="button3 bg"  onClick={() => props.collectLoot({})}>Collect</button>
+      <button className="button3 bg"  onClick={() => props.collectLoot(null)}>Collect</button>
     </div>
   )
 }

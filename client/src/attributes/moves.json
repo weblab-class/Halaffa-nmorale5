@@ -29,7 +29,8 @@
     "description": "The next 2 moves your opponent uses have 50 accuracy.",
     "power": 0,
     "accuracy": 80,
-    "color": "blue"
+    "color": "blue",
+    "tier": 2
   },
   {
     "id": 4,
@@ -37,7 +38,8 @@
     "description": "All Equipment, Move effects, and Status effects are permanently nullified, and no new ones can take effect.",
     "power": 0,
     "accuracy": 75,
-    "color": "blue"
+    "color": "blue",
+    "tier": 3
   },
   {
     "id": 5,
@@ -45,7 +47,8 @@
     "description": "Heal damage to yourself as opposed to dealing damage to the opponent.",
     "power": 50,
     "accuracy": 100,
-    "color": "green"
+    "color": "green",
+    "tier": 1
   },
   {
     "id": 6,
@@ -53,7 +56,8 @@
     "description": "Reliable damage.",
     "power": 60,
     "accuracy": 100,
-    "color": "red"
+    "color": "red",
+    "tier": 1
   },
   {
     "id": 7,
@@ -61,7 +65,8 @@
     "description": "Blue moves have 50% more Power. Does not stack with other Blue Room uses.",
     "power": 0,
     "accuracy": 95,
-    "color": "blue"
+    "color": "blue",
+    "tier": 2
   },
   {
     "id": 8,
@@ -69,7 +74,8 @@
     "description": "Power is increased by Speed.",
     "power": 50,
     "accuracy": 90,
-    "color": "red"
+    "color": "red",
+    "tier": 2
   },
   {
     "id": 9,
@@ -77,7 +83,8 @@
     "description": "Heal over time for the next 4 turns.",
     "power": 20,
     "accuracy": 85,
-    "color": "green"
+    "color": "green",
+    "tier": 2
   },
   {
     "id": 10,
@@ -85,7 +92,8 @@
     "description": "Heal half the damage dealt.",
     "power": 60,
     "accuracy": 80,
-    "color": "red"
+    "color": "red",
+    "tier": 3
   },
   {
     "id": 11,
@@ -93,7 +101,8 @@
     "description": "Make the opponent fall asleep.",
     "power": 0,
     "accuracy": 60,
-    "color": "green"
+    "color": "green",
+    "tier": 3
   },
   {
     "id": 12,
@@ -101,7 +110,8 @@
     "description": "50% chance to inflict Burn.",
     "power": 40,
     "accuracy": 90,
-    "color": "red"
+    "color": "red",
+    "tier": 1
   },
   {
     "id": 13,
@@ -109,7 +119,8 @@
     "description": "Your moves do 30% more damage.",
     "power": 0,
     "accuracy": 100,
-    "color": "blue"
+    "color": "blue",
+    "tier": 1
   },
   {
     "id": 14,
@@ -117,7 +128,8 @@
     "description": "Guarenteed to Freeze opponents whose highest color isn't Blue.",
     "power": 30,
     "accuracy": 70,
-    "color": "blue"
+    "color": "blue",
+    "tier": 3
   },
   {
     "id": 15,
@@ -125,7 +137,8 @@
     "description": "Your next move has 100 accuracy.",
     "power": 0,
     "accuracy": 100,
-    "color": "blue"
+    "color": "blue",
+    "tier": 2
   },
   {
     "id": 16,
@@ -133,7 +146,8 @@
     "description": "Big damage.",
     "power": 90,
     "accuracy": 90,
-    "color": "green"
+    "color": "green",
+    "tier": 3
   },
   {
     "id": 17,
@@ -141,7 +155,8 @@
     "description": "Big damage.",
     "power": 110,
     "accuracy": 80,
-    "color": "blue"
+    "color": "blue",
+    "tier": 3
   },
   {
     "id": 18,
@@ -149,7 +164,8 @@
     "description": "Insane damage.",
     "power": 180,
     "accuracy": 40,
-    "color": "red"
+    "color": "red",
+    "tier": 3
   },
   {
     "id": 19,
@@ -157,7 +173,8 @@
     "description": "Heal damage to yourself as opposed to dealing damage to the opponent.",
     "power": 50,
     "accuracy": 100,
-    "color": "blue"
+    "color": "blue",
+    "tier": 1
   },
   {
     "id": 20,
@@ -165,7 +182,8 @@
     "description": "Heal damage to yourself as opposed to dealing damage to the opponent.",
     "power": 90,
     "accuracy": 90,
-    "color": "green"
+    "color": "green",
+    "tier": 2
   },
   {
     "id": 21,
@@ -173,7 +191,8 @@
     "description": "Take 30% less damage from Red moves. Does not stack with other Red Mist.",
     "power": 20,
     "accuracy": 100,
-    "color": "blue"
+    "color": "blue",
+    "tier": 1
   },
   {
     "id": 22,
@@ -181,7 +200,8 @@
     "description": "Take 30% less damage from Blue moves. Does not stack with other Blue Mist.",
     "power": 20,
     "accuracy": 100,
-    "color": "blue"
+    "color": "blue",
+    "tier": 1
   },
   {
     "id": 23,
@@ -189,7 +209,8 @@
     "description": "Take 30% less damage from Green moves. Does not stack with other Green Mist.",
     "power": 20,
     "accuracy": 100,
-    "color": "blue"
+    "color": "blue",
+    "tier": 2
   },
   {
     "id": 24,
@@ -197,7 +218,8 @@
     "description": "The opponent's next move has 20 less accuracy.",
     "power": 60,
     "accuracy": 95,
-    "color": "red"
+    "color": "red",
+    "tier": 2
   },
   {
     "id": 25,
@@ -205,7 +227,8 @@
     "description": "The opponent's next move has 20 more accuracy.",
     "power": 100,
     "accuracy": 100,
-    "color": "red"
+    "color": "red",
+    "tier": 3
   },
   {
     "id": 26,
@@ -213,7 +236,8 @@
     "description": "The opponent falls asleep after their next turn.",
     "power": 10,
     "accuracy": 100,
-    "color": "green"
+    "color": "green",
+    "tier": 2
   },
   {
     "id": 27,
@@ -221,7 +245,8 @@
     "description": "30% chance to Burn.",
     "power": 60,
     "accuracy": 95,
-    "color": "blue"
+    "color": "blue",
+    "tier": 3
   },
   {
     "id": 28,
@@ -229,7 +254,8 @@
     "description": "Some reliable Red damage.",
     "power": 70,
     "accuracy": 100,
-    "color": "red"
+    "color": "red",
+    "tier": 2
   },
   {
     "id": 29,
@@ -237,7 +263,8 @@
     "description": "Some reliable Green damage.",
     "power": 70,
     "accuracy": 100,
-    "color": "green"
+    "color": "green",
+    "tier": 2
   },
   {
     "id": 30,
@@ -245,7 +272,8 @@
     "description": "Some reliable Blue damage.",
     "power": 70,
     "accuracy": 100,
-    "color": "blue"
+    "color": "blue",
+    "tier": 2
   },
   {
     "id": 31,
@@ -253,7 +281,8 @@
     "description": "Has triple Power and 100 Accuracy when Burned.",
     "power": 60,
     "accuracy": 90,
-    "color": "green"
+    "color": "green",
+    "tier": 3
   },
   {
     "id": 32,
@@ -261,7 +290,8 @@
     "description": "Burn both you and the opponent.",
     "power": 50,
     "accuracy": 100,
-    "color": "red"
+    "color": "red",
+    "tier": 1
   },
   {
     "id": 33,
@@ -269,7 +299,8 @@
     "description": "Every time this move is used successfully, its Power is increased by 20.",
     "power": 40,
     "accuracy": 90,
-    "color": "blue"
+    "color": "blue",
+    "tier": 2
   },
   {
     "id": 34,
@@ -277,7 +308,8 @@
     "description": "Heal as opposed to doing damage. Using this move prevents being put to sleep.",
     "power": 40,
     "accuracy": 100,
-    "color": "blue"
+    "color": "blue",
+    "tier": 2
   },
   {
     "id": 35,
@@ -285,7 +317,8 @@
     "description": "Heal as opposed to doing damage. Heal triple when Frozen.",
     "power": 40,
     "accuracy": 95,
-    "color": "green"
+    "color": "green",
+    "tier": 2
   },
   {
     "id": 36,
@@ -293,7 +326,8 @@
     "description": "Removes Freeze.",
     "power": 30,
     "accuracy": 100,
-    "color": "red"
+    "color": "red",
+    "tier": 2
   },
   {
     "id": 37,
@@ -301,7 +335,8 @@
     "description": "Sets your Red stat to 0 for the rest of the battle.",
     "power": 160,
     "accuracy": 80,
-    "color": "red"
+    "color": "red",
+    "tier": 3
   },
   {
     "id": 38,
@@ -309,7 +344,8 @@
     "description": "Opponent's Red moves have 20% less Power.",
     "power": 0,
     "accuracy": 80,
-    "color": "green"
+    "color": "green",
+    "tier": 1
   },
   {
     "id": 39,
@@ -317,7 +353,8 @@
     "description": "Opponent's Blue moves have 20% less Power.",
     "power": 0,
     "accuracy": 80,
-    "color": "green"
+    "color": "green",
+    "tier": 1
   },
   {
     "id": 40,
@@ -325,7 +362,8 @@
     "description": "Opponent's Green moves have 20% less Power.",
     "power": 0,
     "accuracy": 80,
-    "color": "green"
+    "color": "green",
+    "tier": 1
   },
   {
     "id": 41,
@@ -333,6 +371,7 @@
     "description": "After every turn, both players take their Red color stat in damage.",
     "power": 0,
     "accuracy": 80,
-    "color": "blue"
+    "color": "blue",
+    "tier": 3
   }
 ]
